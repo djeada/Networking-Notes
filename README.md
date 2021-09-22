@@ -18,7 +18,7 @@ The switch has ports on it that are known as LAN ports.
 
 A device with functions similar to swtich. Uses wirless connection.
 
-<h1>The internet?</h1>
+<h1>The internet</h1>
 
 The internet connects all of the LANs and forms a network.
 A home router is essential; it is essentially a router and a switch combined.
