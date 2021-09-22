@@ -1,4 +1,4 @@
-# networking
+# Networking
 notes on networking
 
 <h1>LAN</h1>
