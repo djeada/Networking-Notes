@@ -123,7 +123,7 @@ It should be noted that some local ISPs can communicate with global ISPs without
 
 Local ISPs are often smaller businesses that may desire a direct link with a global ISP in order to provide their consumers with a better experience. 
 
-<h2>peering</h2>
+<h2>Peering</h2>
 
 Assume a computer in Belgium wishes to connect to a website in India, but the website only has one server.
 In this scenario, the user submits a request, and the packet travels via the local ISP, regional ISP, and global ISP to reach the website's server.
