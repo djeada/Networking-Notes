@@ -1,5 +1,5 @@
 # Networking
-notes on networking
+Notes on networking.
 
 <h1>LAN</h1>
 LAN is made up of devices that are linked together via switches and access points.
