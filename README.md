@@ -139,3 +139,7 @@ Peering occurs when Google's servers create a direct link with our local ISPs, b
 As a result, we may conclude that Google's rapid service speed is due to its dispersed servers and peering architecture.
 
 We can also connect directly to a regional ISP for a quicker connection. 
+
+<h1>Questions</h1>
+* how does internet work?
+* what happens when you hit enter after typing a url?
