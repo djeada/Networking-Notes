@@ -141,5 +141,6 @@ As a result, we may conclude that Google's rapid service speed is due to its dis
 We can also connect directly to a regional ISP for a quicker connection. 
 
 <h1>Questions</h1>
+
 * how does internet work?
 * what happens when you hit enter after typing a url?
