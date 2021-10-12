@@ -144,3 +144,4 @@ We can also connect directly to a regional ISP for a quicker connection.
 
 * how does internet work?
 * what happens when you hit enter after typing a url?
+* what happens when you search for a phrase on google?
