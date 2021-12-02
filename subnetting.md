@@ -22,7 +22,7 @@ You get the network ID 192.168.4.0/24
 Now you have to create 3 subnetworks. One for office, one for front desk, one for storage. Each network gets network ID, subnet mask, host id range, # of usable hosts, brodcast id.
 
 | Subnet      | 1   | 2   | 4   | 8   | 16  | 32  | 64  | 128 | 256 |
-| --- | --- | --- | --- | --- |--- | --- | --- | --- |
+| --- | --- | --- | --- | --- |--- | --- | --- | --- | --- |
 | Host        | 256 | 128 | 64  | 32  | 16  | 8   | 4   | 2   | 1   | 
 | Subnet Mask | /24 | /25 | /26 | /27 | /28 | /29 | /30 | /31 | /32 |
 
