@@ -36,3 +36,15 @@ Total host id is 64 (including host id and broadcast id).
 | 192.168.4.64 | /26 | 192.168.4.65 - 192.168.4.126 | 64 - 2 = 62 | 192.168.4.127 |
 | 192.168.4.128 | /26 | 192.168.4.129 - 192.168.4.190 | 64 - 2 = 62 | 192.168.4.191 |
 | 192.168.4.192 | /26 | 192.168.4.193 - 192.168.4.254 | 64 - 2 = 62 | 192.168.4.255 |
+
+Example
+Adres A: 192.168.10.32
+Mask: 255.255.255.0
+
+Adres B: 192.168.10.67
+Mask: 255.255.255.0
+
+* They are in the same network.
+* Network adress is 192.168.10.0
+* Broadcast adress is 192.168.10.255
+* There are 254 hosts in the network.
