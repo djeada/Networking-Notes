@@ -768,3 +768,9 @@ Unless we state explicitly otherwise, we'll be referring to store-and-forward sw
 * what happens when you hit enter after typing a url?
 * what happens when you search for a phrase on google?
 * how does whatsapp work?
+
+<h1>Linki</h1>
+ * Bombal na gicie
+ * https://www.youtube.com/watch?v=VwN91x5i25g&list=PLBlnK6fEyqRgMCUAG0XRw78UA8qnv6jEx
+ * https://www.youtube.com/watch?v=L_6RmF3QQyo&t=447s
+ * https://www.youtube.com/watch?v=kNKHM_isojI&t=934s
