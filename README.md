@@ -1,6 +1,9 @@
 # Networking
 Notes on networking.
 
+TODO:
+http://mw.home.amu.edu.pl/zajecia/BAD2016/BAD.html
+
 <h1>LAN</h1>
 LAN is made up of devices that are linked together via switches and access points.
 If PC 1 and PC 6 are connected via a network, the computer breaks the data down into little pieces called packets and transmits it to the switch.
