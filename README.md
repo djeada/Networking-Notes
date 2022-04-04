@@ -4,6 +4,7 @@ Notes on networking.
 TODO:
 * http://mw.home.amu.edu.pl/zajecia/BAD2016/BAD.html
 * https://www.youtube.com/c/PracticalNetworking
+* https://www.youtube.com/watch?v=X8RxRr7KNl8&list=PLSNNzog5eydtb5wyH2UtK09L9MsW9Hufq&ab_channel=SunnyClassroom
 
 
 <h1>LAN</h1>
