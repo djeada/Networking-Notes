@@ -5,7 +5,7 @@ TODO:
 * http://mw.home.amu.edu.pl/zajecia/BAD2016/BAD.html
 * https://www.youtube.com/c/PracticalNetworking
 * https://www.youtube.com/watch?v=X8RxRr7KNl8&list=PLSNNzog5eydtb5wyH2UtK09L9MsW9Hufq&ab_channel=SunnyClassroom
-
+* https://github.com/Tikam02/DevOps-Guide/tree/master/Networking
 
 <h1>LAN</h1>
 LAN is made up of devices that are linked together via switches and access points.
