@@ -780,3 +780,11 @@ Unless we state explicitly otherwise, we'll be referring to store-and-forward sw
  * https://www.youtube.com/watch?v=VwN91x5i25g&list=PLBlnK6fEyqRgMCUAG0XRw78UA8qnv6jEx
  * https://www.youtube.com/watch?v=L_6RmF3QQyo&t=447s
  * https://www.youtube.com/watch?v=kNKHM_isojI&t=934s
+
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
