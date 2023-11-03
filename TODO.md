@@ -17,121 +17,6 @@ If the message is sent to all the nodes in a network it is called
 Broadcasting. This is typically used in Local networks, for example,
 DHCP and ARP use broadcasting.
 
-**What are layers in OSI model?**
-
-1.  Physical Layer Converts data bit into an electrical impulse.
-
-2.  Data Link Layer Data packet will be encoded and decoded into bits.
-
-3.  Network Layer Transfer of datagrams from one to another.
-
-4.  Transport Layer Responsible for Data transfer from one to another.
-
-5.  Session Layer Manage and control signals between computers.
-
-6.  Presentation Layer Transform data into application layer format.
-
-7.  Application Layer An end user will interact with the Application
-    layer.
-
-The model is a theoretical stack of seven layers that can be used as a
-reference to
-
-help understand how networks operate. The model was introduced to
-standardize networks in a way that allowed multi vendor systems. Prior
-to this, you would only be able to have a one vendor network because the
-devices from one vendor couldn't communicate with others. It is worth
-nothing that we dont actually use the OSI model, we use something called
-the TCP/IP model. The concepts are exactly the same. the layers are
-slightly
-
-different.
-
-Layers
-
-**Layer1: Physical layer**
-
-carries data across physical hardware.
-
-User: ethernet cables.
-
-Examples:
-
--are all the cables plugged in?
-
--Is the network card functioning?
-
--Could it be a faulty cable?
-
-**Layer 2: Data Link layer**
-
-At this layer, the physical addresses are added to the data. This is
-source and
-
-destination mac addresses.
-
-Switches operate at this layer
-
-Example:
-
--Maybe the switch has gone bad?
-
-**Layer 3: Network layer**
-
-The network layer handles ip addressing and routing. At this layer, the
-source
-
-and destination IP addresses are added.
-
-Routers operate at this layer
-
-Example:
-
--Is the router functioning?
-
--Do i have the right IP address?
-
-**Layer 4: Transport layer**
-
-This layer adds transport protocols such as TCP/UDP, and adds
-source/destination
-
-port numbers.
-
-Example:
-
--Could the internet card be functional?
-
-**Layer 5: Session layer**
-
-this layer is responsible for establishing and terminating connections
-between devices.
-
-Example:
-
--Are you connecting to the correct address?
-
-**Layer 6: Presentation layer**
-
-This layer formats the data in a way the receiving application can
-understand it. This
-
-layer can also encrypt and decrypt data if needed
-
-Example:
-
--Are you reading the data in the same order that you wrote it?
-
-**Layer 7: Application layer**
-
-This layer is where the application and user communicates
-
-Applications used here such as SMTP, if you're sending an email for
-example.
-
-Example:
-
--Is the application erroring out?
 
 **What is Stop-and-Wait Protocol?**\
 In Stop and wait protocol, a sender after sending a frame waits for an
@@ -158,30 +43,6 @@ See [*network
 devices*](http://quiz.geeksforgeeks.org/network-devices-hub-repeater-bridge-switch-router-gateways/) for
 more details.
 
-**What happens when you type a URL in the web browser?**\
-A URL may contain a request to HTML, image file or any other type.
-
-1.  If the content of the typed URL is in the cache and fresh, then
-    display the content.
-
-2.  Else find the IP address for the domain so that a TCP connection can
-    be set up. Browser does a DNS lookup.
-
-3.  Browser needs to know the IP address for a URL so that it can set up
-    a TCP connection.  This is why browser needs DNS service. The
-    browser first looks for URL-IP mapping browser cache, then in OS
-    cache. If all caches are empty, then it makes a recursive query to
-    the local DNS server.   The local DNS server provides the IP
-    address.
-
-4.  Browser sets up a TCP connection using three-way handshake.
-
-5.  Browser sends a HTTP request.
-
-6.  Server has a web server like Apache, IIS running that handles
-    incoming HTTP request and sends an HTTP response.
-
-7.  Browser receives the HTTP response and renders the content.
 
 **What is DHCP, how does it work?**
 
@@ -210,73 +71,7 @@ local link. The ARP protocol helps here.
 Like DHCP, ARP is a discovery protocol, but unlike DHCP there is not
 server here.
 
-**How does DNS work?**
 
-**Domain :**
-
-There are various kinds of DOMAIN :
-
-1.  Generic domain : .com(commercial) .edu(educational) .mil(military)
-    .org(non profit organization) .net(similar to commercial) all
-    these are generic domain.
-
-2.  Country domain .in (india) .us .uk
-
-3.  Inverse domain if we want to know what is the domain name of the
-    website. Ip to domain name mapping.So DNS can provide both the
-    mapping for example to find the ip addresses of geeksforgeeks.org
-    then we have to type nslookup www.geeksforgeeks.org.
-
-**Hierarchy of Name Servers**
-
-**Root name servers** – It is contacted by name servers that can not
-resolve the name. It contacts authoritative name server if name mapping
-is not known. It then gets the mapping and return the IP address to the
-host.
-
-**Top level server** – It is responsible for com, org, edu etc and all
-top level country domains like uk, fr, ca, in etc. They have info about
-authoritative domain servers and know names and IP addresses of each
-authoritative name server for the second level domains.
-
-**Authoritative name servers** This is organization’s DNS server,
-providing authoritative hostName to IP mapping for organization servers.
-It can be maintained by organization or service provider. In order to
-reach cse.dtu.in we have to ask the root DNS server, then it will point
-out to the top level domain server and then to authoritative domain name
-server which actually contains the IP address. So the authoritative
-domain server will return the associative ip address.
-
-**Domain Name Server**
-
-![DNS_3](images//media/image16.png)
-
-The client machine sends a request to the local name server, which , if
-root does not find the address in its database, sends a request to the
-root name server, which in turn, will route the query to an intermediate
-or authoritative name server. The root name server can also contain some
-hostName to IP address mappings . The intermediate nae server always
-knows who the authoritative name server is. So finally the IP address is
-returned to the local name server which in turn returns the IP address
-to the host.
-
-**Recursive Resolution** –\
-Here, client requires the Local Server to give either the requested
-mapping or an error message. A DNS Query is generated by the application
-program to the resolver to fetch the destination IP Address. The Query
-is then forward to the local DNS Server. If it knows the IP Address, it
-sends a response to the resolver. Assuming, it does not know the IP
-Address, it sends the query to the root name server.\
-The root name server contains information of about at least one server
-of Top Level Domain. The query is then sent to the respective Top-Level
-Domain server. If it contains the mapping, the response is sent back to
-the root server and then to host’s local server. If it doesn’t contain
-the mapping, it should contain the IP Address of destination’s local DNS
-Server. The local DNS server knows the destination host’s IP Address.
-The information is then sent back to the top-level domain server, then
-to the root server and then to the host’s Local DNS Server and finally
-to the host.\
-![](images//media/image10.jpg)
 
 **NOTES**
 
@@ -554,25 +349,4 @@ files between local and remote file systems. It runs on the top of TCP,
 like HTTP. To transfer a file, 2 TCP connections are used by FTP in
 parallel: control connection and data connection.
 
-[***Hypertext Transfer Protocol
-(HTTP)***](https://www.geeksforgeeks.org/http-non-persistent-persistent-connection/):
-is an application-level protocol that uses TCP as an underlying
-transport and typically runs on port 80. HTTP is a stateless protocol
-i.e. server maintains no information about past client requests.
 
-**Network Security**
-
-For Symmetric Key : n*(n-1)/2 keys are required.\
-For Public Key : 2*n key are required ( each node will have private and
-public key).
-
-[***RSA Algorithm in
-Cryptography***](https://www.geeksforgeeks.org/rsa-algorithm-using-multiple-precision-arithmetic-library/)\
-\
-![Rsa Example](images//media/image9.png)
-
-[***Deffie Hellman Key
-Exchange***](https://www.geeksforgeeks.org/implementation-diffie-hellman-algorithm/)\
-R1 = g<sup>x</sup> mod p\
-R2 = g<sup>y</sup> mod q\
-Both will have same key = g<sup>xy</sup> mod p
