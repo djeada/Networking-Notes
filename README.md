@@ -2,10 +2,9 @@
 Notes on networking.
 
 TODO:
-* http://mw.home.amu.edu.pl/zajecia/BAD2016/BAD.html
+* https://mw.home.amu.edu.pl/zajecia/SIK2021/SIK.html
 * https://www.youtube.com/c/PracticalNetworking
 * https://www.youtube.com/watch?v=X8RxRr7KNl8&list=PLSNNzog5eydtb5wyH2UtK09L9MsW9Hufq&ab_channel=SunnyClassroom
-* https://github.com/Tikam02/DevOps-Guide/tree/master/Networking
 * https://github.com/Tikam02/DevOps-Guide/tree/master/Networking
 
 <h1>LAN</h1>
