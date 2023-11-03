@@ -1,6 +1,11 @@
-# Notes on IP Address: Understanding How it Works and its Limitations
 
-## Overview
+## IP Addresses
+- IP addresses enable packets to find their route across the internet.
+- **IPv4**: 32 bits, 2^32 unique addresses (e.g., 104.196.238.229).
+- IP addresses have a **hierarchical structure** and are network-specific.
+- Some IP ranges are owned by organizations (e.g., Google owns 104.196.0.0-104.199.255.255).
+- [XKCD map](https://xkcd.com/195/) provides a visual of IP ownership.
+- 
 - An **IP address** is a unique numerical identifier for devices on a network.
 - Not unique to a user or computer, but to a Network Interface Card (NIC).
 - A device can have multiple NICs and thus, multiple IP addresses.
