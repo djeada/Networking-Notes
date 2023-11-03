@@ -37,5 +37,47 @@ A URL may contain a request to HTML, image file or any other type.
     incoming HTTP request and sends an HTTP response.
 
 7.  Browser receives the HTTP response and renders the content.
+# INTERNET IS CONNECTIONS of LANS
 
-8. 
+
+<h1>The internet</h1>
+
+The internet connects all of the LANs and forms a network.
+A home router is essential; it is essentially a router and a switch combined.
+This generally has an access point capability, allowing us to connect to it wirelessly.
+
+
+So why can't there be just one router that all home routers link to?
+To begin with, the primary router must have millions of ports so that each device may connect to it.
+However, the primary issue is that one router will have to handle all of the load, making it a single point of failure.
+In this situation, if there is a single problem with the router, the entire internet will break at the same moment.
+Long cables would also be necessary. 
+
+These internet-connection cables are even put down on the ocean floor!
+If one of these cables fails, the internet on that continent may go down.
+These are all fiber optic lines since the data transfer speed is extremely fast.
+
+Assume that a computer in India has to deliver a packet to a computer in Mexico.
+First, the router receives this packet and forwards it to another router through wires.
+This router now has a plethora of possibilities for forwarding this packet.
+It uses something called a routing table to select the best one. 
+
+<h2>How do devices connect to the internet?</h2>
+A switch is sufficient to create a LAN.
+How, though, do devices connect to the internet?
+We utilize something called a router for this.
+The switch is connected to the router via a copper cable.
+To connect to the internet, however, we utilize a wire provided by the ISP (internet service provider) for a fee.
+To transmit a packet to the internet, the computer first sends it to the switch, which then sends it to the router, which finally functions as a gateway to the internet.
+
+Every home or apartment will have a LAN.
+The router allows us to connect the computer to another computer anywhere in the globe.
+In other words, the router facilitates the connection between distinct LANS. 
+
+<h2>The internet is a network of networks.</h2>
+Assume YouTube wants to give you data when you send it a request.
+It will accomplish this by sending data packets to you through the internet.
+Streaming refers to the process of delivering data in pieces.
+When we request this packet from YouTube, we are actually talking with high-powered computers known as servers on YouTube.
+To avoid a single point of failure, multiple YouTube servers are dispersed throughout the world. 
+
