@@ -27,21 +27,7 @@ acknowledgment of the frame has received.
 Piggybacking is used in bi-directional data transmission in the network
 layer (OSI model). The idea is to improve efficiency piggyback
 acknowledgment (of the received data) on the data frame (to be sent)
-instead of sending a separate frame.
-
-**Differences between Hub, Switch and Router?**
-
-  Hub | Switch | Router
-  --- | --- | ---
-  Physical Layer Device | Data Link Layer Device | Network Layer Device
-  Simply repeats signal to all ports | Doesn’t simply repeat, but filters content by MAC or LAN address | Routes data based on IP address
-  Connects devices within a single LAN | Can connect multiple sub-LANs within a single LAN | Connect multiple LANS and WANS together.
-  [*Collision domain*](https://en.wikipedia.org/wiki/Collision_domain) of all hosts connected through Hub remains one. i.e., if signal sent by any two devices can collide.   Switch divides collision domain, but [*broadcast domain*](https://en.wikipedia.org/wiki/Broadcast_domain)of connected devices remains same.   It divides both collision and broadcast domains,
-                                                                                                                                                                                                                                                                                                                            
-
-See [*network
-devices*](http://quiz.geeksforgeeks.org/network-devices-hub-repeater-bridge-switch-router-gateways/) for
-more details.
+instead of sending a separate frame.          
 
 
 **What is DHCP, how does it work?**
@@ -90,31 +76,7 @@ server here.
 **Layers and their uses –**\
 ![https://media.geeksforgeeks.org/wp-content/uploads/3-30.jpg](images//media/image15.jpg)
 
-**Physical Layer**
 
-[***Network
-Topologies:***](https://www.geeksforgeeks.org/network-topologies-computer-networks/)
-
--   **Mesh Topology:**\
-    In mesh topology, every device is connected to another device via
-    particular channel.If suppose, N number of devices are connected
-    with each other, then total number of links required to connect
-    NC~2~.
-
--   **Bus Topology:**\
-    Bus topology is a network type in which every computer and network
-    device is connected to single cable. If N devices are connected,
-    then the number of cables required 1 which is known as backbone
-    cable and N drop lines are required.
-
--   **Star Topology:**\
-    In star topology, all the devices are connected to a single hub
-    through a cable. If N devices are connected to each other, then
-    the no. of cables required N.
-
--   **Ring Topology:**\
-    In this topology, it forms a ring connecting a devices with its
-    exactly two neighboring devices.
 
 [***Transmission
 Modes:***](https://www.geeksforgeeks.org/transmission-modes-computer-networks/)
@@ -143,72 +105,6 @@ lack of transmissions.
     the beginning of bit interval is equal to 1 and if there is no
     transition at the beginning of bit interval is equal to 0.
 
-**Data Link Layer**
-
-1.  **Flow Control**\
-    N = Sender’s Window Size. (in SR both sender and receiver window
-    are same)\
-    a = T~p~ /T~t~
-
-![https://media.geeksforgeeks.org/wp-content/uploads/2-40.jpg](images//media/image5.jpg)
-
-1.  Sequence No. >= (Sender’s Window Size) + (Reciever’s Window Size
-    )
-
-2.  Efficiency in TDM(polling) = T~t~ / (T~poll~ + T~t~)
-
-3.  In CSMA/CD, T~t~ >= 2*T~p~\
-    Hence, min frame length = 2*T~p~*B
-
-4.  In CSMA/CD, Efficiency = 1/(1 + 6.44a)
-
-5.  [***Back-off Algorithm for
-    CSMA/CD***](https://www.geeksforgeeks.org/back-off-algorithm-csmacd/)\
-    Waiting time = back–off time\
-    Let n = collision number or re-transmission serial number.\
-    Then, Waiting time = K * T~slot~\
-    where K = \[0, 2<sup>n</sup> – 1 \]
-
-6.  N = No. of stations\
-    Early Token Reinsertion : Efficiency = 1/(1 + a/N)\
-    Delayed Token Reinsertion : Efficiency = 1/(1 + (N+1)a/N)
-
-7.  Pure Aloha Efficiency = 18.4 %\
-    Slotted Aloha Efficiency = 36.8%
-
-8.  [***Maximum data rate (channel capacity) for noiseless and noisy
-    channels***](https://www.geeksforgeeks.org/computer-network-maximum-data-rate-channel-capacity-noiseless-noisy-channels/)
-
-    -   **Noiseless Channel : Nyquist Bit Rate**\
-        BitRate = 2 * Bandwidth * log2(L)\
-        where,L is the number of signal levels used to represent data.
-
-    -   **Noisy Channel : Shannon Capacity**\
-        Capacity = bandwidth * log2(1 + SNR)\
-        where, SNR is the signal-to-noise ratio
-
- 
-
-9.  **Error Control**
-
-    -   [***Hamming
-        Code***](https://www.geeksforgeeks.org/computer-network-hamming-code/):
-        is a set of error-correction codes that can be used to detect
-        and correct the errors that can occur when the data is moved
-        or stored from the sender to the receiver.\
-        **Redundant bits:**\
-        2^r^ ≥ m + r + 1\
-        where, r = redundant bit, m = data bit
-
-    -   [***Framing in
-        DLL***](https://www.geeksforgeeks.org/computer-network-framing-data-link-layer/):
-        It provides a way for a sender to transmit a set of bits that
-        are meaningful to the receiver.\
-        **Character/Byte Stuffing:** Used when frames consist of
-        character. If data contains ED then, byte is stuffed into data
-        to diffentiate it from ED.\
-        **Bit stuffing**: Sender stuffs a bit to break the pattern
-        i.e. here appends a 0 in data = 0111**0**1.
 
 **Network Layer**
 
@@ -276,37 +172,7 @@ on the application layer of OSI model. RIP uses port number 520.
 2.  The maximum hop count allowed for RIP is 15 and hop count of 16 is
     considered as network unreachable.
 
-**Transport Layer**
 
-[***TCP
-header***](https://www.geeksforgeeks.org/tcp-services-and-segment-structure/)\
-![https://media.geeksforgeeks.org/wp-content/uploads/TCPSegmentHeader-1.png](images//media/image12.png)
-
-[***In TCP congestion control
-Algorithm***](https://www.geeksforgeeks.org/computer-network-tcp-congestion-control/)\
-When Time Out Occurs Algorithm Enters Slow Start Phase\
-When 3 Duplicate occurs algorithm enters congestion avoidance phase
-
-[***TCP 3-Way Handshake
-Process***](https://www.geeksforgeeks.org/computer-network-tcp-3-way-handshake-process/)\
-**Step 1 (SYN)** : In the first step, client wants to establish a
-connection with server, so it sends a segment with SYN(Synchronize
-Sequence Number) which informs server that client is likely to start
-communication and with what sequence number it starts segments with\
-**Step 2 (SYN + ACK)**: Server responds to the client request with
-SYN-ACK signal bits set. Acknowledgement(ACK) signifies the response of
-segment it received and SYN signifies with what sequence number it is
-likely to start the segments with\
-**Step 3 (ACK)** : In the final part client acknowledges the response of
-server and they both establish a reliable connection with which they
-will start eh actual data transfer.\
- 
-
-[***UDP header***](https://www.geeksforgeeks.org/gate-cs-notes-gq/)\
-![https://media.geeksforgeeks.org/wp-content/uploads/UDP-header.png](images//media/image7.png)
-
-Refer the [*Differences between TCP and
-UDP*](https://www.geeksforgeeks.org/differences-between-tcp-and-udp/)
 
 **Application Layer**
 
