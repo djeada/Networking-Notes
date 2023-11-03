@@ -13,15 +13,7 @@ The OSI Reference Model
 | Physical | Describes the mechanical, electrical, functional and procedural means to activate, maintain and deactivate physical connections for bit transmission to and from a network device |
 
 
-The TC/IP Model
------ 
 
-| Name | Description |
-|:----:|:----|
-| Applictaion | Represents data to the user, plus encoding and dialog control |
-| Transport | Supports communications between various devices across diverse networks |
-| Internet | Determines the best path through the network |
-| Network Access | Controls the hardware devices and media that make up the network |
 
 # Notes on OSI Model Layers
 
