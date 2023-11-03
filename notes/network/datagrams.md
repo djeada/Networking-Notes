@@ -1,3 +1,33 @@
+
+## Internet Abstraction: Datagrams
+- The internet provides the abstraction of **datagrams** for communication.
+- **Reliability** is built on top of what the internet provides, explored more in later lectures.
+
+### What is in a Datagram?
+- "To" and "From" addresses:
+  - IPv4: 32 bits (most common).
+  - IPv6: 128 bits (emerged due to exhaustion of IPv4 addresses).
+- Data payload (usually less than 1.5 KB).
+
+### Datagram Delivery: Best-Effort
+- Datagrams are delivered with "best effort", meaning:
+  1. Delivered quickly (ideal).
+  2. Delivered but with corrupted data.
+  3. Delivered late or out of order.
+  4. Delivered to or from the wrong address.
+  5. Not delivered at all.
+  6. Delivered with tampered data (maliciously).
+  7. Delivered multiple times.
+- This approach allows flexibility and minimal guarantees.
+
+
+
+### Datagram Loop Prevention
+- Datagrams have a **TTL (Time To Live)** field to prevent infinite looping.
+- TTL is decremented at each router; if TTL=0, the datagram is dropped.
+- **Traceroute** utilizes the TTL field to trace the path of a packet.
+
+
 ## Internet Datagram vs User Datagram
 - **Internet Datagram**:
   - Conceptually travels machine to machine.
