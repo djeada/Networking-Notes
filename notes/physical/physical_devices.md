@@ -22,7 +22,15 @@ Understanding the differences between a **Hub**, **Switch**, and **Router** is e
 - **Connection**: Connect multiple LANs and Wide Area Networks (WANs) together.
 - **Domains**: Routers divide both collision and broadcast domains.
 
-## **Summary**
-- **Hub**: A basic repeater that doesn't filter or differentiate signals, leading to possible collisions.
-- **Switch**: An intelligent device that filters and directs data within a LAN, reducing collisions.
-- **Router**: A more advanced device that directs data between different networks and divides both collision and broadcast domains.
+<h2>Switch</h2>
+A switch can be used to link many computers in a network.
+To link all of the computers to the switch, we can utilize copper wires or faster fiber optic connections.
+Copper cables are classified into two types: CAT-5 and CAT-6.
+No wirless connection.
+Category 6 allows for faster transmission of data.
+Switches are used to build a LAN network.
+The switch has ports on it that are known as LAN ports. 
+
+<h2>Access points</h2>
+
+A device with functions similar to swtich. Uses wirless connection.
