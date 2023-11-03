@@ -78,19 +78,6 @@ server here.
 
 
 
-[***Transmission
-Modes:***](https://www.geeksforgeeks.org/transmission-modes-computer-networks/)
-
--   **Simplex Mode**: the communication is unidirectional, as on a
-    one-way street.Only one of the two devices on a link can transmit,
-    the other can only receive.
-
--   **Half-duplex Mode**: each station can both transmit and receive,
-    but not at the same time.
-
--   **Full-duplex Mode**: both stations can transmit and receive
-    simultaneously.
-
 [***Manchester
 Encoding***](https://www.geeksforgeeks.org/computer-network-manchester-encoding/):
 When there is a long sequence of 0s and 1s, there is a problem at the
