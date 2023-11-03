@@ -4,6 +4,18 @@
 * 
 
 
+<h1>How does VPN tunnelling work?</h1>
+
+The issue is, even if there is no physical tunnel linking the two LAN routers, the data may still be accessed.
+However, the data is placed in a safe envelope, much like a letter, and is then encrypted so that it cannot be hacked or viewed.
+Encapsulation is the process of putting data to be transferred into an envelope or another packet.
+
+Do you believe that because the internet is a public network, the data you transmit to networks such as Amazon may be hacked?
+
+To some extent, it cannot be hacked due to a feature known as end-to-end encryption.
+Only the two communicating users will be able to see the data in this system. 
+
+
 # Virtual Private Network (VPN)
 
 ## **Overview**
