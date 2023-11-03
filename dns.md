@@ -1,7 +1,19 @@
 # Notes on How DNS Works
 
-## Overview
-- **DNS (Domain Name System)**: Maps human-readable domain names to IP addresses.
+- **DNS Request**:
+  - A request for mapping a hostname to an IP address (e.g., `tiktok.com` to `192.168.1.1`).
+  - Sent from a client to a DNS server listed in `etc/resolve.conf`.
+  - Uses port 53 in the UDP header.
+  - DNS requests and responses can be observed using packet capture tools like Wireshark.
+- **Name Assignment and Hierarchical Control**:
+  - Names and IP mappings are stored in a hierarchical, distributed database.
+  - Name servers controlled by different authorities provide information about parts of the name space.
+  - Example: `puffer.stanford.edu` is divided into parts: root (`""`), `edu`, `stanford`, and `puffer`.
+- **DNS Lookup**:
+  - Recursive process through the distributed DNS database.
+  - In practice, a DNS server usually performs the recursive lookup and may use cached responses.
+  - DNS replies have an expiration date indicating the validity of the IP mapping.
+- **Resources**: Further understanding can be gained through online resources and forums.
 
 ## Types of Domains
 
