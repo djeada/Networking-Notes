@@ -1,3 +1,10 @@
+Learning Aspects with Wireshark:
+
+- Packet Analysis: You can see the details of the packets at each layer of the OSI model. This is particularly useful for understanding how TCP and UDP work.
+- Protocol Behavior: Observing how different protocols behave under various conditions, like observing TCP's three-way handshake, window scaling, and how UDP differs by being connectionless.
+- Troubleshooting: Wireshark is often used to diagnose network problems, understand security issues, and debug protocol implementations.
+- Hands-On Experience: There’s no substitute for practical experience, and using Wireshark provides hands-on learning that is invaluable.
+
 1. Introduction to Wireshark and Basic Concepts
 
     Lab 1: Install Wireshark and explore its interface.
