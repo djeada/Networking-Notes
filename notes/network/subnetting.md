@@ -1,3 +1,32 @@
+
+# Understanding Subnet Masks and Network Addressing
+
+- **Purpose of Subnet Mask**: Determines which part of the 32-bit IP address is the network address, indicating the first 'n' bits as the network address.
+- **Function**: Helps in identifying whether a destination IP is on the same subnet or not.
+
+## Working with Subnet Masks
+- **On the Same Subnet**:
+  - If the destination IP is on the same subnet, the packet is passed to the link layer code for delivery within the subnet.
+- **On a Different Subnet**:
+  - If the destination IP is not on the same subnet, the packet is sent to the gateway.
+
+## Binary Representation
+- **IP Address in Binary**: Example: 192.168.1.100 = `11000000101010000000000101100100` in binary.
+- **Subnet Mask in Binary**: In a /24 subnet, subnet mask = `11111111111111111111111100000000`.
+- **Bitwise AND Operation**: Used to determine the network address.
+  - Example: `11000000101010000000000101100100` (IP Address) AND `11111111111111111111111100000000` (Subnet Mask) = `11000000101010000000000100000000` (Network Address).
+  - Human-readable format: Network address is 192.168.1.0.
+
+## Subnetting Example
+- **Large Network Example**: 10.0.0.0/8 with 16,777,216 IPs.
+- **Home Network Example**: 192.168.1.1/24.
+  - **Reason for /24**: Typically, homes do not need 16 million addresses.
+  - **Subnet Size**: /24 subnet allows 256 - 2 addresses (254 usable IPs).
+    - First address (e.g., 192.168.1.0) is the network address.
+    - Last address (e.g., 192.168.1.255) is the broadcast address.
+- **Separate Subnets**: Different subnets (e.g., 192.168.2.0/24) may not have routes to each other, thus remaining isolated.
+
+
 * decimal
 * binary
 * octet (a group of 8, in this case 8 binary numbers)
