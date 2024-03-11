@@ -2,6 +2,7 @@
 Notes on networking.
 
 TODO:
+* FULL START HERE: https://www.youtube.com/watch?v=PhjHXeMNpp8
 * https://mw.home.amu.edu.pl/zajecia/SIK2021/SIK.html
 * https://www.youtube.com/c/PracticalNetworking
 * https://www.youtube.com/watch?v=X8RxRr7KNl8&list=PLSNNzog5eydtb5wyH2UtK09L9MsW9Hufq&ab_channel=SunnyClassroom
