@@ -1,5 +1,6 @@
-# Networking
-Notes on networking.
+# Networking Notes
+
+This repository is a comprehensive collection of notes, guides, and resources on various networking topics. It is designed to serve as a valuable reference for students, professionals, and anyone interested in learning more about networking concepts and technologies.
 
 TODO:
 * FULL START HERE: https://www.youtube.com/watch?v=PhjHXeMNpp8
