@@ -1,3 +1,44 @@
+As we can recall, an IP address is made up of four sections called octets. The same goes for a subnet mask which is also represented as a number of four bytes (32 bits), ranging from 0 to 255 (0-255).
+
+Subnets use IP addresses in three different ways:
+
+    Identify the network address
+    Identify the host address
+    Identify the default gateway
+
+Let's split these three up to understand their purposes into the table below:
+Type	Purpose	Explanation	Example
+Network Address 
+	This address identifies the start of the actual network and is used to identify a network's existence.
+	For example, a device with the IP address of 192.168.1.100 will be on the network identified by 192.168.1.0
+	192.168.1.0
+Host Address
+	An IP address here is used to identify a device on the subnet
+	For example, a device will have the network address of 192.168.1.1
+	192.168.1.100
+Default Gateway
+	The default gateway address is a special address assigned to a device on the network that is capable of sending information to another network 
+	Any data that needs to go to a device that isn't on the same network (i.e. isn't on 192.168.1.0) will be sent to this device. These devices can use any host address but usually use either the first or last host address in a network (.1 or .254)
+	192.168.1.254
+
+
+Now, in small networks such as at home, you will be on one subnet as there is an unlikely chance that you need more than 254 devices connected at one time.
+
+However, places such as businesses and offices will have much more of these devices (PCs, printers, cameras and sensors), where subnetting takes place.
+
+Subnetting provides a range of benefits, including:
+
+    Efficiency
+    Security
+    Full control
+
+We'll come on to explore exactly how subnetting provides these benefits at a later date; however, for now, all we need to understand is the security element to it. Let's take the typical café on the street. This cafe will have two networks:
+
+    One for employees, cash registers, and other devices for the facility
+    One for the general public to use as a hotspot
+
+Subnetting allows you to separate these two use cases from each other whilst having the benefits of a connection to larger networks such as the Internet.
+
 
 # Understanding Subnet Masks and Network Addressing
 
