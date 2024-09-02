@@ -25,3 +25,23 @@ With PAT each host on the LAN is translated to the routers WAN-side public IP ad
 | **Configuration**| Requires careful planning for IP range, subnet mask, and understanding of network topology. | Configured on routers and firewalls, often with dynamic or static mapping of addresses. |
 | **Scalability** | Highly scalable, but requires careful planning for IP address allocation and subnet sizing. | Offers scalability in terms of internal network size, but limited by the number of available public IP addresses. |
 | **Common Usage**| Used extensively in medium to large-sized networks for efficient IP management. | Widely used in almost all types of networks, especially where IP address conservation is important. |
+
+ ## NAT and Proxy
+Here's a comparison table between NAT and Proxy based on the provided descriptions:
+
+| **Parameter**               | **NAT (Network Address Translation)**                              | **Proxy (Forward Proxy)**                               |
+|-----------------------------|-------------------------------------------------------------------|---------------------------------------------------------|
+| **OSI Layer**               | Layer 3/4 (Network/Transport Layer)                               | Layer 7 (Application Layer)                             |
+| **Connection Type**         | Single continuous connection from client to server (with IP translation) | Two separate connections: client to proxy, proxy to server |
+| **Data Handling**           | Cannot read or modify encrypted data; only changes IP addresses   | Can decrypt, inspect, modify, cache, and filter data    |
+| **Primary Function**        | IP address conservation and basic security by IP masking          | Content filtering, caching, and enforcing network policies |
+| **Visibility to End Hosts** | Typically invisible to end hosts; operates transparently          | Both client and server are aware of proxy's presence    |
+| **Application Specificity** | Operates at the IP level, not protocol-specific                   | Protocol-specific, e.g., HTTP, FTP                      |
+| **Data Exposure**           | No exposure of user data if encrypted                             | User data exposed to proxy when decrypted               |
+| **Security Impact**         | Provides basic security by hiding internal IP addresses           | Enhances security by controlling traffic at the application level |
+| **Configuration**           | No special configuration needed on end hosts                     | May require configuration on client devices             |
+| **Overhead**                | Low overhead; primarily IP address rewriting                      | Higher overhead due to processing at the application level |
+| **Common Use Cases**        | Conserving public IPs, simple network security                    | Web content filtering, bypassing geo-restrictions, caching |
+| **Cost**                    | Low, can be implemented on existing network devices               | Higher, may require dedicated hardware/software         |
+
+This table highlights the key differences and similarities between NAT and forward proxies, focusing on their roles, functions, and how they operate within a network【5†source】【6†source】【7†source】【8†source】.
