@@ -54,7 +54,21 @@
 ## Supplemental Material
 - **History of Networks** (3-1): Additional context on the evolution of network technologies.
 
-## Recommended Resources
-- Last year's module videos on YouTube and Lecture 6 on CS144 Canvas site.
-- Current year's lecture slides for additional explanations and examples.
+
+
+# CIRCUIT SWITCHING VS. PACKET SWITCHING
+
+| Circuit Switching                             | Packet Switching                           |
+|-----------------------------------------------|--------------------------------------------|
+| ➔ Three phases: 1) connection establishment 2) data transfer 3) connection release | ➔ Data can be transmitted directly (no need for establishment). |
+| ➔ Each data unit will have an entire path address. | ➔ Each data unit will have the destination address; the intermediate path is decided by routers. |
+| ➔ Circuit Switching is not a store and forward technique. The packet simply bypasses the queue of the router. | ➔ Packet switching is a store & forward technique, where the packets are stored, and algorithms applied on the best path. |
+| ➔ The transmission of the packet is done by the source. | ➔ The transmission of data is done not only by the source but also by intermediate routers. |
+| ➔ The delay between the data unit is uniform or same. | ➔ The delay between the data unit is variable. |
+| ➔ Resource reservation is a feature. | ➔ Resources are sharable. |
+| ➔ Wastage of resources are more. | ➔ Wastage of resources is less. |
+| ➔ Congestion can occur during the connection establishment phase. | ➔ Congestion can occur during the data transfer phase. |
+| ➔ It is not a fault tolerant technique because the packets cannot be diverted to other paths if the link is broken. | ➔ It is a fault-tolerant technique because the data can be diverted via other paths if the link is broken. |
+| ➔ Reliable, used for long messages. Circuit switching is slow. | ➔ Unreliable, used for short messages. Packet switching is fast. |
+
 
