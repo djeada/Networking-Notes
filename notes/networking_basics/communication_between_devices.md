@@ -1,3 +1,6 @@
+
+how communication between devices can be achieved?
+
 Use http, avoid ftp/sftp/scp/rsync/smb/mail
 Use http for data transfer. Avoid the old ways
 (ftp/sftp/scp/rsync/smb/mail).
