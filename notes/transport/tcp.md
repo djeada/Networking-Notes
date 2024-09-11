@@ -1,4 +1,4 @@
-three way handshake:
+
 TCP packets contain various sections of information known as headers that are added from encapsulation. Let's explain some of the crucial headers in the table below:
 
 
