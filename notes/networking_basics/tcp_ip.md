@@ -11,6 +11,9 @@
 The TC/IP Model
 ----- 
 
+TODO:
+add column to corresponding osi layers
+
 | Name | Description |
 |:----:|:----|
 | Applictaion | Represents data to the user, plus encoding and dialog control |
