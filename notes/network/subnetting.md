@@ -118,3 +118,29 @@ Mask: 255.255.255.0
 * Network adress is 192.168.10.0
 * Broadcast adress is 192.168.10.255
 * There are 254 hosts in the network.
+
+
+```
++---------------------------------------------------------------+
+|                           AWS VPC                             |
+|                                                               |
+|  +-------------------+          +-------------------+         |
+|  |   Subnet 0        |          |   Subnet 1        |         |
+|  |   (Public)        |          |   (Private)       |         |
+|  |  [Web Server]     |          |  [Application]    |         |
+|  |  [Load Balancer]  |          |  [Service 2]      |         |
+|  +--------+----------+          +---------+---------+         |
+|           |                               |                   |
+|           |                               |                   |
+|           v                               v                   |
+|  +--------+----------+          +---------+---------+         |
+|  |   Subnet 2        |          |   Subnet 3        |         |
+|  |   (Private)       |          |   (Public)        |         |
+|  |  [Database]       |          |  [Cache Server]   |         |
+|  |                   |          |                   |         |
+|  +-------------------+          +-------------------+         |
+|                                                               |
+|  [Internet Gateway] <-------> Subnet 0 & Subnet 3            |
+|  [NAT Gateway]      <-------> Subnet 1 & Subnet 2            |
++---------------------------------------------------------------+
+```
