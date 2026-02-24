@@ -286,8 +286,8 @@ def print_events(title, events):
 # ---------------------------------------------------------------------------
 if __name__ == "__main__":
     # Choose random ISNs to mimic real TCP behavior
-    client_isn = random.randint(1000, 9999)
-    server_isn = random.randint(1000, 9999)
+    client_isn = random.randint(0, 2**32 - 1)
+    server_isn = random.randint(0, 2**32 - 1)
 
     client = TCPEndpoint("Client", port=54321)
     server = TCPEndpoint("Server", port=80)

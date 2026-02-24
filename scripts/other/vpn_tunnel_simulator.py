@@ -108,12 +108,21 @@ class Packet:
 # ── VPN operations ───────────────────────────────────────────────────────
 
 def xor_encrypt(data: str, key: int = 0xAA) -> bytes:
-    """Toy XOR 'encryption' for demonstration only."""
+    """Toy XOR transformation for demonstration only.
+
+    WARNING: This is NOT secure encryption and must never be used in
+    production.  It exists solely to illustrate the concept of data
+    transformation that occurs inside a real VPN tunnel.
+    """
     return bytes(b ^ key for b in data.encode())
 
 
 def xor_decrypt(data: bytes, key: int = 0xAA) -> str:
-    """Reverse the toy XOR encryption."""
+    """Reverse the toy XOR transformation.
+
+    WARNING: This is NOT secure encryption and must never be used in
+    production.  See ``xor_encrypt`` for details.
+    """
     return bytes(b ^ key for b in data).decode()
 
 
