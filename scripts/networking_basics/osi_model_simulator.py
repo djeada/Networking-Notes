@@ -12,7 +12,7 @@ mirroring how real network stacks operate.
 Layers (top to bottom):
     7 - Application    : User data / HTTP headers
     6 - Presentation   : Encoding / encryption info
-    5 - Session         : Session identifiers
+    5 - Session        : Session identifiers
     4 - Transport       : TCP/UDP port info, sequence numbers
     3 - Network         : IP addresses
     2 - Data Link       : MAC addresses, frame trailer (FCS)
