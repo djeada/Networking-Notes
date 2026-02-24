@@ -66,17 +66,8 @@ This repository is a comprehensive collection of notes, guides, and resources on
 - [Load Balancing](notes/other/load_balancing.md)
 - [Network Troubleshooting](notes/other/network_troubleshooting.md)
 
-### Networking Tools
-- [ping](notes/tools/ping.md)
-- [netstat and ss](notes/tools/netstat_ss.md)
-- [nmap](notes/tools/nmap.md)
-- [tcpdump](notes/tools/tcpdump.md)
-- [curl](notes/tools/curl.md)
-- [SSH](notes/tools/ssh.md)
-- [ip and ifconfig](notes/tools/ip_ifconfig.md)
-
 ### Practice
-- [Ping](practice/ping/README.md)
+- [ping](practice/ping/README.md)
 - [Traceroute](practice/traceroute/README.md)
 - [DNS Lookup Tools (nslookup, dig, host)](practice/nslookup_dig/README.md)
 - [Network Connections (netstat, ss)](practice/netstat_ss/README.md)
@@ -85,6 +76,9 @@ This repository is a comprehensive collection of notes, guides, and resources on
 - [Netcat (nc)](practice/netcat/README.md)
 - [iptables and nftables](practice/iptables/README.md)
 - [Wireshark Labs](practice/wireshark/README.md)
+- [nmap](practice/nmap/README.md)
+- [SSH](practice/ssh/README.md)
+- [ip and ifconfig](practice/ip_ifconfig/README.md)
 
 ### Scripts
 - [Python Networking Scripts](scripts/README.md) — 30 educational Python scripts covering networking concepts
