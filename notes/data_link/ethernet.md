@@ -1,101 +1,215 @@
-The Ethernet technology operates primarily at two layers of the OSI model:
+# Ethernet
 
-    Data Link Layer (Layer 2):
-        This layer is responsible for data transfer between network nodes within the same local area network (LAN). It involves the use of MAC addresses to identify nodes, the creation of Ethernet frames, and the forwarding of these frames within the network.
+Ethernet is the most widely used LAN (Local Area Network) technology in the world.
+It operates primarily at the **Data Link Layer (Layer 2)** and the **Physical Layer
+(Layer 1)** of the OSI model. Ethernet defines how devices on a shared medium
+communicate using frames, MAC addresses, and well-defined access methods.
 
-    Physical Layer (Layer 1):
-        This layer deals with the physical connection between network nodes, including the electrical or optical properties of the transmission medium, and the speed at which data is transmitted over the network.
-        
-### 1. **Introduction to Ethernet Fundamentals**
-   - **Objective**: Understand the basics of Ethernet technology and data forwarding in an Ethernet network.
-   - **Topics Covered**:
-     - Ethernet technology evolution and standards.
-     - Ethernet specifics, such as MAC addresses and Ethernet frame structure.
-     - The role of Ethernet switches and MAC address tables in forwarding frames.
-     - Ethernet operation at the Data Link Layer and Physical Layer of the OSI model.
+---
 
-### 2. **Ethernet Technology Evolution**
-   - **Historical Background**:
-     - Introduced in the 1970s by Robert Metcalfe at Xerox Corporation, Palo Alto Research Center.
-     - Formalized by the IEEE in the mid-1980s with the IEEE 802.3 standard.
-   - **IEEE 802.3 Standard**:
-     - Defines rules for configuring an Ethernet network.
-     - Specifies interactions between Ethernet network elements.
-     - Ensures compatibility between equipment and protocols from different vendors.
+## Introduction and History
 
-### 3. **Ethernet Performance and Adaptability**
-   - **Throughput Evolution**:
-     - Originally 10 Mbps, increased to 100 Mbps in the mid-1990s.
-     - Currently supports up to 400 Gbps.
-   - **Versatility**:
-     - Suits various applications: home networks, corporate LANs, and data centers.
-     - Supports unique requirements and protocols for different applications.
-   - **Backward Compatibility**:
-     - Ethernet has maintained backward compatibility while evolving to higher performance levels.
+- **1973**: Robert Metcalfe invented Ethernet at Xerox PARC (Palo Alto Research Center).
+- **1980**: DEC, Intel, and Xerox published the DIX Ethernet standard (Ethernet II).
+- **1983**: IEEE formalized Ethernet as the **IEEE 802.3** standard.
+- **1995**: Fast Ethernet (100 Mbps) introduced as IEEE 802.3u.
+- **1999**: Gigabit Ethernet (1 Gbps) over copper as IEEE 802.3ab.
+- **2010+**: 40 Gbps and 100 Gbps standards (802.3ba). 400 Gbps (802.3bs) followed.
+- Today, Ethernet supports speeds from 10 Mbps to 400 Gbps and beyond, serving
+  everything from home networks to hyperscale data centers.
 
-### 4. **Ethernet Node Identification: MAC Addresses**
-   - **MAC Address**:
-     - Unique identifier for network interfaces in a local network.
-     - Assigned by the vendor and burned into the hardware.
-   - **Structure of a MAC Address**:
-     - 48 bits long, represented by 12 hexadecimal digits.
-     - Consists of two halves:
-       - **OUI (Organizationally Unique Identifier)**: First 6 digits.
-       - **Serial Number**: Last 6 digits, assigned by the vendor.
-   - **Vendor Registration**:
-     - Vendors register with IEEE to be assigned an OUI.
-   - **Identifying MAC Addresses**:
-     - On Linux: Use the `ifconfig` command.
-     - On Windows: Use the `ipconfig` command.
+### Key Properties
 
-### 5. **Ethernet Frame Structure**
-   - **Ethernet Frame Components**:
-     - **Payload**: Protocol data unit received from the upper layer.
-     - **Header**:
-       - **Destination MAC Address**: Specifies the node for which the frame is intended.
-       - **Source MAC Address**: Specifies the node sending the frame.
-       - **Type/EtherType Field**: Indicates the upper layer protocol type (e.g., IPv4).
-     - **Frame Check Sequence (FCS)**:
-       - Added to the end of the frame.
-       - Used to detect corrupted frames, which are typically dropped.
-   - **Frame Size**:
-     - Payload size ranges from 46 to 1,500 bytes.
-     - Maximum Transmit Unit (MTU) defined as 1,500 bytes.
-     - Frame size ranges from 64 to 1,518 bytes (including header and trailer).
-     - **Jumbo Frames**: Payloads exceeding 1,500 bytes, not standard but supported by some vendors.
+- **Backward Compatibility**: Newer standards remain compatible with older ones through auto-negotiation.
+- **Versatility**: Supports copper (twisted pair), fiber optic, and even coaxial media.
+- **IEEE 802.3**: Defines rules for configuring an Ethernet network, specifies
+  interactions between Ethernet elements, and ensures multi-vendor compatibility.
 
-### 6. **Role of Ethernet Switches**
-   - **Functionality**:
-     - Connect Ethernet nodes with multiple ports.
-     - Forward frames based on destination MAC addresses.
-   - **MAC Address Tables**:
-     - Store destination MAC address to exit port mappings.
-     - Entries are dynamically learned and aged out after a defined time.
-     - Static entries can be manually configured and are not aged out.
-   - **Frame Forwarding**:
-     - **Known Unicast Frames**: Forwarded based on matching MAC address table entries.
-     - **Unknown Unicast Frames**: Flooded to all ports except the incoming port.
-     - **Broadcast Frames**: Flooded to all nodes, identified by a MAC address with all bits set to one.
-     - **Multicast Frames**: Traditionally flooded, identified by MAC addresses with the least significant bit of the first octet set to one.
+---
 
-### 7. **Ethernet in the OSI Model**
-   - **Data Link Layer (Layer 2)**:
-     - Responsible for data transfer over the physical medium.
-     - Involves MAC addressing and Ethernet frame creation.
-   - **Physical Layer (Layer 1)**:
-     - Defines electrical or optical properties and transfer speed of the physical connection between network nodes.
+## Ethernet in the OSI Model
 
-### 8. **Switching vs. Routing**
-   - **Layer 2 Switching**:
-     - Operates at the Data Link Layer.
-     - Forwarding based on MAC addresses.
-   - **Layer 3 Routing**:
-     - Operates at the Network Layer.
-     - Forwarding based on IP addresses.
-   - **Multi-layer Switching**:
-     - Combines the functionality of switches and routers.
-     - Provides flexibility in network design.
-   - **Network Design Considerations**:
-     - Whether to use Layer 2, Layer 3, or a combination depends on network requirements.
+```text
++--------------------------------------------------+
+|            Network Layer (Layer 3)                |
+|            IP addressing and routing              |
++--------------------------------------------------+
+|  Data Link Layer (Layer 2)                        |
+|  +--------------------------------------------+  |
+|  |  LLC sublayer (IEEE 802.2)                  |  |
+|  |  - Protocol multiplexing                    |  |
+|  |  - Flow control                             |  |
+|  +--------------------------------------------+  |
+|  |  MAC sublayer (IEEE 802.3)                  |  |
+|  |  - MAC addressing                           |  |
+|  |  - Frame construction / parsing             |  |
+|  |  - CSMA/CD access method                    |  |
+|  +--------------------------------------------+  |
++--------------------------------------------------+
+|            Physical Layer (Layer 1)               |
+|            Electrical/optical signaling           |
+|            Cable specifications                   |
++--------------------------------------------------+
+```
 
-These notes provide a comprehensive overview of Ethernet fundamentals, covering its evolution, standards, operational layers, and how it functions within a network environment.
+---
+
+## Ethernet Frame Structure
+
+An Ethernet II (DIX) frame is structured as follows:
+
+```text
++----------+----------+----------+------+-----------------+-----+
+| Preamble |  Dest    |  Source  | Type |     Payload     | FCS |
+| + SFD    |  MAC     |  MAC    |      |                 |     |
++----------+----------+----------+------+-----------------+-----+
+| 8 bytes  | 6 bytes  | 6 bytes |  2B  |  46-1500 bytes  | 4B  |
+```
+
+| Field | Size | Description |
+|---|---|---|
+| **Preamble + SFD** | 8 bytes | 7 bytes of `10101010` pattern for clock sync, followed by 1 byte Start Frame Delimiter (`10101011`) |
+| **Destination MAC** | 6 bytes | MAC address of the intended receiver |
+| **Source MAC** | 6 bytes | MAC address of the sender |
+| **Type / EtherType** | 2 bytes | Identifies the upper-layer protocol (e.g., `0x0800` = IPv4, `0x0806` = ARP, `0x86DD` = IPv6) |
+| **Payload** | 46–1500 bytes | Data from the upper layer. Padded to 46 bytes minimum |
+| **FCS** | 4 bytes | Frame Check Sequence (CRC-32) for error detection |
+
+- **Minimum frame size**: 64 bytes (excluding preamble) — ensures collision detection in CSMA/CD.
+- **Maximum frame size**: 1518 bytes (excluding preamble).
+- **MTU (Maximum Transmission Unit)**: 1500 bytes (payload only).
+- **Jumbo Frames**: Non-standard frames with payloads up to 9000 bytes, supported by many switches and NICs.
+
+---
+
+## MAC Address Structure
+
+A MAC (Media Access Control) address is a 48-bit (6-byte) hardware identifier,
+written as 12 hexadecimal digits.
+
+```text
+  MAC Address:  AA:BB:CC:DD:EE:FF
+
+  +------------------------+------------------------+
+  |          OUI           |     Serial Number      |
+  |  (Organizationally     |   (Assigned by the     |
+  |   Unique Identifier)   |    vendor/NIC maker)   |
+  +------------------------+------------------------+
+  |  AA  :  BB  :  CC      |  DD  :  EE  :  FF      |
+  | <--- 24 bits (3B) ---> | <--- 24 bits (3B) ---> |
+
+  Bit layout of first octet (AA):
+  +---+---+---+---+---+---+---+---+
+  | 7 | 6 | 5 | 4 | 3 | 2 | 1 | 0 |
+  +---+---+---+---+---+---+---+---+
+                              |   |
+                              |   +-- I/G bit: 0 = Unicast
+                              |               1 = Multicast
+                              +------ U/L bit: 0 = Globally unique (BIA)
+                                               1 = Locally administered
+```
+
+- **OUI**: First 3 bytes. Assigned by IEEE to the hardware vendor.
+- **Serial Number**: Last 3 bytes. Assigned by the vendor to each NIC.
+- **Broadcast MAC**: `FF:FF:FF:FF:FF:FF` (all bits set to 1).
+- **Finding MAC addresses**:
+  - Linux: `ip link show` or `ifconfig`
+  - Windows: `ipconfig /all` or `getmac`
+  - macOS: `ifconfig`
+
+---
+
+## Ethernet Switching
+
+Ethernet switches operate at Layer 2 and forward frames based on their MAC
+address tables.
+
+### How a Switch Learns and Forwards
+
+```text
+   Host A                                       Host B
+  (MAC: AA)                                    (MAC: BB)
+     |                                            |
+     | Port 1        SWITCH          Port 3       |
+     +--------[1]---[  MAC   ]---[3]--------------+
+                    [ Table  ]
+                    [--------]
+     +--------[2]---[        ]---[4]--------------+
+     |              [        ]                    |
+  Host C                                       Host D
+  (MAC: CC)                                    (MAC: DD)
+
+  MAC Address Table:
+  +-----------+------+
+  | MAC Addr  | Port |
+  +-----------+------+
+  | AA        |  1   |
+  | BB        |  3   |
+  | CC        |  2   |
+  | DD        |  4   |
+  +-----------+------+
+```
+
+### Frame Forwarding Behavior
+
+| Frame Type | Behavior |
+|---|---|
+| **Known Unicast** | Switch looks up destination MAC in table, forwards to the specific port |
+| **Unknown Unicast** | Destination MAC not in table; frame is flooded to all ports except the incoming port |
+| **Broadcast** | Destination = `FF:FF:FF:FF:FF:FF`; flooded to all ports except the incoming port |
+| **Multicast** | By default, flooded like broadcast; IGMP snooping can limit this |
+
+### Learning Process
+
+1. Frame arrives on Port 1 from Host A (source MAC = AA).
+2. Switch records: MAC AA is reachable via Port 1.
+3. Switch checks destination MAC in its table.
+4. If found, forward to that port. If not found, flood.
+5. Entries age out after a timer (typically 300 seconds) if no traffic is seen.
+
+---
+
+## Ethernet Standards
+
+| Standard | Speed | Medium | Max Distance | IEEE |
+|---|---|---|---|---|
+| 10BASE-T | 10 Mbps | Cat 3+ UTP | 100 m | 802.3i |
+| 100BASE-TX | 100 Mbps | Cat 5 UTP | 100 m | 802.3u |
+| 100BASE-FX | 100 Mbps | Multimode Fiber | 400 m (HD), 2 km (FD) | 802.3u |
+| 1000BASE-T | 1 Gbps | Cat 5e+ UTP | 100 m | 802.3ab |
+| 1000BASE-SX | 1 Gbps | Multimode Fiber | 220–550 m | 802.3z |
+| 1000BASE-LX | 1 Gbps | Single-mode Fiber | 5 km | 802.3z |
+| 10GBASE-T | 10 Gbps | Cat 6a/7 UTP | 100 m | 802.3an |
+| 10GBASE-SR | 10 Gbps | Multimode Fiber | 26–400 m | 802.3ae |
+| 10GBASE-LR | 10 Gbps | Single-mode Fiber | 10 km | 802.3ae |
+| 25GBASE-SR | 25 Gbps | Multimode Fiber | 100 m | 802.3by |
+| 40GBASE-SR4 | 40 Gbps | Multimode Fiber | 100–150 m | 802.3ba |
+| 100GBASE-SR10 | 100 Gbps | Multimode Fiber | 100–150 m | 802.3ba |
+| 400GBASE-SR16 | 400 Gbps | Multimode Fiber | 100 m | 802.3bs |
+
+- **Naming convention**: `[Speed]BASE-[Encoding/Medium]`
+  - Speed in Mbps or Gbps
+  - BASE = baseband signaling
+  - T = twisted-pair copper, S = short-wavelength fiber, L = long-wavelength fiber
+
+---
+
+## Layer 2 vs Layer 3 Switching
+
+| Feature | Layer 2 Switching | Layer 3 Switching (Routing) |
+|---|---|---|
+| **OSI Layer** | Data Link (Layer 2) | Network (Layer 3) |
+| **Address Used** | MAC address | IP address |
+| **Scope** | Within a single LAN / VLAN | Between different subnets / networks |
+| **Speed** | Very fast (hardware-based, ASIC) | Slightly slower (routing table lookup) |
+| **Broadcast Domain** | All ports in same VLAN share one | Each interface is a separate broadcast domain |
+| **Protocols** | STP, VLANs, LACP | OSPF, BGP, RIP, static routes |
+| **Use Case** | Connecting devices in same subnet | Connecting different subnets or WANs |
+
+### Multi-Layer Switching
+
+Modern enterprise switches often combine Layer 2 and Layer 3 functionality:
+- Perform wire-speed routing between VLANs using hardware (ASICs).
+- Support both switching (MAC-based) and routing (IP-based) in a single device.
+- Provide flexibility in network design: use Layer 2 within access layer and
+  Layer 3 at the distribution/core layers.

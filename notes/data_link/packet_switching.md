@@ -1,74 +1,320 @@
-# Notes on Packet Switching
+# Packet Switching
 
-## Background
-- **Circuit Switching vs Packet Switching**
-  - Traditional telephone networks used **circuit switching**.
-  - **Packet switching** was a revolutionary idea for building networks.
-  - Nowadays, even most telephone networks are built on packet-switched networks.
+Packet switching is the dominant method of data transmission in modern networks.
+Data is broken into small units called **packets**, each of which is routed
+independently through the network. This contrasts with circuit switching, where a
+dedicated path is established for the entire duration of a communication session.
+
+---
+
+## Circuit Switching vs Packet Switching
 
 ### Circuit Switching
-- It involves creating a dedicated communication path between two points for the duration of their conversation.
-  
+
+A dedicated communication path is established between two endpoints before data
+transfer begins. The path remains reserved for the entire session, even during
+silence periods.
+
+- Used in traditional telephone networks (PSTN).
+- Three phases: **connection establishment**, **data transfer**, **connection release**.
+- Guaranteed bandwidth but wasteful when the channel is idle.
+
+```text
+  Phone A                                          Phone B
+    |                                                |
+    |========= Dedicated Circuit =================== |
+    |  (reserved for entire call duration)           |
+    |                                                |
+    |  Setup ------>  [Switch] ------> [Switch] ---> |
+    |                                                |
+    |  Data <==============================>  Data   |
+    |                                                |
+    |  Teardown --->  [Switch] ------> [Switch] ---> |
+    |========= Circuit Released =====================|
+
+  Resources reserved even during silence:
+  |###DATA###|          silence          |###DATA###|
+  |==========|===========================|==========|
+       ^            wasted bandwidth           ^
+```
+
 ### Packet Switching
-- Involves breaking down data into small packets and sending them individually.
-- Videos covering this topic can be found on YouTube under "module" videos (1-5, 3-2, 3-3) and Lecture 6 from last year.
 
-#### Advantages of Packet Switching
-- More efficient use of the network infrastructure.
-- Better handling of network failures.
-- Scalability.
+Data is divided into packets, each containing a header with destination
+information. Packets are routed independently and may take different paths.
 
-## Mechanics of Packet Switching
-- **Components of Delay**:
-  1. **Serialization (Packetization) Delay**: Time taken to convert data into packets.
-  2. **Propagation Delay**: Time taken for data to travel across a link.
-  3. **Queueing Delay**: Time a packet spends waiting in a queue before being processed.
+- Used in the Internet, modern telephone networks, and virtually all data networks.
+- No dedicated path — resources are shared.
+- Better utilization of network bandwidth.
 
-### Calculating Delays
-- Formulas and examples are available in last year's videos and this year's lecture slides.
-- Practicing calculations without queueing delay initially is recommended.
+```text
+  Host A                                           Host B
+    |                                                |
+    |--[Pkt 1]---> Router 1 ---> Router 3 --[Pkt 1]-->|
+    |--[Pkt 2]---> Router 1 ---> Router 2 --\        |
+    |--[Pkt 3]---> Router 2 -----+            \       |
+    |                             |             \      |
+    |                             +---> Router 3 -[Pkt 3]->|
+    |                                           \-[Pkt 2]->|
+    |                                                |
+  Packets may arrive out of order and are reassembled
+```
 
-### Variability in Round Trip Time (RTT)
-- **Round Trip Time (RTT)**: Time taken for a packet to travel from source to destination and back.
-- **Ping**: A program to measure RTT.
-- **Jitter**: Variability in RTT.
-  - Packetization delay is usually fixed on wired links but variable on wireless links.
-  - Propagation delay could be variable if the route changes.
-  - Queueing delay is the most common source of variability.
+### Comparison Table
 
-### Switches
-- **Store and forward**: Must receive the entire packet before forwarding.
-- **Cut-through**: Sends out bits as it receives them.
+| Feature | Circuit Switching | Packet Switching |
+|---|---|---|
+| **Setup** | Connection must be established first | No setup needed; send immediately |
+| **Path** | Dedicated, fixed path for entire session | No fixed path; each packet routed independently |
+| **Addressing** | Full path address in each data unit | Destination address only; routers decide next hop |
+| **Forwarding** | Data bypasses router queues | Store-and-forward through router queues |
+| **Transmission** | Only by the source | By source and every intermediate router |
+| **Delay** | Uniform / constant | Variable (depends on queuing, routing) |
+| **Resources** | Reserved (may be wasted during silence) | Shared (efficient utilization) |
+| **Congestion** | During connection establishment | During data transfer |
+| **Fault Tolerance** | Low — path is fixed; link failure breaks connection | High — packets rerouted around failures |
+| **Reliability** | Reliable; good for long, continuous streams | Best-effort; good for bursty data |
+| **Speed** | Slower setup, guaranteed transfer rate | Fast startup, variable transfer rate |
 
-## Terminology
+---
+
+## Components of Delay
+
+Every packet traversing a network experiences four types of delay:
+
+```text
+  Source                Router                  Destination
+    |                     |                        |
+    |--[Packet]---------->|--[Packet]------------->|
+    |                     |                        |
+    |<-- Transmission --> |<--- Propagation ------>|
+    |     Delay           |       Delay            |
+    |                     |                        |
+    |               +-----+-----+                  |
+    |               | Processing|                  |
+    |               |   Delay   |                  |
+    |               +-----------+                  |
+    |               | Queueing  |                  |
+    |               |   Delay   |                  |
+    |               +-----------+                  |
+
+  Total delay (d_total) = d_trans + d_prop + d_proc + d_queue
+```
+
+### 1. Transmission (Serialization) Delay
+
+Time to push all bits of the packet onto the link.
+
+  d_trans = Packet Size (bits) / Link Bandwidth (bits/sec)
+
+Example: 1500-byte packet on a 100 Mbps link
+  d_trans = (1500 * 8) / (100 * 10^6) = 0.12 ms
+
+### 2. Propagation Delay
+
+Time for a signal to travel from sender to receiver across the physical medium.
+
+  d_prop = Distance / Propagation Speed
+
+- Propagation speed in copper: ~2 * 10^8 m/s
+- Propagation speed in fiber: ~2 * 10^8 m/s
+- Propagation speed in vacuum/air: ~3 * 10^8 m/s
+
+Example: 1000 km fiber link
+  d_prop = 1,000,000 / (2 * 10^8) = 5 ms
+
+### 3. Processing Delay
+
+Time a router takes to examine the packet header, check for errors, and
+determine the output link. Typically microseconds in modern routers.
+
+### 4. Queueing Delay
+
+Time the packet waits in the router's output buffer before being transmitted.
+Depends on traffic intensity:
+
+  Traffic intensity = (Packet arrival rate * Packet size) / Link bandwidth
+
+- If intensity < 1: queue is stable (small delays)
+- If intensity >= 1: queue grows without bound (packets dropped)
+- Most variable component of delay
+
+---
+
+## Store-and-Forward vs Cut-Through Switching
+
+### Store-and-Forward
+
+The switch/router must receive the **entire packet** before forwarding it.
+This allows error checking (CRC) before forwarding.
+
+```text
+  Source           Switch              Destination
+    |                |                     |
+    |==[Full Pkt]==> |                     |
+    |  (entire pkt   | (CRC check, then   |
+    |   received)    |  forward)           |
+    |                |==[Full Pkt]=======> |
+    |                |                     |
+
+  Time:
+  |<-- Tt -->|       |<-- Tt -->|
+  [transmit  ] wait  [transmit  ]
+   to switch   for    to dest
+               full
+               pkt
+```
+
+- **Latency**: At least one full transmission delay per hop.
+- **Advantage**: Corrupted frames are detected and dropped.
+- **Used in**: Most routers, many enterprise switches.
+
+### Cut-Through
+
+The switch begins forwarding the packet as soon as it reads the destination
+address (first 6 bytes for Ethernet), without waiting for the entire frame.
+
+```text
+  Source           Switch              Destination
+    |                |                     |
+    |==[Hdr]=        |                     |
+    |   (dest addr   |==[Hdr]=             |
+    |    read)       |  (forwarding        |
+    |==[...rest]=    |   starts)           |
+    |                |==[...rest]========> |
+    |                |                     |
+
+  Time:
+  |<- Tt ->|                               |
+  |        |<- very small ->|<--- Tt ----->|
+  [transmit]  [switch delay] [to dest      ]
+```
+
+- **Latency**: Much lower per hop (only reads header before forwarding).
+- **Disadvantage**: Cannot check CRC; corrupted frames may be forwarded.
+- **Variant — Fragment-Free**: Waits for first 64 bytes (minimum frame size) to filter out collision fragments.
+
+---
+
+## Round Trip Time (RTT) and Jitter
+
+### Round Trip Time
+
+RTT is the time for a packet to travel from source to destination and back.
+
+```text
+  Source                                    Destination
+    |                                          |
+    |-------- Request Packet ----------------->|
+    |            d1 (one-way delay)            |
+    |                                          |
+    |<------- Response Packet -----------------|
+    |            d2 (return delay)             |
+    |                                          |
+
+  RTT = d1 + d2
+  (d1 and d2 may differ if paths are asymmetric)
+```
+
+- **Measured with**: `ping` command (sends ICMP echo request, measures time to echo reply)
+- **Typical values**:
+  - Same LAN: < 1 ms
+  - Same city: 5–20 ms
+  - Cross-continent: 50–100 ms
+  - Intercontinental: 100–300 ms
+
+### Jitter
+
+Jitter is the **variation** in delay between packets in a stream.
+
+```text
+  Packet 1:  RTT = 50 ms
+  Packet 2:  RTT = 55 ms
+  Packet 3:  RTT = 48 ms
+  Packet 4:  RTT = 70 ms   <-- spike (queuing delay)
+  Packet 5:  RTT = 52 ms
+
+  Jitter = variation in these values
+  Average RTT = 55 ms, but individual packets vary
+```
+
+Sources of jitter:
+- **Queueing delay**: Most common source. Varies with network load.
+- **Route changes**: Propagation delay changes if packets take different paths.
+- **Wireless links**: Transmission delay varies due to changing link conditions.
+- **Impact**: Critical for real-time applications (VoIP, video calls, online gaming).
+
+---
+
+## Throughput and Latency
 
 ### Throughput
-- Refers to the amount of data moved successfully from one place to another in a given time period.
-- One should be able to calculate the possible throughput from a source to a destination.
+
+Throughput is the actual rate of successful data transfer over a link or path.
+
+  Throughput = Data transferred / Time taken
+
+- **Bottleneck link**: The link with the smallest bandwidth on the path determines the end-to-end throughput.
+- Throughput <= min(bandwidth of each link on the path)
+- Shared links reduce effective throughput (e.g., 10 flows sharing a 100 Mbps link each get ~10 Mbps)
+
+```text
+  Source ---[10 Mbps]--- R1 ---[1 Mbps]--- R2 ---[10 Mbps]--- Dest
+                                  ^
+                            Bottleneck link
+                     End-to-end throughput <= 1 Mbps
+```
 
 ### Latency
-- Refers to the time taken for a packet to travel from source to destination.
-- Factors contributing to higher/lower latency should be understood.
-- Industries like high-frequency trading and real-time calls (e.g., Zoom, multiplayer gaming) are sensitive to latency.
 
-## Supplemental Material
-- **History of Networks** (3-1): Additional context on the evolution of network technologies.
+Latency is the total time for a packet to travel from source to destination.
 
+  Latency = Transmission delay + Propagation delay + Processing delay + Queueing delay
 
+**Latency-sensitive applications**:
+- High-frequency trading (microseconds matter)
+- Real-time voice/video (Zoom, Teams)
+- Online multiplayer gaming
+- Remote surgery / telemedicine
 
-# CIRCUIT SWITCHING VS. PACKET SWITCHING
+**Bandwidth vs Latency**: High bandwidth does not mean low latency. A satellite
+link may have high bandwidth (100 Mbps) but high latency (600 ms RTT). A local
+Ethernet link has both high bandwidth and low latency.
 
-| Circuit Switching                             | Packet Switching                           |
-|-----------------------------------------------|--------------------------------------------|
-| ➔ Three phases: 1) connection establishment 2) data transfer 3) connection release | ➔ Data can be transmitted directly (no need for establishment). |
-| ➔ Each data unit will have an entire path address. | ➔ Each data unit will have the destination address; the intermediate path is decided by routers. |
-| ➔ Circuit Switching is not a store and forward technique. The packet simply bypasses the queue of the router. | ➔ Packet switching is a store & forward technique, where the packets are stored, and algorithms applied on the best path. |
-| ➔ The transmission of the packet is done by the source. | ➔ The transmission of data is done not only by the source but also by intermediate routers. |
-| ➔ The delay between the data unit is uniform or same. | ➔ The delay between the data unit is variable. |
-| ➔ Resource reservation is a feature. | ➔ Resources are sharable. |
-| ➔ Wastage of resources are more. | ➔ Wastage of resources is less. |
-| ➔ Congestion can occur during the connection establishment phase. | ➔ Congestion can occur during the data transfer phase. |
-| ➔ It is not a fault tolerant technique because the packets cannot be diverted to other paths if the link is broken. | ➔ It is a fault-tolerant technique because the data can be diverted via other paths if the link is broken. |
-| ➔ Reliable, used for long messages. Circuit switching is slow. | ➔ Unreliable, used for short messages. Packet switching is fast. |
+---
 
+## Packet Structure
 
+Every packet contains a header with control information and a payload with user data.
+The exact structure depends on the protocol, but the general concept is:
+
+```text
+  +--------------------------------------------------+
+  |                    Packet                         |
+  +--------+-----------------------------------------+
+  | Header |              Payload (Data)              |
+  +--------+-----------------------------------------+
+
+  Header contents (typical IP packet):
+  +------+------+-----+-------+-------+------+-------+--------+
+  | Ver  | IHL  | ToS | Total | Ident | Flags| TTL   | Proto  |
+  |      |      |     | Len   |       | +Off |       |        |
+  +------+------+-----+-------+-------+------+-------+--------+
+  | Source IP Address                                          |
+  +------------------------------------------------------------+
+  | Destination IP Address                                     |
+  +------------------------------------------------------------+
+  |                     Payload / Data                         |
+  |                   (e.g., TCP segment)                      |
+  +------------------------------------------------------------+
+
+  Encapsulation at each layer:
+  +------------------------------------------------------------+
+  | L2 Hdr | L3 Hdr | L4 Hdr |   Application Data   | L2 Trl |
+  | (MAC)  | (IP)   | (TCP)  |                       | (FCS)  |
+  +------------------------------------------------------------+
+  |<------------ Ethernet Frame --------------------------->|
+```
+
+Each layer adds its own header (and sometimes trailer) around the data from the
+layer above — this process is called **encapsulation**.
