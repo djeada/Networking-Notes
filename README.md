@@ -67,6 +67,14 @@ This repository is a comprehensive collection of notes, guides, and resources on
 - [Network Troubleshooting](notes/other/network_troubleshooting.md)
 
 ### Practice
+- [Ping](practice/ping/README.md)
+- [Traceroute](practice/traceroute/README.md)
+- [DNS Lookup Tools (nslookup, dig, host)](practice/nslookup_dig/README.md)
+- [Network Connections (netstat, ss)](practice/netstat_ss/README.md)
+- [tcpdump](practice/tcpdump/README.md)
+- [curl](practice/curl/README.md)
+- [Netcat (nc)](practice/netcat/README.md)
+- [iptables and nftables](practice/iptables/README.md)
 - [Wireshark Labs](practice/wireshark/README.md)
 
 ### Scripts
