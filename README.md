@@ -54,6 +54,15 @@ This repository is a comprehensive collection of notes, guides, and resources on
 - [VPN](notes/other/vpn.md)
 - [VLAN](notes/other/vlan.md)
 
+### Networking Tools
+- [ping](notes/tools/ping.md)
+- [netstat and ss](notes/tools/netstat_ss.md)
+- [nmap](notes/tools/nmap.md)
+- [tcpdump](notes/tools/tcpdump.md)
+- [curl](notes/tools/curl.md)
+- [SSH](notes/tools/ssh.md)
+- [ip and ifconfig](notes/tools/ip_ifconfig.md)
+
 ### Practice
 - [Wireshark Labs](practice/wireshark/README.md)
 
@@ -78,24 +87,6 @@ This repository is a comprehensive collection of notes, guides, and resources on
 - [Sunny Classroom Networking Playlist](https://www.youtube.com/watch?v=X8RxRr7KNl8&list=PLSNNzog5eydtb5wyH2UtK09L9MsW9Hufq)
 - [Neso Academy Computer Networks](https://www.youtube.com/watch?v=VwN91x5i25g&list=PLBlnK6fEyqRgMCUAG0XRw78UA8qnv6jEx)
 - [DevOps Guide - Networking](https://github.com/Tikam02/DevOps-Guide/tree/master/Networking)
-
-TODO:
-* FULL START HERE: https://www.youtube.com/watch?v=PhjHXeMNpp8
-* https://mw.home.amu.edu.pl/zajecia/SIK2021/SIK.html
-* https://www.youtube.com/c/PracticalNetworking
-* https://www.youtube.com/watch?v=X8RxRr7KNl8&list=PLSNNzog5eydtb5wyH2UtK09L9MsW9Hufq&ab_channel=SunnyClassroom
-* https://github.com/Tikam02/DevOps-Guide/tree/master/Networking
-* Bombal na gicie
-* https://www.youtube.com/watch?v=VwN91x5i25g&list=PLBlnK6fEyqRgMCUAG0XRw78UA8qnv6jEx
-* https://www.youtube.com/watch?v=L_6RmF3QQyo&t=447s
-* https://www.youtube.com/watch?v=kNKHM_isojI&t=934s
-
-<h1>Questions</h1>
-
-* how does internet work?
-* what happens when you hit enter after typing a url?
-* what happens when you search for a phrase on google?
-* how does whatsapp work?
 
 ## Contributing
 
