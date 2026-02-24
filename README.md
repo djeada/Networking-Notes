@@ -17,12 +17,14 @@ This repository is a comprehensive collection of notes, guides, and resources on
 - [Physical Devices](notes/physical/physical_devices.md)
 - [Cables](notes/physical/cables.md)
 - [Modes of Transmission](notes/physical/modes_of_transmission.md)
+- [Wireless Networking](notes/physical/wireless_networking.md)
 - [Cisco IOS](notes/physical/cisco_ios.md)
 
 ### Data Link Layer
 - [Data Link Layer](notes/data_link/data_link_layer.md)
 - [Ethernet](notes/data_link/ethernet.md)
 - [Packet Switching](notes/data_link/packet_switching.md)
+- [ARP](notes/data_link/arp.md)
 
 ### Network Layer
 - [IP Addresses](notes/network/ip_address.md)
@@ -32,6 +34,7 @@ This repository is a comprehensive collection of notes, guides, and resources on
 - [Traceroute](notes/network/traceroute.md)
 - [Port Forwarding](notes/network/port_forwarding.md)
 - [Configuring Routers](notes/network/configuring_routers.md)
+- [Routing Protocols](notes/network/routing_protocols.md)
 
 ### Transport Layer
 - [TCP](notes/transport/tcp.md)
@@ -41,8 +44,12 @@ This repository is a comprehensive collection of notes, guides, and resources on
 ### Application Layer
 - [DNS](notes/application/dns.md)
 - [HTTP](notes/application/http.md)
-- [IP Protocol](notes/application/ip_protocol.md)
 - [DHCP](notes/application/dhcp.md)
+- [SSH](notes/application/ssh.md)
+- [FTP](notes/application/ftp.md)
+- [TLS/SSL](notes/application/tls_ssl.md)
+- [SMTP and Email](notes/application/smtp_and_email.md)
+- [IP Protocol](notes/application/ip_protocol.md)
 - [Stateless vs Stateful](notes/application/stateless_vs_stateful.md)
 
 ### Internet
@@ -55,6 +62,9 @@ This repository is a comprehensive collection of notes, guides, and resources on
 - [IDS and IPS](notes/other/ids_and_ips.md)
 - [VPN](notes/other/vpn.md)
 - [VLAN](notes/other/vlan.md)
+- [Proxy Servers](notes/other/proxy_servers.md)
+- [Load Balancing](notes/other/load_balancing.md)
+- [Network Troubleshooting](notes/other/network_troubleshooting.md)
 
 ### Practice
 - [Wireshark Labs](practice/wireshark/README.md)
