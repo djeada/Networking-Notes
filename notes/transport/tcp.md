@@ -1,59 +1,273 @@
+# TCP (Transmission Control Protocol)
 
-TCP packets contain various sections of information known as headers that are added from encapsulation. Let's explain some of the crucial headers in the table below:
+## Introduction
 
+TCP is a **connection-oriented**, **reliable** transport layer protocol defined in RFC 793. It provides ordered, error-checked delivery of a stream of bytes between applications running on hosts communicating over an IP network. TCP is the backbone of most internet traffic — it powers HTTP, HTTPS, FTP, SMTP, SSH, and many other protocols.
 
-Header	Description
-Source Port	This value is the port opened by the sender to send the TCP packet from. This value is chosen randomly (out of the ports from 0-65535 that aren't already in use at the time).
-Destination Port	This value is the port number that an application or service is running on the remote host (the one receiving data); for example, a webserver running on port 80. Unlike the source port, this value is not chosen at random.
-Source IP	This is the IP address of the device that is sending the packet.
-Destination IP	This is the IP address of the device that the packet is destined for.
-Sequence Number	When a connection occurs, the first piece of data transmitted is given a random number. We'll explain this more in-depth further on.
-Acknowledgement Number	After a piece of data has been given a sequence number, the number for the next piece of data will have the sequence number + 1. We'll also explain this more in-depth further on.
-Checksum	This value is what gives TCP integrity. A mathematical calculation is made where the output is remembered. When the receiving device performs the mathematical calculation, the data must be corrupt if the output is different from what was sent.
-Data	This header is where the data, i.e. bytes of a file that is being transmitted, is stored.
-Flag	This header determines how the packet should be handled by either device during the handshake process. Specific flags will determine specific behaviours, which is what we'll come on to explain below.
+Before any data is exchanged, TCP establishes a connection using a **three-way handshake**. It guarantees that data arrives in order, without duplication, and retransmits lost segments automatically.
 
+---
 
-Next, we'll come on to discuss the Three-way handshake - the term given for the process used to establish a connection between two devices. The Three-way handshake communicates using a few special messages - the table below highlights the main ones:
+## TCP Segment Header
 
+Every TCP segment begins with a header containing control information. The minimum header size is **20 bytes** (without options).
 
-Step	Message	Description
-1	SYN	A SYN message is the initial packet sent by a client during the handshake. This packet is used to initiate a connection and synchronise the two devices together (we'll explain this further later on).
-2	SYN/ACK	This packet is sent by the receiving device (server) to acknowledge the synchronisation attempt from the client.
-3	ACK	The acknowledgement packet can be used by either the client or server to acknowledge that a series of messages/packets have been successfully received.
-4	DATA	Once a connection has been established, data (such as bytes of a file) is sent via the "DATA" message.
-5	FIN	This packet is used to cleanly (properly) close the connection after it has been complete.
-#	RST	This packet abruptly ends all communication. This is the last resort and indicates there was some problem during the process. For example, if the service or application is not working correctly, or the system has faults such as low resources. 
+```text
+ 0                   1                   2                   3
+ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|          Source Port          |       Destination Port        |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                        Sequence Number                        |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                    Acknowledgment Number                      |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|  Data |       |U|A|P|R|S|F|                                   |
+| Offset| Rsrvd |R|C|S|S|Y|I|            Window Size            |
+|       |       |G|K|H|T|N|N|                                   |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|           Checksum            |         Urgent Pointer        |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                    Options (variable length)                   |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                                                               |
+|                         Data / Payload                        |
+|                                                               |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+```
 
-The diagram below shows a normal Three-way handshake process between Alice and Bob. In real life, this would be between two devices.
+### Header Fields
 
+| Field | Size | Description |
+|---|---|---|
+| Source Port | 16 bits | Port opened by the sender. Chosen randomly from available ports (0–65535). |
+| Destination Port | 16 bits | Port the receiving application listens on (e.g., 80 for HTTP, 443 for HTTPS). |
+| Sequence Number | 32 bits | Byte-stream position of the first data byte in this segment. Set to the ISN during SYN. |
+| Acknowledgment Number | 32 bits | Next sequence number the sender expects to receive. Valid when ACK flag is set. |
+| Data Offset | 4 bits | Size of the TCP header in 32-bit words (minimum 5 = 20 bytes). |
+| Reserved | 3 bits | Reserved for future use; must be zero. |
+| Flags (URG, ACK, PSH, RST, SYN, FIN) | 6 bits | Control bits that manage connection state and data flow. |
+| Window Size | 16 bits | Number of bytes the sender is willing to receive (flow control). |
+| Checksum | 16 bits | Error-detection value computed over header and data for integrity. |
+| Urgent Pointer | 16 bits | Points to urgent data in the segment (valid when URG flag is set). |
+| Options | Variable | Optional fields such as Maximum Segment Size (MSS), window scaling, timestamps. |
 
-Any sent data is given a random number sequence and is reconstructed using this number sequence and incrementing by 1. Both computers must agree on the same number sequence for data to be sent in the correct order. This order is agreed upon during three steps:
+---
 
-    SYN - Client: Here's my Initial Sequence Number(ISN) to SYNchronise with (0)
-    SYN/ACK - Server: Here's my Initial Sequence Number (ISN) to SYNchronise with (5,000), and I ACKnowledge your initial number sequence (0)
-    ACK - Client: I ACKnowledge your Initial Sequence Number (ISN) of (5,000), here is some data that is my ISN+1 (0 + 1)
+## TCP Three-Way Handshake
 
-Device
-	Initial Number Sequence (ISN)	
-	Final Number Sequence	
-Client (Sender)	
-	0	0 + 1 = 1
-Client (Sender)	
-	1	    1 + 1 = 2	
-Client (Sender)	
-	2	
+TCP uses a three-way handshake to establish a reliable connection before data transfer begins.
 
-2 + 1 = 3
-TCP Closing a Connection:
+```text
+     Client                                   Server
+       |                                         |
+       |  1. SYN (seq=x)                         |
+       |----------------------------------------->|
+       |                                         |
+       |  2. SYN/ACK (seq=y, ack=x+1)            |
+       |<-----------------------------------------|
+       |                                         |
+       |  3. ACK (seq=x+1, ack=y+1)              |
+       |----------------------------------------->|
+       |                                         |
+       |        Connection ESTABLISHED            |
+       |                                         |
+```
 
-Let's quickly explain the process behind TCP closing a connection. First, TCP will close a connection once a device has determined that the other device has successfully received all of the data.
+| Step | Message | Description |
+|---|---|---|
+| 1 | **SYN** | Client sends a SYN packet with its Initial Sequence Number (ISN) to initiate a connection. |
+| 2 | **SYN/ACK** | Server acknowledges the client's SYN and sends its own ISN. `ack = client ISN + 1`. |
+| 3 | **ACK** | Client acknowledges the server's ISN. `ack = server ISN + 1`. Connection is now established. |
+| — | **DATA** | Once established, data is exchanged in both directions. |
+| — | **FIN** | Used to cleanly close the connection after transfer is complete. |
+| — | **RST** | Abruptly terminates all communication (last resort — indicates an error or resource problem). |
 
-Because TCP reserves system resources on a device, it is best practice to close TCP connections as soon as possible.
+---
 
-To initiate the closure of a TCP connection, the device will send a "FIN" packet to the other device. Of course, with TCP, the other device will also have to acknowledge this packet.
+## Sequence Numbers and Acknowledgments
 
-Let's show this process using Alice and Bob as we have previously.
+Any sent data is given a random initial sequence number (ISN) and is reconstructed using this number, incrementing by 1 for each byte. Both computers must agree on the same starting number during the handshake.
 
+### ISN Exchange Example
 
-In the illustration, we can see that Alice has sent Bob a "FIN" packet. Because Bob received this, he will let Alice know that he received it and that he also wants to close the connection (using FIN). Alice has heard Bob loud and clear and will let Bob know that she acknowledges this.
+1. **SYN** — Client: "Here's my ISN to SYNchronise with **(0)**"
+2. **SYN/ACK** — Server: "Here's my ISN **(5000)**, and I ACKnowledge your ISN (0)"
+3. **ACK** — Client: "I ACKnowledge your ISN (5000), here is data starting at ISN+1 **(1)**"
+
+```text
+     Client (ISN=0)                        Server (ISN=5000)
+       |                                         |
+       |  SYN  seq=0                              |
+       |----------------------------------------->|
+       |                                         |
+       |  SYN/ACK  seq=5000, ack=1                |
+       |<-----------------------------------------|
+       |                                         |
+       |  ACK  seq=1, ack=5001                    |
+       |  DATA: "Hello" (5 bytes)                 |
+       |----------------------------------------->|
+       |                                         |
+       |  ACK  seq=5001, ack=6                    |
+       |<-----------------------------------------|
+       |                                         |
+```
+
+| Device | Initial Sequence Number (ISN) | After Sending | Next Sequence Number |
+|---|---|---|---|
+| Client | 0 | Sends 5 bytes ("Hello") | 0 + 1 (SYN) + 5 = **6** |
+| Server | 5000 | Sends ACK | 5000 + 1 (SYN) = **5001** |
+
+---
+
+## TCP Connection Teardown
+
+TCP closes a connection gracefully using a **four-way handshake**. Either side can initiate the close. TCP reserves system resources, so connections should be closed as soon as they are no longer needed.
+
+```text
+     Client                                   Server
+       |                                         |
+       |  1. FIN (seq=u)                          |
+       |----------------------------------------->|
+       |                                         |
+       |  2. ACK (ack=u+1)                        |
+       |<-----------------------------------------|
+       |                                         |
+       |  3. FIN (seq=v)                          |
+       |<-----------------------------------------|
+       |                                         |
+       |  4. ACK (ack=v+1)                        |
+       |----------------------------------------->|
+       |                                         |
+       |        Connection CLOSED                 |
+       |                                         |
+```
+
+1. **FIN** — The initiator (e.g., client) sends a FIN segment to signal it has finished sending data.
+2. **ACK** — The receiver acknowledges the FIN.
+3. **FIN** — The receiver sends its own FIN when it is also done sending data.
+4. **ACK** — The initiator acknowledges the receiver's FIN. The connection is now fully closed.
+
+---
+
+## TCP Flow Control — Sliding Window
+
+TCP uses a **sliding window** mechanism to prevent a fast sender from overwhelming a slow receiver. The receiver advertises a **window size** indicating how many bytes it can accept.
+
+```text
+  Sender's View of the Byte Stream:
+  
+  |<--- sent & acked --->|<--- sent, not acked --->|<--- can send --->|<--- cannot send --->|
+  |                       |                         |                  |                     |
+  +---+---+---+---+---+--+---+---+---+---+---+---+-+---+---+---+---+--+---+---+---+---+---+
+  | 1 | 2 | 3 | 4 | 5 |  | 6 | 7 | 8 | 9 |10 |11 | 12|13 |14 |15 |  |16 |17 |18 |19 |20 |
+  +---+---+---+---+---+--+---+---+---+---+---+---+-+---+---+---+---+--+---+---+---+---+---+
+                          |<-------- Window Size (receiver advertised) -------->|
+                          |                                                     |
+                    Left Edge                                            Right Edge
+```
+
+- The **window slides right** as acknowledgments arrive.
+- If the receiver's buffer fills up, it advertises a **window size of 0**, pausing the sender.
+- The sender can only have (window size) bytes of unacknowledged data in flight at any time.
+
+---
+
+## TCP Congestion Control
+
+TCP also manages **network congestion** to avoid overwhelming routers and links (separate from flow control, which protects the receiver).
+
+### Key Algorithms
+
+| Algorithm | Description |
+|---|---|
+| **Slow Start** | Start with a small congestion window (cwnd = 1 MSS). Double cwnd each RTT until a threshold is reached. |
+| **Congestion Avoidance** | After the threshold, increase cwnd linearly (by 1 MSS per RTT) to probe for available bandwidth carefully. |
+| **Fast Retransmit** | If 3 duplicate ACKs are received, retransmit the missing segment immediately without waiting for a timeout. |
+| **Fast Recovery** | After fast retransmit, halve the threshold and enter congestion avoidance (skip slow start). |
+
+```text
+  cwnd
+  (segments)
+    ^
+    |                          * Timeout: cwnd reset to 1
+    |                  *      /
+    |              *       * /
+    |          *              
+    |       *    <-- Congestion Avoidance (linear)
+    |     *
+    |   *
+    |  *   <-- Slow Start (exponential)
+    | *
+    |*
+    +-------------------------------------------> Time (RTTs)
+          ^
+          |
+     Threshold (ssthresh)
+```
+
+---
+
+## TCP State Diagram
+
+A TCP connection transitions through multiple states during its lifetime.
+
+```text
+                         +------------+
+                         |   CLOSED   |
+                         +-----+------+
+                    passive    |    active open
+                    open       |    send SYN
+                         +-----v------+
+               +---------+   LISTEN   |
+               |         +-----+------+
+          recv SYN             |  recv SYN
+          send SYN/ACK         |  send SYN/ACK
+               |         +-----v------+
+               +-------->| SYN_RCVD   |
+                         +-----+------+
+                               |  recv ACK
+                               |
+                         +-----v------+
+                    +--->| ESTABLISHED|<---+
+                    |    +-----+------+    |
+                    |          |           |
+               recv FIN   close /     recv FIN
+               send ACK   send FIN    send ACK
+                    |          |           |
+              +-----v----+ +--v--------+ +v-----------+
+              |CLOSE_WAIT | |FIN_WAIT_1 | |            |
+              +-----+-----+ +--+--------+ +------------+
+                    |           |
+               close /     recv ACK
+               send FIN        |
+                    |     +----v-------+
+              +-----v---+ |FIN_WAIT_2  |
+              |LAST_ACK | +----+-------+
+              +-----+---+      |
+                    |      recv FIN
+               recv ACK   send ACK
+                    |           |
+              +-----v---+ +----v-------+
+              | CLOSED  | |TIME_WAIT   |
+              +---------+ +----+-------+
+                               |
+                          2MSL timeout
+                               |
+                         +-----v------+
+                         |   CLOSED   |
+                         +------------+
+```
+
+| State | Description |
+|---|---|
+| CLOSED | No connection exists. |
+| LISTEN | Server is waiting for incoming SYN requests. |
+| SYN_SENT | Client has sent a SYN and is awaiting SYN/ACK. |
+| SYN_RCVD | Server received a SYN, sent SYN/ACK, waiting for final ACK. |
+| ESTABLISHED | Connection is open; data transfer can occur. |
+| FIN_WAIT_1 | Initiator has sent FIN, waiting for ACK. |
+| FIN_WAIT_2 | Initiator received ACK for its FIN, waiting for peer's FIN. |
+| CLOSE_WAIT | Received FIN from peer; application has not yet closed. |
+| LAST_ACK | Sent FIN after receiving peer's FIN, waiting for final ACK. |
+| TIME_WAIT | Waiting for 2× Maximum Segment Lifetime before fully closing. |

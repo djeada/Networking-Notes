@@ -1,37 +1,106 @@
-# LAN
-LAN is made up of devices that are linked together via switches and access points.
-If PC 1 and PC 6 are connected via a network, the computer breaks the data down into little pieces called packets and transmits it to the switch.
-The switch then examines the contents of the packet, determines the package's destination, and transmits it to the dest, in this instance PC6. 
+# LAN and WAN
 
+## LAN (Local Area Network)
 
-# WAN (Wide Area Network)
+A LAN is a network of devices connected within a small geographic area, such as a home, office, or school building. Devices in a LAN are typically linked via **switches** and **access points** using Ethernet cables or Wi-Fi.
 
-This is used to link two LANs.
-You may be asking what the distinction is between this and the internet.
-The major distinction is one of privacy.
+```text
+                    [Wireless Access Point]
+                     /        |        \
+               [Laptop]  [Phone]   [Tablet]
+                          
+ [PC 1]---[Switch]---[PC 2]
+              |
+           [PC 3]
+              |
+         [Printer]
+```
 
-Assume one LAN network, which is an office, wishes to transfer data to another LAN network; if they do so over the internet, the data can be abused because the internet is open to the public.
-As a result, if they are in a LAN, only those local computers will be able to access the data, and if they are in a WAN, only the two linked LAN networks will be able to access the data since it is private.
-VPN is the most widely used WAN network technique (virtual private network).
-VPN tunneling creates a tunnel for data transfer in a public network while simultaneously providing privacy and security.
-Before transmitting your data packets, it encrypts them.
-VPNs are commonly used to get access to restricted websites. 
+When PC 1 sends data to PC 3, the data is broken into **packets** and sent to the switch. The switch inspects each packet's destination MAC address and forwards it only to the correct port where PC 3 is connected.
 
-## What Is the Biggest WAN in the World?
+Key characteristics of a LAN:
+- **Small geographic area** (single building or campus)
+- **High speed** (typically 1 Gbps to 10 Gbps)
+- **Low latency** (sub-millisecond)
+- **Privately owned** and managed by a single organization
+- Uses Ethernet (IEEE 802.3) and Wi-Fi (IEEE 802.11)
 
-The internet itself is the world's largest WAN.
-However, there is a distinction between a WAN connection between two offices and the internet.
-The internet is open to the public and is owned by everyone on the planet.
+## WAN (Wide Area Network)
 
+A WAN connects LANs that are geographically separated — across cities, countries, or continents. WANs use leased lines, MPLS circuits, VPN tunnels, or the public internet to link distant networks together.
 
-A LAN is more secure than a WAN because a LAN never travels via the internet, but a WAN, even with a VPN, does. 
+```text
+  Office A (LAN)                              Office B (LAN)
+ ┌─────────────┐                             ┌─────────────┐
+ │ [PC] [PC]   │                             │ [PC] [PC]   │
+ │   [Switch]  │                             │   [Switch]  │
+ │   [Router]  │                             │   [Router]  │
+ └──────┬──────┘                             └──────┬──────┘
+        │                                           │
+        └───────── [ WAN Link / Internet ] ─────────┘
+```
 
-## Public and Private WAN
+The key distinction between a WAN and the internet is **privacy**. A WAN is typically a private network connecting specific locations, whereas the internet is a public network open to everyone. Traffic on a WAN stays within the organization's control, while internet traffic passes through shared public infrastructure.
 
-In a private WAN, you can purchase a line directly from your ISP and utilize it to link networks.
-This is more secure, but it is more expensive, especially across long distances.
-As a result, most businesses prefer Public WANS.
+Key characteristics of a WAN:
+- **Large geographic area** (cities, countries, continents)
+- **Lower speed** than LAN (depends on link type)
+- **Higher latency** due to distance
+- May use third-party infrastructure (ISP circuits, MPLS, internet)
 
+## LAN vs WAN Comparison
 
-Switches are used to establish a LAN, and routers are used to build a WAN.
-A switch cannot be used to build a WAN. 
+| Feature           | LAN                          | WAN                              |
+|-------------------|------------------------------|----------------------------------|
+| **Scope**         | Single building or campus    | Cities, countries, or global     |
+| **Speed**         | 1–10 Gbps (or higher)       | 1 Mbps–10 Gbps (varies)         |
+| **Latency**       | Sub-millisecond              | Milliseconds to hundreds of ms   |
+| **Ownership**     | Privately owned              | Often uses third-party links     |
+| **Cost**          | Low (own equipment)          | Higher (leased lines, services)  |
+| **Security**      | More secure (local)          | Less secure (traverses internet) |
+| **Key device**    | Switch                       | Router                           |
+| **Example**       | Home or office network       | Corporate branch connections     |
+
+## Other Network Types
+
+| Type | Full Name                    | Scope                              | Example                        |
+|------|------------------------------|-------------------------------------|-------------------------------|
+| **PAN**  | Personal Area Network    | Within reach of a person (~10 m)   | Bluetooth headset to phone    |
+| **MAN**  | Metropolitan Area Network| City or metro area                  | City-wide Wi-Fi, cable TV     |
+| **SAN**  | Storage Area Network     | Data center                         | Fibre Channel storage fabric  |
+| **CAN**  | Campus Area Network      | University or corporate campus      | Multiple buildings on campus  |
+
+## Public vs Private WAN
+
+### Private WAN
+
+In a private WAN, an organization purchases a **dedicated line** (leased line or MPLS circuit) directly from an ISP. Traffic is isolated from the public internet, providing stronger security and guaranteed bandwidth. Private WANs are expensive, especially over long distances.
+
+### Public WAN
+
+A public WAN uses the **internet** as the transport medium. Traffic is encrypted using a VPN to create a secure tunnel over the shared public infrastructure. Public WANs are far more cost-effective but rely on the internet's best-effort delivery, which can introduce variable latency and packet loss.
+
+Most organizations today use a combination: private links for critical connections and VPN over the internet for less sensitive traffic.
+
+## VPN Tunneling
+
+A VPN (Virtual Private Network) creates an encrypted tunnel over a public network, allowing two LANs (or a remote user and a LAN) to communicate privately. VPN tunneling encrypts data packets before they enter the public internet and decrypts them at the other end.
+
+```text
+  Office A (LAN)                                     Office B (LAN)
+ ┌──────────────┐                                   ┌──────────────┐
+ │  [PC] [PC]   │                                   │  [PC] [PC]   │
+ │  [Switch]    │                                   │  [Switch]    │
+ │  [Router/VPN]│                                   │  [Router/VPN]│
+ └──────┬───────┘                                   └──────┬───────┘
+        │                                                  │
+        │  ╔══════════════════════════════════════════╗    │
+        └──║  Encrypted VPN Tunnel over the Internet  ║────┘
+           ╚══════════════════════════════════════════╝
+```
+
+Key points:
+- Switches are used to build a LAN; routers are used to build a WAN.
+- A LAN is inherently more secure than a WAN because its traffic never leaves the local network.
+- VPNs add a layer of security to WANs but do not make them as secure as a truly private, isolated LAN.
+- VPNs are also commonly used by individuals to access geo-restricted content or protect traffic on public Wi-Fi.
