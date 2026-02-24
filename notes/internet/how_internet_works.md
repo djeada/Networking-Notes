@@ -1,11 +1,11 @@
-What happens when someone vists a website?
+What happens when someone visits a website?
 First their machine asks the website's server for a copy of a website.
-Information is send with virtual envlopes known as packets.
-The envolopes include ip addresses of senders and recievers. 
-Information is send trough physical copper wires. It first passes local networks and is forwarded further.
-Then they travel with fiber optic cabels located deep in the ocean.
+Information is sent with virtual envelopes known as packets.
+The envelopes include IP addresses of senders and receivers. 
+Information is sent through physical copper wires. It first passes local networks and is forwarded further.
+Then they travel with fiber optic cables located deep in the ocean.
 
-* you type it in, and your ISP uses a Domain Name System (DNS) to turn it to an IP addresss.
+* you type it in, and your ISP uses a Domain Name System (DNS) to turn it to an IP address.
 * a request is sent to that IP via HTTP
 * the request hops from server to server till it reaches it destination
 * the server sends css, html, js and resources
@@ -37,10 +37,7 @@ A URL may contain a request to HTML, image file or any other type.
     incoming HTTP request and sends an HTTP response.
 
 7.  Browser receives the HTTP response and renders the content.
-# INTERNET IS CONNECTIONS of LANS
-
-
-<h1>The internet</h1>
+# How the Internet Works
 
 The internet connects all of the LANs and forms a network.
 A home router is essential; it is essentially a router and a switch combined.
@@ -62,7 +59,7 @@ First, the router receives this packet and forwards it to another router through
 This router now has a plethora of possibilities for forwarding this packet.
 It uses something called a routing table to select the best one. 
 
-<h2>How do devices connect to the internet?</h2>
+## How Do Devices Connect to the Internet?
 A switch is sufficient to create a LAN.
 How, though, do devices connect to the internet?
 We utilize something called a router for this.
@@ -74,7 +71,7 @@ Every home or apartment will have a LAN.
 The router allows us to connect the computer to another computer anywhere in the globe.
 In other words, the router facilitates the connection between distinct LANS. 
 
-<h2>The internet is a network of networks.</h2>
+## The Internet Is a Network of Networks
 Assume YouTube wants to give you data when you send it a request.
 It will accomplish this by sending data packets to you through the internet.
 Streaming refers to the process of delivering data in pieces.

@@ -1,5 +1,5 @@
 
-<h1>What is an ISP?</h1>
+# What Is an ISP?
 
 The internet is made up of several separate routers linked together.
 These many ISPs link the routers of the world.
@@ -7,7 +7,7 @@ Specific routers can be controlled by each ISP.
 ISPs are the corporations that provide us with access to the internet.
 There are several ISPs throughout the world. 
 
-<h2>Local ISP’S</h2>
+## Local ISPs
 
 Local ISPs are in charge of connecting LANS in their area.
 These local internet service providers then link to the regional ISP.
@@ -20,7 +20,7 @@ It should be noted that some local ISPs can communicate with global ISPs without
 
 Local ISPs are often smaller businesses that may desire a direct link with a global ISP in order to provide their consumers with a better experience. 
 
-<h2>Peering</h2>
+## Peering
 
 Assume a computer in Belgium wishes to connect to a website in India, but the website only has one server.
 In this scenario, the user submits a request, and the packet travels via the local ISP, regional ISP, and global ISP to reach the website's server.

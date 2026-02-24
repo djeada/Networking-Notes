@@ -75,7 +75,7 @@ Network communication protocols share the following characteristics:
 
 [***TCP
 header***](https://www.geeksforgeeks.org/tcp-services-and-segment-structure/)\
-![https://media.geeksforgeeks.org/wp-content/uploads/TCPSegmentHeader-1.png](images//media/image12.png)
+![https://media.geeksforgeeks.org/wp-content/uploads/TCPSegmentHeader-1.png](images/media/image12.png)
 
 [***In TCP congestion control
 Algorithm***](https://www.geeksforgeeks.org/computer-network-tcp-congestion-control/)\
@@ -98,7 +98,7 @@ will start eh actual data transfer.\
  
 
 [***UDP header***](https://www.geeksforgeeks.org/gate-cs-notes-gq/)\
-![https://media.geeksforgeeks.org/wp-content/uploads/UDP-header.png](images//media/image7.png)
+![https://media.geeksforgeeks.org/wp-content/uploads/UDP-header.png](images/media/image7.png)
 
 Refer the [*Differences between TCP and
 UDP*](https://www.geeksforgeeks.org/differences-between-tcp-and-udp/)
