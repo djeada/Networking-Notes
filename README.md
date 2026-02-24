@@ -42,7 +42,8 @@ This repository is a comprehensive collection of notes, guides, and resources on
 - [DNS](notes/application/dns.md)
 - [HTTP](notes/application/http.md)
 - [IP Protocol](notes/application/ip_protocol.md)
-- [Stateless vs Stateful](notes/application/state.md)
+- [DHCP](notes/application/dhcp.md)
+- [Stateless vs Stateful](notes/application/stateless_vs_stateful.md)
 
 ### Internet
 - [How the Internet Works](notes/internet/how_internet_works.md)
@@ -50,7 +51,8 @@ This repository is a comprehensive collection of notes, guides, and resources on
 - [LAN and WAN](notes/internet/lan_and_wan.md)
 
 ### Other Topics
-- [Firewall](notes/other/Firewall.md)
+- [Firewall](notes/other/firewall.md)
+- [IDS and IPS](notes/other/ids_and_ips.md)
 - [VPN](notes/other/vpn.md)
 - [VLAN](notes/other/vlan.md)
 
@@ -62,7 +64,7 @@ This repository is a comprehensive collection of notes, guides, and resources on
 - [IP Addressing](quizzes/ip_addressing.md)
 - [DNS and DHCP](quizzes/dns_dhcp.md)
 - [Routing and Switching](quizzes/routing_and_switching.md)
-- [Firewall, IDS, and IPS](quizzes/Firewall,%20IDS,%20and%20IPS.md)
+- [Firewall, IDS, and IPS](quizzes/firewall_ids_and_ips.md)
 
 ## Key Questions
 
@@ -78,24 +80,6 @@ This repository is a comprehensive collection of notes, guides, and resources on
 - [Sunny Classroom Networking Playlist](https://www.youtube.com/watch?v=X8RxRr7KNl8&list=PLSNNzog5eydtb5wyH2UtK09L9MsW9Hufq)
 - [Neso Academy Computer Networks](https://www.youtube.com/watch?v=VwN91x5i25g&list=PLBlnK6fEyqRgMCUAG0XRw78UA8qnv6jEx)
 - [DevOps Guide - Networking](https://github.com/Tikam02/DevOps-Guide/tree/master/Networking)
-
-TODO:
-* FULL START HERE: https://www.youtube.com/watch?v=PhjHXeMNpp8
-* https://mw.home.amu.edu.pl/zajecia/SIK2021/SIK.html
-* https://www.youtube.com/c/PracticalNetworking
-* https://www.youtube.com/watch?v=X8RxRr7KNl8&list=PLSNNzog5eydtb5wyH2UtK09L9MsW9Hufq&ab_channel=SunnyClassroom
-* https://github.com/Tikam02/DevOps-Guide/tree/master/Networking
-* Bombal na gicie
-* https://www.youtube.com/watch?v=VwN91x5i25g&list=PLBlnK6fEyqRgMCUAG0XRw78UA8qnv6jEx
-* https://www.youtube.com/watch?v=L_6RmF3QQyo&t=447s
-* https://www.youtube.com/watch?v=kNKHM_isojI&t=934s
-
-<h1>Questions</h1>
-
-* how does internet work?
-* what happens when you hit enter after typing a url?
-* what happens when you search for a phrase on google?
-* how does whatsapp work?
 
 ## Contributing
 
