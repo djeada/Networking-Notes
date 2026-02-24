@@ -1,4 +1,33 @@
-# Configuring routers
+# Configuring Routers
+
+## Router Architecture Overview
+
+```text
++-----------------------------------------------------------------------+
+|                            Router                                     |
+|                                                                       |
+|   +----------+    +-------------+    +-----------+    +----------+    |
+|   |   CPU    |    |   Memory    |    | Flash /   |    | Operating|    |
+|   |          |    | (RAM/NVRAM) |    | Storage   |    | System   |    |
+|   +----------+    +-------------+    +-----------+    +----------+    |
+|                                                                       |
+|   +---------+    +---------+    +---------+    +---------+            |
+|   | WAN Port|    | LAN 1   |    | LAN 2   |    | LAN 3   |    ...    |
+|   | (Public)|    |(Private)|    |(Private)|    |(Private)|            |
+|   +----+----+    +----+----+    +----+----+    +----+----+            |
+|        |              |              |              |                  |
++--------|--------------|--------------|--------------|------------------+
+         |              |              |              |
+     To ISP /       To internal devices (PCs, servers, APs)
+     Internet
+```
+
+- **WAN port**: Connects to the ISP / public internet.
+- **LAN ports**: Connect to devices on the private network.
+- **CPU / Memory**: Processes routing decisions, NAT translations, and firewall rules.
+- **Flash / NVRAM**: Stores the operating system (e.g., Cisco IOS) and configuration files.
+
+---
 
 ## **Device Protection Methods**
 Protecting your device from unwanted access can be achieved through several methods:
@@ -97,3 +126,37 @@ Protecting your device from unwanted access can be achieved through several meth
 
 ### **Conclusion**
 - Effective device protection and correct router configurations ensure secure and efficient network communication.
+
+---
+
+## Basic Routing Concepts
+
+### Static vs Dynamic Routing
+
+Routers determine how to forward packets using a **routing table**. Routes can be configured manually (static) or learned automatically (dynamic).
+
+| Feature            | Static Routing                             | Dynamic Routing                             |
+|--------------------|--------------------------------------------|---------------------------------------------|
+| **Configuration**  | Manually entered by an administrator       | Automatically learned via routing protocols  |
+| **Adaptability**   | Does not adapt to network changes          | Adapts to topology changes automatically     |
+| **Overhead**       | No protocol overhead                       | Uses CPU/bandwidth for route advertisements  |
+| **Use Case**       | Small networks, default routes, stub networks | Large, complex, or frequently changing networks |
+| **Protocols**      | N/A                                        | RIP, OSPF, EIGRP, BGP                       |
+| **Security**       | More secure (no route advertisements)      | Routes can be poisoned if not secured        |
+
+**Static route example (Cisco IOS)**:
+```bash
+Router> enable
+Router# conf terminal
+Router(config)# ip route 10.0.2.0 255.255.255.0 192.168.1.1
+```
+
+This tells the router: "To reach the `10.0.2.0/24` network, forward packets to the next-hop address `192.168.1.1`."
+
+### How a Router Forwards a Packet
+
+1. A packet arrives on an interface.
+2. The router examines the **destination IP** in the packet header.
+3. It looks up the destination in its **routing table** to find the best matching route.
+4. The packet is forwarded out the appropriate interface toward the next hop.
+5. If no route matches, the packet is sent to the **default route** (if configured) or dropped.
