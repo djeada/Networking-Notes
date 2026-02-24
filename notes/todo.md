@@ -74,7 +74,7 @@ server here.
   Physical Layer |     Bits |              Bit Synchronization,Bit rate control,Physical Topologies
 
 **Layers and their uses –**\
-![https://media.geeksforgeeks.org/wp-content/uploads/3-30.jpg](images//media/image15.jpg)
+![https://media.geeksforgeeks.org/wp-content/uploads/3-30.jpg](images/media/image15.jpg)
 
 
 
@@ -84,8 +84,8 @@ When there is a long sequence of 0s and 1s, there is a problem at the
 receiving end. The problem is that the synchronization is lost due to
 lack of transmissions.
 
--   **NRZ-level encoding **: The polarity of signals changes when
-    incoming siganl changes from ‘1’ to ‘0’ or from ‘0’ to ‘1’. It
+-   **NRZ-level encoding**: The polarity of signals changes when
+    incoming signal changes from ‘1’ to ‘0’ or from ‘0’ to ‘1’. It
     considers the first bit data as polarity change.
 
 -   **NRZ-Inverted/ Differential encoding**:In this, the transitions at
@@ -97,15 +97,15 @@ lack of transmissions.
 
 [***Class Full Addressing
 Table***](https://www.geeksforgeeks.org/ip-addressing-introduction-and-classful-addressing/):\
-![https://media.geeksforgeeks.org/wp-content/uploads/1-45.jpg](images//media/image13.jpg)
+![https://media.geeksforgeeks.org/wp-content/uploads/1-45.jpg](images/media/image13.jpg)
 
 [***IPv4 header
 datagram***](https://www.geeksforgeeks.org/network-layer-introduction-ipv4/):\
-![https://media.geeksforgeeks.org/wp-content/uploads/contentArticle-1.png](images//media/image21.png)
+![https://media.geeksforgeeks.org/wp-content/uploads/contentArticle-1.png](images/media/image21.png)
 
 [***IP version 6 Header
 Format***](https://www.geeksforgeeks.org/computer-network-internet-protocol-version-6-ipv6-header/)\
-![https://media.geeksforgeeks.org/wp-content/uploads/ipv6-header.png](images//media/image4.png)
+![https://media.geeksforgeeks.org/wp-content/uploads/ipv6-header.png](images/media/image4.png)
 
 [***Internet Control Message
 Protocol***](https://www.geeksforgeeks.org/internet-control-message-protocol-icmp/):
@@ -124,7 +124,7 @@ provide an error control.
  \
 [***Difference between DVR and
 LSR***](https://www.geeksforgeeks.org/computer-network-distance-vector-routing-vs-link-state-routing/)\
-![https://media.geeksforgeeks.org/wp-content/uploads/4-18.jpg](images//media/image8.jpg)
+![https://media.geeksforgeeks.org/wp-content/uploads/4-18.jpg](images/media/image8.jpg)
 
 [***Open shortest path first
 (OSPF)***](https://www.geeksforgeeks.org/open-shortest-path-first-ospf-router-roles-configuration/):

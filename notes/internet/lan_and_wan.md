@@ -1,10 +1,10 @@
-<h1>LAN</h1>
+# LAN
 LAN is made up of devices that are linked together via switches and access points.
 If PC 1 and PC 6 are connected via a network, the computer breaks the data down into little pieces called packets and transmits it to the switch.
 The switch then examines the contents of the packet, determines the package's destination, and transmits it to the dest, in this instance PC6. 
 
 
-<h1>WAN(Wide area network)</h1>
+# WAN (Wide Area Network)
 
 This is used to link two LANs.
 You may be asking what the distinction is between this and the internet.
@@ -17,7 +17,7 @@ VPN tunneling creates a tunnel for data transfer in a public network while simul
 Before transmitting your data packets, it encrypts them.
 VPNs are commonly used to get access to restricted websites. 
 
-<h2>What is the biggest WAN in the world?</h2>
+## What Is the Biggest WAN in the World?
 
 The internet itself is the world's largest WAN.
 However, there is a distinction between a WAN connection between two offices and the internet.
@@ -26,7 +26,7 @@ The internet is open to the public and is owned by everyone on the planet.
 
 A LAN is more secure than a WAN because a LAN never travels via the internet, but a WAN, even with a VPN, does. 
 
-<h2>Public and Private WAN</h2>
+## Public and Private WAN
 
 In a private WAN, you can purchase a line directly from your ISP and utilize it to link networks.
 This is more secure, but it is more expensive, especially across long distances.

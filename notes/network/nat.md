@@ -1,7 +1,7 @@
-* It was created to solve the problem of limited number of ipv4 addresses.
-* Previously each device got it's own PUBLIC ip address (connected with switch to default gateway).
-* Another thing is security. IP of each device is public so can potentailly be accessed from anywhere.
-* NAT is a process where a router translates one ip adress into another.
+* It was created to solve the problem of limited number of IPv4 addresses.
+* Previously each device got its own PUBLIC IP address (connected with switch to default gateway).
+* Another thing is security. IP of each device is public so can potentially be accessed from anywhere.
+* NAT is a process where a router translates one IP address into another.
 
 4 types of NAT:
 * Static nat (SNAT)
@@ -11,7 +11,7 @@
 
 With PAT each host on the LAN is translated to the routers WAN-side public IP address, with a different port number.
 
-## Nat vs Subnetting
+## NAT vs Subnetting
 
 | Feature         | Subnetting                                          | NAT (Network Address Translation)                               |
 |-----------------|-----------------------------------------------------|-----------------------------------------------------------------|
@@ -44,4 +44,4 @@ Here's a comparison table between NAT and Proxy based on the provided descriptio
 | **Common Use Cases**        | Conserving public IPs, simple network security                    | Web content filtering, bypassing geo-restrictions, caching |
 | **Cost**                    | Low, can be implemented on existing network devices               | Higher, may require dedicated hardware/software         |
 
-This table highlights the key differences and similarities between NAT and forward proxies, focusing on their roles, functions, and how they operate within a network【5†source】【6†source】【7†source】【8†source】.
+This table highlights the key differences and similarities between NAT and forward proxies, focusing on their roles, functions, and how they operate within a network.

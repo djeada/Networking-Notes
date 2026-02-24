@@ -15,7 +15,7 @@
 ### **1. RSA Algorithm**
    - **Description**: RSA is an asymmetric cryptographic algorithm used for secure data transmission.
    - **Image**: An image depicting the RSA example is provided.
-     ![Rsa Example](images//media/image9.png)
+     ![Rsa Example](images/media/image9.png)
 
 ### **2. Diffie-Hellman Key Exchange**
    - **Description**: The algorithm allows two parties to establish a secret key over an insecure channel.

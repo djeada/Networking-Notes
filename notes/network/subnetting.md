@@ -89,7 +89,7 @@ Class A: Each ip gets 16,777,214 Hosts.
 
 You get the network ID 192.168.4.0/24
 
-Now you have to create 3 subnetworks. One for office, one for front desk, one for storage. Each network gets network ID, subnet mask, host id range, # of usable hosts, brodcast id.
+Now you have to create 3 subnetworks. One for office, one for front desk, one for storage. Each network gets network ID, subnet mask, host ID range, # of usable hosts, broadcast ID.
 
 | Subnet      | 1   | 2   | 4   | 8   | 16  | 32  | 64  | 128 | 256 |
 | --- | --- | --- | --- | --- |--- | --- | --- | --- | --- |
@@ -108,15 +108,15 @@ Total host id is 64 (including host id and broadcast id).
 | 192.168.4.192 | /26 | 192.168.4.193 - 192.168.4.254 | 64 - 2 = 62 | 192.168.4.255 |
 
 Example
-Adres A: 192.168.10.32
+Address A: 192.168.10.32
 Mask: 255.255.255.0
 
-Adres B: 192.168.10.67
+Address B: 192.168.10.67
 Mask: 255.255.255.0
 
 * They are in the same network.
-* Network adress is 192.168.10.0
-* Broadcast adress is 192.168.10.255
+* Network address is 192.168.10.0
+* Broadcast address is 192.168.10.255
 * There are 254 hosts in the network.
 
 

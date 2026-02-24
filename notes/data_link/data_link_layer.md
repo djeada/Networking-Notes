@@ -4,7 +4,7 @@
    - **Sender's Window Size**: \(N\). (In Selective Repeat, both sender and receiver window sizes are the same)
    - \(a = \frac{T_p}{T_t}\)
 
-   ![Flow Control Image](images//media/image5.jpg)
+   ![Flow Control Image](images/media/image5.jpg)
 
    - **Conditions**:
      - Sequence No. ≥ (Sender's Window Size) + (Receiver's Window Size)

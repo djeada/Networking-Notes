@@ -1,5 +1,5 @@
-* connect two networks trough a tunnel (ports are not exposed on the internet)
-* end ueser (remote worker) to connect to office LAN
+* connect two networks through a tunnel (ports are not exposed on the internet)
+* end user (remote worker) to connect to office LAN
 * Options: OpenVPN, SSH, LLTP, IPSec
 * 
 
@@ -61,7 +61,7 @@ Internet Protocol Security (IPsec) encrypts data using the existing Internet Pro
 
 IPSec is difficult to set up in comparison to alternatives; however, if successful, it boasts strong encryption and is also supported on many devices.
 
-<h1>How does VPN tunnelling work?</h1>
+## How Does VPN Tunnelling Work?
 
 The issue is, even if there is no physical tunnel linking the two LAN routers, the data may still be accessed.
 However, the data is placed in a safe envelope, much like a letter, and is then encrypted so that it cannot be hacked or viewed.

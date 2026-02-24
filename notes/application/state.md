@@ -1,4 +1,4 @@
-## Stateless vs statefull
+## Stateless vs Stateful
 Things are much easier to implement and predict if you just have one method call. 
 One request and one response. You don't have an open connection and a reference to 
 a remote object which executes on a remote server.
