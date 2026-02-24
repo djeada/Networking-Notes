@@ -66,6 +66,15 @@ This repository is a comprehensive collection of notes, guides, and resources on
 - [Load Balancing](notes/other/load_balancing.md)
 - [Network Troubleshooting](notes/other/network_troubleshooting.md)
 
+### Networking Tools
+- [ping](notes/tools/ping.md)
+- [netstat and ss](notes/tools/netstat_ss.md)
+- [nmap](notes/tools/nmap.md)
+- [tcpdump](notes/tools/tcpdump.md)
+- [curl](notes/tools/curl.md)
+- [SSH](notes/tools/ssh.md)
+- [ip and ifconfig](notes/tools/ip_ifconfig.md)
+
 ### Practice
 - [Ping](practice/ping/README.md)
 - [Traceroute](practice/traceroute/README.md)
