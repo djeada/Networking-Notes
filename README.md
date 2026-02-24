@@ -57,6 +57,9 @@ This repository is a comprehensive collection of notes, guides, and resources on
 ### Practice
 - [Wireshark Labs](practice/wireshark/README.md)
 
+### Scripts
+- [Python Networking Scripts](scripts/README.md) — 30 educational Python scripts covering networking concepts
+
 ### Quizzes
 - [TCP/UDP](quizzes/tcp_udp.md)
 - [IP Addressing](quizzes/ip_addressing.md)
