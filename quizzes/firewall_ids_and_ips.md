@@ -1,73 +1,103 @@
 
 
-1. **What is the primary difference between a stateful and a stateless firewall?**
-   - A stateful firewall tracks the state of active connections and makes decisions based on the context of the traffic.
-   - A stateless firewall only filters traffic based on static rules without considering the state of the connection.
-   - A stateful firewall only inspects the packet headers, while a stateless firewall inspects the entire packet.
-   - A stateless firewall is more secure than a stateful firewall.
+1. **Which scenario could cause a stateful firewall to inadvertently block legitimate traffic?**
+   - When the traffic does not correspond to any existing session in the connection state table
+   - When the traffic is encrypted using TLS
+   - When both the source and destination ports happen to be the same
+   - When the traffic uses a non-standard port number
 
-2. **Which of the following best describes an IDS in a network environment?**
-   - A system that actively blocks malicious traffic based on predefined rules.
-   - A system that monitors network traffic for suspicious activity and generates alerts.
-   - A firewall that filters inbound and outbound traffic.
-   - A device that encrypts traffic between different network segments.
+2. **What best describes the function of an IDS within a network?**
+   - A system that observes network traffic for unusual activity and raises alerts
+   - A system that actively stops malicious traffic using predefined rules
+   - A firewall responsible for filtering both inbound and outbound traffic
+   - A device that encrypts traffic flowing between network segments
 
-3. **You’ve configured an IPS to monitor network traffic. What action does the IPS take when it detects a potential threat?**
-   - It alerts the network administrator and blocks the suspicious traffic in real time.
-   - It logs the event and sends a notification to the security team without blocking the traffic.
-   - It redirects the traffic to a honeypot for further analysis.
-   - It forwards the traffic to an IDS for deeper inspection.
+3. **What is the core distinction between a stateful firewall and a stateless firewall?**
+   - A stateful firewall monitors the state of active connections and uses that context to make filtering decisions
+   - A stateless firewall filters traffic based solely on fixed rules with no awareness of connection state
+   - A stateful firewall only examines packet headers, whereas a stateless firewall inspects full packet contents
+   - A stateless firewall offers greater security than a stateful firewall
 
-4. **What is a key advantage of a stateful firewall compared to a stateless firewall?**
-   - It can make decisions based on the history of traffic flow, allowing for more dynamic security policies.
-   - It is faster because it only inspects the headers of packets.
-   - It requires less processing power and memory.
-   - It automatically blocks all traffic by default.
-
-5. **When deploying an IDS, where should it be placed to maximize its effectiveness?**
-   - Between the router and the internal network
-   - Directly behind the firewall
-   - On every host in the network
-   - At the network's perimeter, before the firewall
-
-6. **How does an IPS differ from an antivirus software in terms of functionality?**
-   - An IPS monitors and blocks network traffic in real-time, while antivirus software scans and removes malicious files on a device.
-   - An IPS only detects known threats, while antivirus software detects both known and unknown threats.
-   - An IPS operates on endpoints, while antivirus software operates on network traffic.
-   - An IPS and antivirus software perform the same functions but are used in different environments.
-
-7. **Which scenario might cause a stateful firewall to block legitimate traffic?**
-   - When the traffic does not match an existing session in the connection table.
-   - When the traffic is encrypted.
-   - When the source and destination ports are the same.
-   - When the traffic is on a non-standard port.
-
-8. **What type of firewall would be best for filtering traffic based on specific applications rather than just IP addresses and ports?**
-   - Application-layer firewall
-   - Packet-filtering firewall
-   - Stateless firewall
-   - Circuit-level gateway
-
-9. **An IDS has generated an alert for suspicious activity, but upon review, the traffic is legitimate. What is this an example of?**
+4. **An IDS flags certain traffic as suspicious, but upon closer review the traffic turns out to be harmless. What is this called?**
    - A false positive
    - A false negative
    - A true positive
    - A true negative
 
-10. **What is the primary function of an IPS in comparison to a firewall?**
-    - An IPS can block threats in real-time based on deep packet inspection, while a firewall primarily filters traffic based on IP addresses and ports.
-    - An IPS is only used for monitoring, while a firewall actively blocks threats.
-    - An IPS is more efficient in handling encrypted traffic than a firewall.
-    - An IPS replaces the need for a firewall in a secure network.
+5. **How does an IPS differ from antivirus software in terms of where and how it operates?**
+   - An IPS inspects and blocks network traffic in real time, while antivirus software scans and removes malicious files on individual devices
+   - An IPS only identifies known threats, while antivirus software can detect both known and unknown threats
+   - An IPS runs on endpoints, while antivirus software operates on network traffic
+   - An IPS and antivirus software perform identical functions in different environments
 
-11. **What could be a potential downside of an aggressively configured IPS?**
-    - It may block legitimate traffic, leading to network disruptions.
-    - It requires constant manual updates to its rule set.
-    - It might not generate alerts for blocked traffic.
-    - It cannot operate in real-time.
+6. **What type of firewall is best suited for filtering traffic based on specific applications rather than just addresses and ports?**
+   - Application-layer firewall
+   - Packet-filtering firewall
+   - Stateless firewall
+   - Circuit-level gateway
 
-12. **Which of the following best describes a hybrid IDS/IPS system?**
-    - A system that can both detect and block threats, depending on how it’s configured.
-    - A system that alternates between detection and prevention modes based on traffic volume.
-    - A system that requires both an IDS and an IPS to function properly.
-    - A system that focuses on host-based detection only.
+7. **What action does an IPS take upon identifying a potential threat in network traffic?**
+   - It notifies the administrator and blocks the suspicious traffic immediately
+   - It records the event and sends a notification without blocking any traffic
+   - It diverts the traffic to a honeypot for further analysis
+   - It passes the traffic to an IDS for additional inspection
+
+8. **What best describes a hybrid IDS/IPS system?**
+    - A system capable of both detecting and preventing threats, depending on its configuration
+    - A system that switches between detection and prevention modes based on traffic volume
+    - A system that needs separate IDS and IPS hardware to operate
+    - A system focused exclusively on host-based threat detection
+
+9. **What key benefit does a stateful firewall have over a stateless one?**
+   - It can factor in the history of a traffic flow when enforcing security policies, enabling more dynamic rules
+   - It processes packets faster because it only inspects headers
+   - It consumes less processing power and memory
+   - It automatically drops all traffic by default
+
+10. **What is the primary role of an IPS when compared with a traditional firewall?**
+    - An IPS can block threats in real time through deep packet inspection, while a firewall mainly filters traffic by IP addresses and ports
+    - An IPS is used solely for monitoring, while a firewall actively blocks threats
+    - An IPS handles encrypted traffic more efficiently than a firewall
+    - An IPS eliminates the need for a firewall on a secure network
+
+11. **Where in the network should an IDS be placed to achieve the greatest visibility?**
+    - Directly behind the firewall
+    - Between the router and the internal network
+    - On every individual host in the network
+    - At the network perimeter, before the firewall
+
+12. **What is a potential drawback of configuring an IPS with overly aggressive rules?**
+    - It may mistakenly block legitimate traffic, causing network disruptions
+    - It demands constant manual updates to its detection signatures
+    - It might fail to generate alerts for traffic it has blocked
+    - It becomes unable to operate in real time
+
+13. **What is a DMZ (demilitarized zone) in network security?**
+    - A network segment that sits between the internal network and the Internet, hosting public-facing services
+    - A firewall rule that blocks all inbound traffic by default
+    - A type of IDS that monitors traffic at every network node
+    - An encrypted tunnel between two private networks
+
+14. **What does deep packet inspection (DPI) allow a firewall or IPS to do?**
+    - Examine the full contents of network packets, including the payload, to identify threats or policy violations
+    - Only inspect packet headers for source and destination information
+    - Encrypt packets before forwarding them to their destination
+    - Compress network traffic to improve throughput
+
+15. **What distinguishes a network-based IDS (NIDS) from a host-based IDS (HIDS)?**
+    - A NIDS monitors traffic on a network segment, while a HIDS monitors activity on a single host or endpoint
+    - A NIDS only detects external threats, while a HIDS only detects internal threats
+    - A NIDS replaces the need for a firewall, while a HIDS does not
+    - A NIDS and HIDS use identical detection techniques but differ in vendor support
+
+16. **What is a next-generation firewall (NGFW)?**
+    - A firewall that combines traditional packet filtering with application awareness, intrusion prevention, and threat intelligence
+    - A firewall that only uses stateless rules for maximum performance
+    - A legacy firewall upgraded with additional RAM and CPU resources
+    - A purely cloud-based firewall that cannot run on premises
+
+17. **How can a zero-day exploit challenge an IDS or IPS deployment?**
+    - Because the attack leverages a previously unknown vulnerability, signature-based detection may fail to recognize it
+    - Because the IDS or IPS automatically shuts down when it encounters unknown traffic
+    - Because zero-day exploits only target endpoints, not network traffic
+    - Because zero-day exploits are always encrypted and invisible to inspection

@@ -1,145 +1,175 @@
 
-1. **What is the primary function of DNS?**
-   - Managing email traffic between servers
-   - Securing data transmissions across the Internet
-   - Translating domain names into IP addresses
-   - Blocking access to specific websites or services
+1. **What does the term "lease" mean in the context of DHCP?**
+   - The duration for which an IP address is allocated to a device
+   - The time needed for DNS to look up a domain name
+   - The interval required for completing a data transfer
+   - The validity period of a registered domain name
 
-2. **What is the main purpose of DHCP in a network?**
-   - Assigning IP addresses to devices automatically
-   - Translating domain names into IP addresses
-   - Filtering malicious websites
-   - Managing data traffic between networks
-
-3. **Which DNS record type is responsible for mapping a domain name to an IP address?**
+2. **Which type of DNS record maps a domain name directly to an IP address?**
    - A record
-   - MX record
    - CNAME record
+   - MX record
    - TXT record
 
-4. **What does DHCP stand for?**
-   - Dynamic Host Configuration Protocol
-   - Domain Host Control Protocol
-   - Data Handling Control Protocol
-   - Dynamic Hypertext Configuration Process
+3. **What function does a DNS resolver perform?**
+   - It translates domain names into their corresponding IP addresses
+   - It hands out IP addresses to network devices
+   - It controls and routes network traffic
+   - It prevents access to harmful websites
 
-5. **Which of the following is a key feature of DHCP?**
-   - Automatic assignment of IP addresses
-   - Manual entry of IP addresses
-   - Encrypting network traffic
-   - Translating domain names to IP addresses
+4. **What is the purpose of a PTR record in DNS?**
+   - To resolve an IP address back to a domain name
+   - To specify the mail server for a domain
+   - To alias one domain name to another
+   - To hold supplementary information about the domain
 
-6. **What is the role of a DNS resolver?**
-   - To resolve and translate domain names to IP addresses
-   - To assign IP addresses to devices
-   - To manage network traffic
-   - To block malicious websites
+5. **What is the main role of DNS?**
+   - Blocking access to certain websites or services
+   - Encrypting data sent across the Internet
+   - Converting domain names into IP addresses
+   - Routing email traffic between mail servers
 
-7. **Which of the following is a benefit of using DHCP in a network?**
-   - Simplifies the management of IP addresses
-   - Increases the speed of network traffic
-   - Encrypts data transmissions
-   - Blocks unauthorized access to the network
-
-8. **What type of DNS record is used to indicate the mail server responsible for receiving email on behalf of a domain?**
+6. **Which DNS record type identifies the mail server that handles email for a given domain?**
    - MX record
+   - PTR record
    - A record
    - CNAME record
-   - PTR record
 
-9. **What does the “lease” refer to in DHCP?**
-   - The amount of time an IP address is assigned to a device
-   - The time it takes for DNS to resolve a domain name
-   - The time required for data transmission
-   - The period during which a domain name is valid
+7. **What does the abbreviation DHCP represent?**
+   - Dynamic Host Configuration Protocol
+   - Domain Host Control Protocol
+   - Dynamic Hypertext Configuration Process
+   - Data Handling Control Protocol
 
-10. **Which protocol does DNS primarily use for resolving domain names?**
+8. **What occurs once a DHCP lease reaches its expiration?**
+   - The IP address is released back into the available pool for reassignment
+   - The device permanently loses network connectivity
+   - The DNS server removes the corresponding entry
+   - The IP address becomes permanently bound to the device
+
+9. **What is the primary purpose of DHCP on a network?**
+   - Automatically distributing IP addresses to connected devices
+   - Resolving domain names to IP addresses
+   - Blocking malicious or unwanted websites
+   - Directing data traffic between separate networks
+
+10. **What advantage does DHCP provide for network administration?**
+    - It streamlines the management of IP address assignments
+    - It boosts the throughput of network traffic
+    - It encrypts all data transmissions on the network
+    - It prevents unauthorized devices from joining the network
+
+11. **Which transport protocol does DNS mainly rely on for name resolution queries?**
     - UDP
     - TCP
-    - ICMP
     - HTTP
+    - ICMP
 
-11. **What happens when a DHCP lease expires?**
-    - The IP address is returned to the pool for reassignment
-    - The device loses its network connection permanently
-    - The DNS server is notified to remove the entry
-    - The IP address is permanently assigned to the device
+12. **Which of the following best describes a core capability of DHCP?**
+    - Automated allocation of IP addresses to hosts
+    - Requiring administrators to manually enter IP addresses
+    - Providing encryption for network communications
+    - Converting domain names into IP addresses
 
-12. **What is the purpose of a PTR (Pointer) record in DNS?**
-    - To map an IP address to a domain name
-    - To indicate the mail server for a domain
-    - To redirect one domain to another
-    - To store additional information about the domain
+13. **What is the DORA process in DHCP?**
+    - The four-step exchange (Discover, Offer, Request, Acknowledge) used to assign an IP address
+    - A method for encrypting DHCP messages
+    - A DNS delegation technique for subdomains
+    - A process for renewing expired SSL certificates
+
+14. **What is DNS cache poisoning?**
+    - An attack that inserts forged DNS records into a resolver's cache to redirect traffic
+    - A method of clearing outdated entries from the DNS cache
+    - A technique for speeding up DNS resolution by pre-loading entries
+    - A firewall rule that blocks DNS traffic from untrusted sources
+
+15. **What role does a DHCP relay agent serve?**
+    - It forwards DHCP requests from clients to a DHCP server located on a different subnet
+    - It caches DHCP leases to speed up address assignment
+    - It converts DHCP messages into DNS queries
+    - It encrypts communication between DHCP clients and servers
 
 
-1. **You’re configuring a new device on a network. What information would you expect to receive from a DHCP server?**
-   - A domain name
-   - An IP address, subnet mask, default gateway, and DNS server address
-   - A static IP address
-   - A list of websites the device can access
+1. **Two devices on the network share the same IP address, causing intermittent connectivity problems. What is a likely explanation?**
+   - A DHCP server malfunction or a conflict with a manually configured static IP address
+   - A misconfiguration on the DNS server
+   - An incorrect subnet mask setting
+   - Outdated firmware on the network router
 
-2. **A user reports they cannot access a specific website by its domain name, but can access it using its IP address. What is the most likely cause?**
-   - DHCP server is down
-   - DNS server is not resolving the domain name correctly
-   - The user’s IP address is incorrect
-   - The website is blocked by the firewall
+2. **A user can reach a website by entering its IP address but not by typing the domain name. What is the most probable issue?**
+   - The DNS server is failing to resolve the domain name properly
+   - The DHCP server has stopped running
+   - The user's assigned IP address is incorrect
+   - A firewall rule is blocking access to the website
 
-3. **You’ve been asked to ensure that a specific device always receives the same IP address from the DHCP server. What configuration would you apply?**
-   - Set a static IP address on the device
-   - Configure a DHCP reservation for the device’s MAC address
-   - Increase the lease time on the DHCP server
-   - Create a CNAME record in DNS
+3. **A network device obtains an IP address in the 169.254.x.x range. What does this signify?**
+    - The device could not reach a DHCP server and assigned itself a link-local address
+    - The DNS server is experiencing a malfunction
+    - The device has been connected to an incorrect network segment
+    - A static IP address has been manually configured on the device
 
-4. **After configuring a new DNS record, you notice that it’s taking a long time for users to resolve the new domain name. What could be a reason for this delay?**
-   - The DNS server is down
-   - DNS propagation is taking time across all servers
-   - The DHCP lease time is too short
-   - The IP address pool is exhausted
-
-5. **A client device is not receiving an IP address automatically. What is the first step in troubleshooting the DHCP server?**
-   - Check if the DHCP service is running
-   - Manually assign an IP address to the device
+4. **A client machine fails to obtain an IP address automatically. What should you investigate first on the DHCP server?**
+   - Verify that the DHCP service is active and running
+   - Manually configure an IP address on the client
    - Restart the DNS server
-   - Reboot the client device
+   - Power-cycle the client device
 
-6. **You need to map a domain name to an IP address and also allow reverse lookup from the IP address to the domain name. Which DNS records do you create?**
-   - A and PTR records
-   - MX and CNAME records
-   - NS and SOA records
-   - TXT and SRV records
+5. **Several clients are receiving duplicate IP addresses from the DHCP server. What is the first thing you should examine?**
+    - Confirm that the DHCP scope does not contain overlapping address ranges
+    - Restart the DNS service
+    - Extend the DHCP lease duration
+    - Enable DNS scavenging
 
-7. **A user is complaining about intermittent network issues. Upon inspection, you find that two devices on the network have the same IP address. What might have caused this?**
-   - DHCP server malfunction or a static IP address conflict
-   - DNS server misconfiguration
-   - Incorrect subnet mask
-   - Outdated firmware on the router
+6. **You need to guarantee that a particular device always gets the same IP address from DHCP. How would you set this up?**
+   - Create a DHCP reservation tied to the device's MAC address
+   - Assign a static IP address directly on the device
+   - Extend the lease duration on the DHCP server
+   - Add a CNAME record in DNS for the device
 
-8. **You need to assign a temporary IP address to a client for just one day. What should you configure on the DHCP server?**
-   - Set a lease time of 24 hours for the IP address
-   - Assign a static IP address to the client
-   - Use a different DHCP scope
-   - Configure the DNS server settings
+7. **You want to assign an IP address to a client for only 24 hours. What DHCP setting should you adjust?**
+   - Configure a lease time of 24 hours for that address
+   - Set up a static IP address on the client device
+   - Place the client in a separate DHCP scope
+   - Modify the DNS server configuration
 
-9. **Your company has just added a new domain name. However, employees are unable to access it within the company’s network. What DNS configuration might need adjustment?**
-   - Add an A record for the new domain on the internal DNS server
-   - Increase the DHCP lease time
-   - Change the subnet mask on the network devices
-   - Reboot the DHCP server
+8. **When setting up a new device, what details would a DHCP server typically provide?**
+   - An IP address, subnet mask, default gateway, and DNS server address
+   - Only a domain name
+   - A permanent static IP address
+   - A list of allowed websites
 
-10. **A device on the network receives an IP address in the range 169.254.x.x. What does this indicate?**
-    - The device was unable to contact a DHCP server
-    - The DNS server is malfunctioning
-    - The device is connected to a different network
-    - The device has a static IP address configured
+9. **You need to associate a domain name with an IP address and also enable reverse lookups. Which pair of DNS records should you create?**
+   - A record and PTR record
+   - MX record and CNAME record
+   - NS record and SOA record
+   - TXT record and SRV record
 
-11. **You’re tasked with configuring DNS settings for a new web server. What record would you create to associate the server’s hostname with its IP address?**
+10. **After adding a new DNS entry, users report that the domain name takes a long time to resolve. What is a plausible explanation?**
+    - DNS propagation has not yet completed across all name servers
+    - The DNS server itself is offline
+    - The DHCP lease time is configured too short
+    - The DHCP address pool has been exhausted
+
+11. **Your organization recently registered a new domain, but employees on the internal network cannot access it. What DNS change is most likely needed?**
+    - Create an A record for the new domain on the internal DNS server
+    - Increase the DHCP lease time
+    - Reconfigure the subnet mask on network devices
+    - Restart the DHCP server
+
+12. **You are setting up DNS for a new web server. Which record type would you use to link the server's hostname to its IP address?**
     - A record
     - MX record
-    - CNAME record
     - SRV record
+    - CNAME record
 
-12. **You’ve noticed that multiple clients are being assigned the same IP address by the DHCP server. What should you check first?**
-    - Ensure that the DHCP scope does not have overlapping IP ranges
-    - Restart the DNS server
-    - Increase the DHCP lease time
-    - Configure DNS scavenging
+13. **A branch office has no local DHCP server, yet devices there need IP addresses from the central server. What should you deploy?**
+    - A DHCP relay agent on the branch office network
+    - A secondary DNS server at the branch
+    - A static route to the central DHCP server
+    - A VPN tunnel exclusively for DHCP traffic
+
+14. **Users report being redirected to a fraudulent website when they visit a well-known domain. What DNS-related attack might be occurring?**
+    - DNS cache poisoning, where forged records redirect users to malicious sites
+    - A DHCP scope exhaustion attack
+    - A brute-force attack against the DNS server
+    - An ARP spoofing attack on the local network

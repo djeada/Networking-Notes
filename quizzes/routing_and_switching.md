@@ -1,84 +1,119 @@
 
-1. How many MAC addresses will a computer have if it contains two network interface cards?
-
-    - 1
-    - 2
-    - 3
-    - 4
-
-2. What happens when a packet is sent to a destination outside the local network?
-
-    - The switch handles it
-    - The router forwards it
-    - The default gateway forwards it
-    - The packet is dropped
-
-3. Which device is primarily responsible for connecting different networks together?
-
-    - Router
-    - Switch
-    - Hub
-    - Modem
-
-4. How many MAC addresses will a laptop have if it contains both an Ethernet port and a Wi-Fi adapter?
-
-    - 1
-    - 2
-    - 3
-    - 4
-
-5. What is the role of a DNS server in a network?
-
-    - It forwards packets to external networks
-    - It translates IP addresses to domain names
-    - It manages local network traffic
-    - It assigns IP addresses to devices
-
-6. Which device is responsible for managing data traffic within a local area network (LAN)?
-
-    - Router
-    - Switch
-    - Hub
-    - Repeater
-
-7. How many MAC addresses does a network switch typically have?
+1. How many MAC addresses does a typical network switch have?
 
     - 1
     - 2
     - As many as there are ports
     - 0
 
-8. What is the primary function of a router in a network?
+2. What is the primary role of a router in a network?
 
-    - Forwarding packets between different networks
+    - Forwarding packets between distinct networks
     - Managing IP address assignment
-    - Converting MAC addresses to IP addresses
-    - Filtering incoming traffic
+    - Translating MAC addresses into IP addresses
+    - Filtering inbound traffic
 
-9. How many network interface cards are required to have three different MAC addresses on a server?
+3. If a computer has two network interface cards, how many MAC addresses will it possess?
 
     - 1
     - 2
     - 3
     - 4
 
-10. What is the purpose of a subnet mask in a network?
-
-    - Identifying the network portion of an IP address
-    - Forwarding packets to external networks
-    - Translating domain names to IP addresses
-    - Assigning IP addresses to devices
-
-11. Which of the following devices can perform Network Address Translation (NAT)?
+4. Which device is mainly responsible for managing traffic within a local area network (LAN)?
 
     - Router
     - Switch
     - Hub
     - Repeater
 
-12. How many MAC addresses does a Wi-Fi router typically have?
+5. What is the function of a DNS server in a network?
+
+    - It routes packets to external networks
+    - It translates IP addresses into domain names
+    - It manages traffic inside the local network
+    - It assigns IP addresses to devices
+
+6. How many MAC addresses does a Wi-Fi router usually have?
 
     - 1
     - 2
     - 3
     - 0
+
+7. What occurs when a packet is destined for a host outside the local network?
+
+    - The switch handles the delivery
+    - The router forwards the packet
+    - The default gateway forwards the packet
+    - The packet is discarded
+
+8. Which device is principally used to interconnect separate networks?
+
+    - Router
+    - Switch
+    - Hub
+    - Modem
+
+9. How many network interface cards must a server have to possess three distinct MAC addresses?
+
+    - 1
+    - 2
+    - 3
+    - 4
+
+10. What does a subnet mask help identify in a network?
+
+    - The network portion of an IP address
+    - The route to external networks
+    - The domain name associated with a host
+    - The IP address assigned to a device
+
+11. If a laptop has both an Ethernet port and a Wi-Fi adapter, how many MAC addresses does it have?
+
+    - 1
+    - 2
+    - 3
+    - 4
+
+12. Which of the following devices is capable of performing Network Address Translation (NAT)?
+
+    - Router
+    - Switch
+    - Hub
+    - Repeater
+
+13. What is ARP (Address Resolution Protocol) used for?
+
+    - Mapping an IP address to a MAC address on the local network
+    - Assigning IP addresses to devices via DHCP
+    - Encrypting traffic between two routers
+    - Translating domain names into IP addresses
+
+14. What is a VLAN (Virtual Local Area Network)?
+
+    - A logical grouping of devices on one or more physical LANs that can communicate as if on the same network segment
+    - A type of VPN used to connect remote offices securely
+    - A routing protocol for exchanging routes between autonomous systems
+    - A physical cable standard for high-speed LAN connections
+
+15. What is the primary purpose of a routing table?
+
+    - To store information about known network paths so a router can determine where to forward packets
+    - To list all MAC addresses of devices connected to a switch
+    - To record DNS entries for hosts on the network
+    - To track DHCP leases assigned to clients
+
+16. What distinguishes static routing from dynamic routing?
+
+    - Static routes are manually configured by an administrator, while dynamic routes are learned automatically through routing protocols
+    - Static routing is faster because it uses more CPU resources
+    - Dynamic routing cannot adapt to topology changes
+    - Static routing requires a dedicated routing protocol to function
+
+17. What is the difference between a managed switch and an unmanaged switch?
+
+    - A managed switch offers configuration options such as VLANs, QoS, and port mirroring, while an unmanaged switch operates with fixed default settings
+    - An unmanaged switch supports more ports than a managed switch
+    - A managed switch can only be used in wireless networks
+    - An unmanaged switch provides better security than a managed switch
