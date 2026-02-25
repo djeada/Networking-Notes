@@ -1,5 +1,4 @@
 
-Here’s a quiz with practical, scenario-based questions on firewalls, IDS (Intrusion Detection Systems), and IPS (Intrusion Prevention Systems):
 
 1. **What is the primary difference between a stateful and a stateless firewall?**
    - A stateful firewall tracks the state of active connections and makes decisions based on the context of the traffic.
@@ -72,5 +71,3 @@ Here’s a quiz with practical, scenario-based questions on firewalls, IDS (Intr
     - A system that alternates between detection and prevention modes based on traffic volume.
     - A system that requires both an IDS and an IPS to function properly.
     - A system that focuses on host-based detection only.
-
-These questions are designed to test practical knowledge and understanding of firewalls, IDS, and IPS, focusing on real-world applications and decision-making.
