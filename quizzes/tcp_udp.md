@@ -1,4 +1,3 @@
-Here’s a quiz on TCP (Transmission Control Protocol) and UDP (User Datagram Protocol):
 
 1. **Which protocol ensures reliable data transmission by establishing a connection before data is sent?**
    - TCP
@@ -71,5 +70,3 @@ Here’s a quiz on TCP (Transmission Control Protocol) and UDP (User Datagram Pr
     - Reliability
     - Lower latency
     - Simplicity
-
-These questions cover the fundamental differences, purposes, and functionalities of TCP and UDP.
