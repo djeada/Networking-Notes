@@ -1,4 +1,3 @@
-Here’s a quiz on DNS (Domain Name System) and DHCP (Dynamic Host Configuration Protocol):
 
 1. **What is the primary function of DNS?**
    - Managing email traffic between servers
@@ -144,5 +143,3 @@ Here’s a quiz on DNS (Domain Name System) and DHCP (Dynamic Host Configuration
     - Restart the DNS server
     - Increase the DHCP lease time
     - Configure DNS scavenging
-
-These questions focus on real-world scenarios that network administrators might face, requiring practical knowledge of DNS and DHCP functionalities and troubleshooting.
