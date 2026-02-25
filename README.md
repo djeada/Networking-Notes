@@ -1,2 +1,114 @@
-# networking
-notes on networking
+# Networking Notes
+
+This repository is a comprehensive collection of notes, guides, and resources on various networking topics. It is designed to serve as a valuable reference for students, professionals, and anyone interested in learning more about networking concepts and technologies.
+
+## Table of Contents
+
+### Networking Basics
+- [OSI Model](notes/networking_basics/osi.md)
+- [TCP/IP Model](notes/networking_basics/tcp_ip.md)
+- [Protocols](notes/networking_basics/protocols.md)
+- [Ports](notes/networking_basics/ports.md)
+- [Communication Between Devices](notes/networking_basics/communication_between_devices.md)
+- [Cryptography Algorithms](notes/networking_basics/cryptography_algorithms.md)
+
+### Physical Layer
+- [Network Topologies](notes/physical/network_topologies.md)
+- [Physical Devices](notes/physical/physical_devices.md)
+- [Cables](notes/physical/cables.md)
+- [Modes of Transmission](notes/physical/modes_of_transmission.md)
+- [Wireless Networking](notes/physical/wireless_networking.md)
+- [Cisco IOS](notes/physical/cisco_ios.md)
+
+### Data Link Layer
+- [Data Link Layer](notes/data_link/data_link_layer.md)
+- [Ethernet](notes/data_link/ethernet.md)
+- [Packet Switching](notes/data_link/packet_switching.md)
+- [ARP](notes/data_link/arp.md)
+
+### Network Layer
+- [IP Addresses](notes/network/ip_address.md)
+- [Subnetting](notes/network/subnetting.md)
+- [NAT](notes/network/nat.md)
+- [Datagrams](notes/network/datagrams.md)
+- [Traceroute](notes/network/traceroute.md)
+- [Port Forwarding](notes/network/port_forwarding.md)
+- [Configuring Routers](notes/network/configuring_routers.md)
+- [Routing Protocols](notes/network/routing_protocols.md)
+
+### Transport Layer
+- [TCP](notes/transport/tcp.md)
+- [UDP](notes/transport/udp.md)
+- [TCP vs UDP Comparison](notes/transport/tcp_udp_comparison.md)
+
+### Application Layer
+- [DNS](notes/application/dns.md)
+- [HTTP](notes/application/http.md)
+- [DHCP](notes/application/dhcp.md)
+- [SSH](notes/application/ssh.md)
+- [FTP](notes/application/ftp.md)
+- [TLS/SSL](notes/application/tls_ssl.md)
+- [SMTP and Email](notes/application/smtp_and_email.md)
+- [IP Protocol](notes/application/ip_protocol.md)
+- [Stateless vs Stateful](notes/application/stateless_vs_stateful.md)
+
+### Internet
+- [How the Internet Works](notes/internet/how_internet_works.md)
+- [ISP](notes/internet/isp.md)
+- [LAN and WAN](notes/internet/lan_and_wan.md)
+
+### Other Topics
+- [Firewall](notes/other/firewall.md)
+- [IDS and IPS](notes/other/ids_and_ips.md)
+- [VPN](notes/other/vpn.md)
+- [VLAN](notes/other/vlan.md)
+- [Proxy Servers](notes/other/proxy_servers.md)
+- [Load Balancing](notes/other/load_balancing.md)
+- [Network Troubleshooting](notes/other/network_troubleshooting.md)
+
+### Practice
+- [ping](practice/ping/README.md)
+- [Traceroute](practice/traceroute/README.md)
+- [DNS Lookup Tools (nslookup, dig, host)](practice/nslookup_dig/README.md)
+- [Network Connections (netstat, ss)](practice/netstat_ss/README.md)
+- [tcpdump](practice/tcpdump/README.md)
+- [curl](practice/curl/README.md)
+- [Netcat (nc)](practice/netcat/README.md)
+- [iptables and nftables](practice/iptables/README.md)
+- [Wireshark Labs](practice/wireshark/README.md)
+- [nmap](practice/nmap/README.md)
+- [SSH](practice/ssh/README.md)
+- [ip and ifconfig](practice/ip_ifconfig/README.md)
+
+### Scripts
+- [Python Networking Scripts](scripts/README.md) — 60 educational Python scripts covering networking concepts
+
+### Quizzes
+- [TCP/UDP](quizzes/tcp_udp.md)
+- [IP Addressing](quizzes/ip_addressing.md)
+- [DNS and DHCP](quizzes/dns_dhcp.md)
+- [Routing and Switching](quizzes/routing_and_switching.md)
+- [Firewall, IDS, and IPS](quizzes/firewall_ids_and_ips.md)
+
+## Key Questions
+
+- How does the internet work?
+- What happens when you hit enter after typing a URL?
+- What happens when you search for a phrase on Google?
+- How does a messaging application like WhatsApp work?
+
+## References
+
+- [Computer Networking Full Course](https://www.youtube.com/watch?v=PhjHXeMNpp8)
+- [Practical Networking](https://www.youtube.com/c/PracticalNetworking)
+- [Sunny Classroom Networking Playlist](https://www.youtube.com/watch?v=X8RxRr7KNl8&list=PLSNNzog5eydtb5wyH2UtK09L9MsW9Hufq)
+- [Neso Academy Computer Networks](https://www.youtube.com/watch?v=VwN91x5i25g&list=PLBlnK6fEyqRgMCUAG0XRw78UA8qnv6jEx)
+- [DevOps Guide - Networking](https://github.com/Tikam02/DevOps-Guide/tree/master/Networking)
+
+## Contributing
+
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
