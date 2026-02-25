@@ -32,3 +32,29 @@ Client                               Server
 - Why sequence and acknowledgment numbers advance.
 - How window size relates to flow control.
 - Why FIN packets appear at the end of clean session closure.
+
+## Exact Commands to Generate a Full TCP Session
+
+### Terminal A
+
+```bash
+cd /home/runner/work/Networking-Notes/Networking-Notes
+python3 scripts/transport/tcp_server.py -b 127.0.0.1 -p 9999
+```
+
+### Terminal B
+
+```bash
+cd /home/runner/work/Networking-Notes/Networking-Notes
+python3 scripts/transport/tcp_client.py -s 127.0.0.1 -p 9999 -m "first payload"
+python3 scripts/transport/tcp_client.py -s 127.0.0.1 -p 9999 -m "second payload"
+python3 scripts/transport/tcp_client.py -s 127.0.0.1 -p 9999 -m "third payload"
+```
+
+### Wireshark filters to apply in order
+
+```text
+tcp
+tcp.port == 9999
+tcp.flags.syn == 1 or tcp.flags.fin == 1
+```

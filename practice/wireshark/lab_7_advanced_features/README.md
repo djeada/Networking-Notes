@@ -24,3 +24,27 @@ Flow Graph   -> sequence of packet exchanges
 - Which anomalies are informational versus likely actionable?
 - Do graph spikes correlate with specific protocols or hosts?
 - How does the flow graph clarify request-response order?
+
+## Exact Commands to Create Graph-Friendly Traffic
+
+Run with Wireshark capture active:
+
+```bash
+cd /home/runner/work/Networking-Notes/Networking-Notes
+python3 scripts/transport/tcp_server.py -b 127.0.0.1 -p 9999
+```
+
+In another terminal:
+
+```bash
+cd /home/runner/work/Networking-Notes/Networking-Notes
+for i in $(seq 1 30); do
+  python3 scripts/transport/tcp_client.py -s 127.0.0.1 -p 9999 -m "graph packet $i"
+done
+```
+
+Now open:
+
+1. **Analyze -> Expert Information**
+2. **Statistics -> I/O Graphs** (add graph for `tcp.port == 9999`)
+3. **Statistics -> Flow Graph** for one TCP conversation

@@ -33,3 +33,21 @@ Before protocol analysis, you need confidence in capture source and packet navig
 
 - Can you explain the difference between a capture filter and a display filter?
 - Can you identify source and destination MAC/IP addresses in one packet?
+
+## Exact Commands
+
+```bash
+cd /home/runner/work/Networking-Notes/Networking-Notes
+
+# List available capture interfaces (CLI)
+dumpcap -D
+
+# Generate minimal local traffic while capturing in Wireshark
+ping -c 3 127.0.0.1
+```
+
+In Wireshark:
+
+1. Start capture on the interface that increments packet counters.
+2. Run the `ping` command above.
+3. Stop capture and confirm you can find the ICMP packets.

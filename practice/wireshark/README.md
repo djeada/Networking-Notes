@@ -37,6 +37,26 @@ Across these labs, you will repeatedly practice the same loop:
   - `lab3_tcp_handshake.pcapng`
   - `lab6_dns_timeout_case.pcapng`
 
+## Baseline Commands (Run Before Labs)
+
+Use these commands to create a predictable environment for all labs.
+
+```bash
+# 1) Go to repository root
+cd /home/runner/work/Networking-Notes/Networking-Notes
+
+# 2) Confirm Wireshark can capture on at least one interface
+wireshark --version
+
+# 3) (Optional, CLI check) list capture interfaces
+dumpcap -D
+
+# 4) Keep one terminal ready for traffic generators
+python3 --version
+```
+
+If your system does not have `dumpcap`, use Wireshark GUI interface list instead.
+
 ## References
 
 - [Wireshark Official Documentation](https://www.wireshark.org/docs/)

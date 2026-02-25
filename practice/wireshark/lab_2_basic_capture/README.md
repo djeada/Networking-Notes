@@ -38,3 +38,30 @@ local network idle  -> ARP broadcasts
 - ICMP echo request/reply appears in pairs.
 - TCP packets show connection-oriented behavior (SYN/ACK patterns).
 - UDP packets appear without connection setup packets.
+
+## Exact Commands
+
+Use three terminals while Wireshark is capturing on your active interface.
+
+### Terminal A (TCP server)
+
+```bash
+cd /home/runner/work/Networking-Notes/Networking-Notes
+python3 scripts/transport/tcp_server.py -b 127.0.0.1 -p 9999
+```
+
+### Terminal B (generate ICMP + TCP + UDP)
+
+```bash
+cd /home/runner/work/Networking-Notes/Networking-Notes
+ping -c 4 8.8.8.8
+python3 scripts/transport/tcp_client.py -s 127.0.0.1 -p 9999 -m "lab2 tcp test"
+python3 scripts/transport/udp_client.py -s 127.0.0.1 -p 9998 -m "lab2 udp test"
+```
+
+### Terminal C (UDP server, optional but recommended)
+
+```bash
+cd /home/runner/work/Networking-Notes/Networking-Notes
+python3 scripts/transport/udp_server.py -b 127.0.0.1 -p 9998
+```

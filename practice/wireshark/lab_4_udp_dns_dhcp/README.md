@@ -26,3 +26,30 @@ UDP: no handshake, message-oriented, lower overhead
 - DNS request ID matches DNS response ID.
 - UDP packets do not contain TCP flags.
 - DHCP exchanges reveal address assignment process when visible.
+
+## Exact Commands
+
+### Terminal A (UDP server)
+
+```bash
+cd /home/runner/work/Networking-Notes/Networking-Notes
+python3 scripts/transport/udp_server.py -b 127.0.0.1 -p 9998
+```
+
+### Terminal B (UDP client + DNS generator)
+
+```bash
+cd /home/runner/work/Networking-Notes/Networking-Notes
+python3 scripts/transport/udp_client.py -s 127.0.0.1 -p 9998 -m "udp datagram 1"
+python3 scripts/transport/udp_client.py -s 127.0.0.1 -p 9998 -m "udp datagram 2"
+python3 scripts/application/dns_lookup.py example.com --all
+python3 scripts/application/dns_lookup.py github.com --all
+```
+
+### Optional DHCP capture trigger (Linux)
+
+```bash
+sudo dhclient -r && sudo dhclient
+```
+
+If DHCP traffic is not visible on your interface, complete DNS/UDP analysis and mark DHCP as environment-dependent.
