@@ -1,4 +1,3 @@
-Here are 12 similar questions:
 
 1. How many MAC addresses will a computer have if it contains two network interface cards?
 
