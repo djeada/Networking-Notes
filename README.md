@@ -90,7 +90,7 @@ This repository is a comprehensive collection of notes, guides, and resources on
 - [Routing and Switching](quizzes/routing_and_switching.md)
 - [Firewall, IDS, and IPS](quizzes/firewall_ids_and_ips.md)
 
-## Key Questions
+## Questions
 
 - How does the internet work?
 - What happens when you hit enter after typing a URL?
