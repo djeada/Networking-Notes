@@ -167,3 +167,11 @@ With VLSM, each subnet is sized to match its actual need, conserving address spa
 - **Public subnets** have routes to the Internet Gateway for inbound/outbound internet traffic.
 - **Private subnets** use a NAT Gateway for outbound-only internet access.
 - Subnets in different availability zones provide fault tolerance.
+
+**Question:**
+If your application runs in Kubernetes pods within a subnet that only has 10 IP addresses, how can you scale when more pods need IPs? Should you expand the existing CIDR or create a new VPC?
+
+**Answer:**
+Expanding the CIDR (or adding a secondary CIDR block) in the same VPC is usually the simplest solution. It keeps networking, routing, and security configurations unchanged and avoids extra setup. However, it may be limited by IP overlap or provider constraints.
+
+Creating a new VPC gives you a fresh, larger IP range and better long-term scalability and isolation. The downside is added complexity—VPC peering, routing updates, and higher operational overhead. In most cases, expanding CIDR is easier unless a major redesign is needed.
