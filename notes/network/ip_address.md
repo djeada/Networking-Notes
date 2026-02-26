@@ -154,3 +154,51 @@ IP addresses assigned by DHCP are temporary. Switching networks (e.g., home Wi-F
 - IP-based identification can break if the address changes (e.g., rebooting, switching networks).
 - A device can connect to multiple networks simultaneously with different IPs.
 - For reliable device identification, hardware identifiers like CPU serial numbers are more appropriate, though MAC addresses can be overwritten and IP packets can be rerouted.
+
+IP addresses are only required to be **unique within the network where they’re used for routing**. The trick is that there are *multiple layers of networks*, and layers can **reuse the same IP ranges** because of routing boundaries and NAT.
+
+### Where IPs must be unique (and where they can repeat)
+
+* **Within a subnet (LAN / VPC subnet):**
+  Every interface in the same subnet must have a **unique IP**. If two machines in the same subnet had the same IP, traffic would break (ARP/neighbor discovery conflicts).
+
+* **Within a VPC:**
+  In most clouds, an IP should be **unique across the whole VPC**, because the VPC routes traffic between subnets. (Some platforms support advanced overlaps in special cases, but generally: assume unique in the VPC.)
+
+* **Across different VPCs / different private networks:**
+  IPs **can repeat**. You can have `10.0.0.0/16` in many different VPCs because they’re separate routing domains.
+  The problem appears only when you want them to talk to each other (peering/VPN), because overlapping ranges make routing ambiguous.
+
+* **Inside a VM:**
+  A VM is just a machine on a network. Its NIC gets an IP from the subnet. It does **not** automatically get a “new universe” of IPs unless it *creates one* (like running Docker with its own bridge network).
+
+* **Docker containers:**
+  Commonly, Docker creates its own private network (e.g., `172.17.0.0/16`). Container IPs are unique **inside that Docker network** but can repeat elsewhere.
+  Containers usually reach the outside world via **NAT through the host VM’s IP**.
+
+* **Kubernetes pods:** (depends on CNI design)
+
+  * In many clusters, each **pod gets an IP** from a **pod CIDR** that is routable inside the cluster/VPC. Pod IPs must be unique **within the cluster**.
+  * If you’re using a CNI where pods use **VPC/subnet IPs directly** (like AWS VPC CNI style), then pods consume subnet IPs and uniqueness rules become the **same as the subnet/VPC**. That’s when you hit “only 10 IPs” fast.
+
+### Where internet connectivity happens (public vs private IPv4)
+
+* **Public IPv4 addresses must be globally unique** on the internet. That’s where the “~4 billion” limit comes from (IPv4 is 32-bit).
+* Most devices today use **private IPs** (RFC1918 ranges like `10.x`, `172.16-31.x`, `192.168.x`) which **can repeat everywhere** because they are not routed on the public internet.
+* To access the internet, private IP traffic is translated using **NAT**:
+
+  * At home: your router NATs many devices to **one public IP**
+  * In cloud: your instances/pods often go through a **NAT Gateway** or egress device that uses one/few public IPs
+
+### Is an ISP like a “big VPC” that exposes only a few IPs?
+
+Conceptually, yes:
+
+* ISPs often give customers **private IPs** and then use **Carrier-Grade NAT (CGNAT)** so thousands of customers share a smaller pool of public IPv4 addresses.
+* The ISP’s internal network can reuse private ranges and route internally, but only the ISP’s **public IP pool** is visible to the global internet.
+
+### Quick rules of thumb
+
+* **Must be unique:** within the same routed network domain (subnet/VPC/cluster depending on design).
+* **Can repeat safely:** across isolated networks (different VPCs, different LANs, inside Docker networks), until you try to connect them.
+* **Internet needs public IPs:** but most endpoints don’t get one—NAT lets many private IPs share one public IP.
