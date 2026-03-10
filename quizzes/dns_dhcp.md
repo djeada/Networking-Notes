@@ -201,3 +201,73 @@
 * [ ] A DHCP scope exhaustion attack
 * [ ] A brute-force attack against the DNS server
 * [ ] An ARP spoofing attack on the local network
+
+#### Q. Which RFC defines the private IPv4 address ranges used in home and office networks?
+
+* [x] RFC 1918
+* [ ] RFC 2131
+* [ ] RFC 791
+* [ ] RFC 1027
+
+#### Q. Which of the following is a valid RFC 1918 private IPv4 address range?
+
+* [x] 172.16.0.0 – 172.31.255.255
+* [ ] 172.0.0.0 – 172.15.255.255
+* [ ] 192.0.0.0 – 192.167.255.255
+* [ ] 10.0.0.0 – 10.127.255.255
+
+#### Q. When a device joins a typical home Wi-Fi network, what entity defines the private subnet the device joins?
+
+* [x] The router
+* [ ] The connecting device itself
+* [ ] The ISP's DHCP server
+* [ ] The Wi-Fi access point firmware
+
+#### Q. In a home network using the 192.168.1.0/24 subnet, how many usable host addresses are available for client devices?
+
+* [x] 254
+* [ ] 256
+* [ ] 255
+* [ ] 252
+
+#### Q. A home router commonly performs which combination of roles simultaneously?
+
+* [x] Wireless access point, DHCP server, default gateway, and NAT gateway
+* [ ] DNS server, firewall, DHCP relay agent, and proxy server
+* [ ] DHCP client, web server, VPN server, and switch
+* [ ] Wireless access point, DNS resolver, load balancer, and DHCP relay agent
+
+#### Q. During the DHCP DORA process, what source IP address does a Wi-Fi client use in its initial Discover message?
+
+* [x] 0.0.0.0
+* [ ] 255.255.255.255
+* [ ] 127.0.0.1
+* [ ] The client's previously assigned IP address
+
+#### Q. What information does a home router's DHCP lease table record to track address assignments?
+
+* [x] The assigned IP address, the client's MAC address, and the lease expiry time
+* [ ] The client's hostname, assigned IP, and DNS server address
+* [ ] The client's public IP, port number, and protocol type
+* [ ] The client's MAC address and the time the device was manufactured
+
+#### Q. DHCP prevents most duplicate IP address assignments. Under what common scenario can a duplicate address conflict still occur on a home network?
+
+* [x] When a device is manually configured with a static IP address that falls within the DHCP pool
+* [ ] When two devices request the same hostname from the DNS server
+* [ ] When the DHCP lease time expires simultaneously on two devices
+* [ ] When the router's firmware is out of date
+
+#### Q. What mechanism do operating systems typically use to detect a duplicate IP address conflict on the local network?
+
+* [x] ARP — a host sends a gratuitous ARP or ARP probe and detects a conflict if another device replies
+* [ ] DHCP — the DHCP server queries all clients before issuing each new lease
+* [ ] DNS — reverse DNS lookups identify conflicting records
+* [ ] ICMP — a ping to the address reveals whether it is already in use
+
+#### Q. Why can millions of home networks reuse the same private IP address ranges (e.g., 192.168.1.x) without conflict on the internet?
+
+* [x] NAT translates private addresses to the network's unique public IP before traffic leaves the router
+* [ ] Private addresses are automatically reassigned by the ISP to avoid duplication
+* [ ] IPv6 tunnelling converts duplicate private addresses into unique global addresses
+* [ ] RFC 1918 addresses are blocked by all internet routers and never appear in transit
