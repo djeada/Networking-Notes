@@ -3,8 +3,8 @@
 ## Introduction
 
 The Internet Protocol (IP) is the principal network-layer protocol responsible for
-addressing and routing packets across interconnected networks. Every device on the
-internet is identified by an IP address, and IP provides the rules for how data is
+addressing and routing packets across interconnected networks. Network interfaces
+can have multiple IP addresses, and IP provides the rules for how data is
 packaged, addressed, transmitted, and received.
 
 IP is a **connectionless**, **best-effort** protocol — it does not guarantee delivery,
@@ -98,14 +98,21 @@ The IPv6 header is a fixed 40 bytes.
 | Header size         | 20–60 bytes (variable)        | 40 bytes (fixed)                  |
 | Fragmentation       | Routers and sender            | Sender only (Path MTU Discovery)  |
 | Checksum            | Yes (header only)             | No (removed for efficiency)       |
-| NAT required        | Commonly                      | Not needed (enough addresses)     |
-| IPsec               | Optional                      | Built-in support                  |
+| Address translation | Commonly used to conserve addresses | Not needed for address conservation |
+| IPsec               | Supported when implemented and configured | Support recommended; use requires configuration |
 | Broadcast           | Yes                           | No (replaced by multicast)        |
 
 ## IP Fragmentation
 
-When a datagram is too large for the Maximum Transmission Unit (MTU) of a link,
-it must be fragmented.
+An IPv4 sender or router can fragment a datagram that exceeds the link MTU when
+the **Don't Fragment (DF)** flag is clear. With DF set, a router discards the
+oversized datagram and reports an ICMP "fragmentation needed" error to the sender.
+The example below assumes a 20-byte IPv4 header and DF clear.
+
+IPv6 routers never fragment packets. They discard an oversized packet and send
+an ICMPv6 "Packet Too Big" message; the source can reduce packet size or use an
+IPv6 Fragment header. IPv6 does not automatically encrypt traffic: IPsec needs
+implementation support, keys, and policy configuration.
 
 ```text
   Original Datagram (4000 bytes payload, MTU = 1500)
@@ -129,7 +136,7 @@ it must be fragmented.
 - **MF (More Fragments)** flag: Set to 1 on all fragments except the last.
 - **Fragment Offset**: Position of this fragment's data in units of 8 bytes.
 - Reassembly occurs only at the **destination host**, not at intermediate routers.
-- If any fragment is lost, the entire datagram is discarded.
+- If fragments remain missing when the reassembly timer expires, the incomplete datagram is discarded.
 
 ## IP Routing Basics
 
@@ -155,3 +162,10 @@ Key concepts:
 - **Default route** (`0.0.0.0/0`) — used when no specific route matches.
 - **Longest prefix match** — the most specific matching route is selected.
 - Routing protocols (RIP, OSPF, BGP) allow routers to dynamically learn routes.
+
+## Related Notes and References
+
+- [IP addresses](../network/ip_address.md) and [subnetting](../network/subnetting.md).
+- [RFC 791: IPv4](https://www.rfc-editor.org/rfc/rfc791.html).
+- [RFC 8200: IPv6](https://www.rfc-editor.org/rfc/rfc8200.html), especially Section 5 on packet size.
+- [RFC 8504: IPv6 Node Requirements](https://www.rfc-editor.org/rfc/rfc8504.html), Section 13 on IPsec support.

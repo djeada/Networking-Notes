@@ -1,3 +1,6 @@
+# Subnetting and NAT Quiz
+
+These questions use IPv4 unless stated otherwise. Review the [subnetting notes](../notes/network/subnetting.md) and [NAT notes](../notes/network/nat.md).
 
 #### Q. What is the primary purpose of subnetting a network?
 
@@ -13,7 +16,7 @@
 * [ ] 255
 * [ ] 252
 
-#### Q. Why are two addresses in every subnet reserved and cannot be assigned to hosts?
+#### Q. In an ordinary IPv4 subnet with a prefix length of /30 or shorter, why are two addresses excluded from the usable host count?
 
 * [x] One is the network address and the other is the broadcast address
 * [ ] They are reserved for the default gateway and the DNS server
@@ -138,3 +141,31 @@
 * [ ] A large office LAN
 * [ ] A wireless access point network
 * [ ] A data center server farm
+
+#### Q. How many endpoint addresses are usable on an IPv4 /31 point-to-point link under RFC 3021?
+
+* [x] 2, with no directed broadcast address
+* [ ] 0, because both addresses are reserved
+* [ ] 1, because only the network address is reserved
+* [ ] 4, because two host bits remain
+
+#### Q. What does an IPv4 /32 prefix identify?
+
+* [x] One address, often used for a host route or loopback interface
+* [ ] An empty subnet with no usable addresses
+* [ ] A subnet with 32 usable hosts
+* [ ] The default route for all IPv4 destinations
+
+#### Q. A point-to-point subnet uses 10.0.1.32/30. Which /28 subnet is the next aligned block that does not overlap it?
+
+* [x] 10.0.1.48/28
+* [ ] 10.0.1.36/28
+* [ ] 10.0.1.32/28
+* [ ] 10.0.1.40/28
+
+#### Q. An existing AWS subnet is running out of IPv4 addresses. Which approach adds capacity without creating another VPC?
+
+* [x] Create another non-overlapping subnet, associating another VPC CIDR first if needed, and configure workloads to use it
+* [ ] Change the existing subnet's CIDR in place
+* [ ] Add a VPC CIDR and expect existing subnets to expand automatically
+* [ ] Increase the DHCP lease time to create more addresses

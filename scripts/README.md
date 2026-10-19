@@ -4,7 +4,7 @@ A collection of 60 educational Python scripts that demonstrate networking concep
 
 ## Requirements
 
-- Python 3.6 or later
+- Python 3.10 or later (some scripts use `X | None` type annotations).
 
 ## Scripts
 
@@ -107,6 +107,8 @@ A collection of 60 educational Python scripts that demonstrate networking concep
 
 Each script can be run directly with Python:
 
+Run the commands below from the repository root.
+
 ```bash
 python3 scripts/networking_basics/osi_model_simulator.py
 python3 scripts/network/subnet_calculator.py
@@ -120,6 +122,18 @@ python3 scripts/network/subnet_calculator.py --help
 python3 scripts/networking_basics/port_scanner.py --help
 ```
 
+The addressing tools also accept small or large networks without listing every address:
+
+```bash
+python3 scripts/network/subnet_calculator.py 192.0.2.10/31
+python3 scripts/network/subnet_calculator.py 192.0.2.10/32
+python3 scripts/network/cidr_to_hosts.py 0.0.0.0/0 2001:db8::/64
+```
+
+`cidr_to_hosts.py` calculates the exact host count and displays at most 20 addresses. Its counts follow Python's [`ipaddress.hosts()` rules](https://docs.python.org/3/library/ipaddress.html): IPv4 `/31` links have two endpoints, `/32` has one address, and IPv6 `/127` and `/128` include every address. For shorter IPv6 prefixes, the subnet-router anycast address is excluded. Cloud providers may reserve additional addresses. IPv6 has no broadcast address.
+
+Both addressing tools report invalid input with a nonzero exit status.
+
 Scripts that require a server and client (TCP/UDP) should be run in separate terminals:
 
 ```bash
@@ -128,4 +142,13 @@ python3 scripts/transport/tcp_server.py
 
 # Terminal 2
 python3 scripts/transport/tcp_client.py
+```
+
+## Validation
+
+Run the offline regression tests and syntax checks from the repository root:
+
+```bash
+python3 -m unittest discover -s tests -v
+python3 -m compileall -q scripts tests
 ```

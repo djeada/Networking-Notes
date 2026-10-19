@@ -1,17 +1,17 @@
 # Subnetting
 
-**Subnetting** is the process of dividing a larger network into smaller, more manageable sub-networks (subnets). It is essential for efficient IP address allocation, improved security through network isolation, and better network performance by reducing broadcast domains.
+**Subnetting** is the process of dividing a larger network into smaller, more manageable sub-networks (subnets). The examples below use IPv4. Subnets help organize addresses; separate VLANs or physical segments define broadcast domains, and routing/firewall rules control traffic between them.
 
 **Why is subnetting needed?**
 
 - In small home networks, a single subnet with up to 254 devices is usually sufficient.
 - Businesses and offices have many more devices (PCs, printers, cameras, sensors) and need logical separation.
-- A café, for example, benefits from two subnets: one for employees and point-of-sale devices, and another for public Wi-Fi — keeping them isolated while sharing an internet connection.
+- A café, for example, can use separate subnets and VLANs for employee devices and public Wi-Fi, with firewall rules controlling traffic between them.
 
 Subnetting provides:
 
-- **Efficiency** — reduces unnecessary broadcast traffic.
-- **Security** — isolates sensitive network segments.
+- **Efficiency** — supports smaller broadcast domains when paired with separate Layer 2 segments.
+- **Security** — supports isolation when paired with access controls.
 - **Full control** — enables granular IP address management.
 
 ---
@@ -35,8 +35,8 @@ A **subnet mask** determines which part of a 32-bit IP address identifies the ne
   |      (first 24 bits)    |    (last 8 bits)     |
 ```
 
-- If the destination IP is on the **same subnet**, the packet is delivered directly within the subnet.
-- If the destination IP is on a **different subnet**, the packet is forwarded to the default gateway.
+- For a directly connected destination, the host normally resolves the destination's MAC address with ARP and sends the frame on that link.
+- For other destinations, the host selects a route, often via the default gateway. A more specific route takes precedence over the default.
 
 ---
 
@@ -53,16 +53,16 @@ A **subnet mask** determines which part of a 32-bit IP address identifies the ne
 | /28           | 255.255.255.240   | 16              | 14          | 16         |
 | /29           | 255.255.255.248   | 8               | 6           | 8          |
 | /30           | 255.255.255.252   | 4               | 2           | 4          |
-| /31           | 255.255.255.254   | 2               | 0*          | 2          |
-| /32           | 255.255.255.255   | 1               | 0*          | 1          |
+| /31           | 255.255.255.254   | 2               | 2*          | 2          |
+| /32           | 255.255.255.255   | 1               | 1*          | 1          |
 
-*`/31` is used for point-to-point links (RFC 3021). `/32` identifies a single host.*
+For ordinary IPv4 subnets through `/30`, usable hosts = `2^(32 - prefix length) - 2`. A `/31` point-to-point link uses both addresses as endpoints ([RFC 3021](https://www.rfc-editor.org/rfc/rfc3021.html)); a `/32` identifies one address, often used in a host route or on a loopback interface. Neither uses a directed broadcast address. These counts do not include cloud-provider reservations.
 
 ---
 
 ## Network Address, Host Address, and Broadcast Address
 
-Every subnet reserves two addresses: the **network address** (first) and the **broadcast address** (last). All addresses in between are available for hosts.
+An ordinary IPv4 subnet through `/30` reserves the **network address** (first) and the **broadcast address** (last). The addresses between them are available for interfaces, including the gateway. For a `/24`, using one address for the gateway leaves at most 253 for other devices. The `/31` and `/32` cases are exceptions, as described above.
 
 ```text
   Subnet: 192.168.1.0/24
@@ -93,7 +93,7 @@ Every subnet reserves two addresses: the **network address** (first) and the **b
 
 | Subnets         | 1   | 2   | **4**   | 8   | 16  | 32  | 64  | 128 | 256 |
 |-----------------|-----|-----|---------|-----|-----|-----|-----|-----|-----|
-| Hosts per Subnet| 256 | 128 | **64**  | 32  | 16  | 8   | 4   | 2   | 1   |
+| Addresses per Subnet| 256 | 128 | **64**  | 32  | 16  | 8   | 4   | 2   | 1   |
 | Subnet Mask     | /24 | /25 | **/26** | /27 | /28 | /29 | /30 | /31 | /32 |
 
 We need 3 subnets. The next power of 2 is **4**, giving us a **/26** mask with **64 addresses** per subnet.
@@ -124,14 +124,16 @@ Both resolve to network address **192.168.10.0** — they are on the **same netw
 
 **VLSM** allows subnets of different sizes within the same network, instead of using one uniform subnet mask. This avoids wasting IP addresses when different segments need different numbers of hosts.
 
-```text
-  Network: 10.0.0.0/8
+For the parent network `10.0.0.0/8`:
 
-  Subnet A (large office):   10.0.0.0/24    --> 254 hosts
-  Subnet B (small lab):      10.0.1.0/27    -->  30 hosts
-  Subnet C (point-to-point): 10.0.1.32/30   -->   2 hosts
-  Subnet D (server room):    10.0.1.36/28   -->  14 hosts
-```
+| Purpose | Subnet | Usable Hosts | Address Range (Including Network and Broadcast) |
+|---------|--------|-------------:|-------------------------------------------------|
+| Large office | `10.0.0.0/24` | 254 | 10.0.0.0–10.0.0.255 |
+| Small lab | `10.0.1.0/27` | 30 | 10.0.1.0–10.0.1.31 |
+| Point-to-point link | `10.0.1.32/30` | 2 | 10.0.1.32–10.0.1.35 |
+| Server room | `10.0.1.48/28` | 14 | 10.0.1.48–10.0.1.63 |
+
+Each subnet starts on a boundary matching its block size. A `/28` starts at a multiple of 16 in the final octet: `.36/28` would normalize to `.32/28` and overlap the point-to-point subnet. `.48/28` is the next aligned block; `.36`–`.47` remains unallocated.
 
 With VLSM, each subnet is sized to match its actual need, conserving address space.
 
@@ -164,14 +166,24 @@ With VLSM, each subnet is sized to match its actual need, conserving address spa
 +---------------------------------------------------------------+
 ```
 
-- **Public subnets** have routes to the Internet Gateway for inbound/outbound internet traffic.
-- **Private subnets** use a NAT Gateway for outbound-only internet access.
-- Subnets in different availability zones provide fault tolerance.
+- **Public subnets** have a route to an Internet Gateway. Direct IPv4 internet connectivity also requires a public IPv4 address and suitable security group and network ACL rules.
+- **Private subnets** have no direct route to an Internet Gateway. A public NAT Gateway can provide outbound IPv4 internet access; it does not accept unsolicited inbound connections.
+- Each subnet belongs to one availability zone. Deploying resources across subnets in different zones can improve fault tolerance.
+- For ordinary AWS IPv4 subnet allocations, AWS reserves five addresses, so a `/28` has 11 assignable addresses. This differs from the generic IPv4 host-count table above.
 
 **Question:**
-If your application runs in Kubernetes pods within a subnet that only has 10 IP addresses, how can you scale when more pods need IPs? Should you expand the existing CIDR or create a new VPC?
+If Kubernetes pods consume VPC subnet addresses and the subnet has only 10 free addresses, how can you add capacity?
 
 **Answer:**
-Expanding the CIDR (or adding a secondary CIDR block) in the same VPC is usually the simplest solution. It keeps networking, routing, and security configurations unchanged and avoids extra setup. However, it may be limited by IP overlap or provider constraints.
+In AWS, an existing subnet's CIDR cannot be resized. Add a new, non-overlapping subnet in available VPC address space, or associate an additional VPC CIDR block and create subnets there. Then configure worker nodes and the CNI to use the new capacity, checking routes and access controls.
 
-Creating a new VPC gives you a fresh, larger IP range and better long-term scalability and isolation. The downside is added complexity—VPC peering, routing updates, and higher operational overhead. In most cases, expanding CIDR is easier unless a major redesign is needed.
+A new VPC is another option when isolation or address planning requires it, but it adds routing and connectivity work. Adding a VPC CIDR does not automatically enlarge existing subnets or move pods into new ones.
+
+## Practice and References
+
+- [Subnetting and NAT quiz](../../quizzes/subnetting_and_nat.md)
+- [Subnet calculator](../../scripts/network/subnet_calculator.py) and [CIDR host explorer](../../scripts/network/cidr_to_hosts.py)
+- [RFC 3021: IPv4 /31 point-to-point links](https://www.rfc-editor.org/rfc/rfc3021.html)
+- [AWS subnet sizing](https://docs.aws.amazon.com/vpc/latest/userguide/subnet-sizing.html)
+- [AWS CreateSubnet: CIDR restrictions](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateSubnet.html)
+- [AWS: Add or remove a VPC CIDR block](https://docs.aws.amazon.com/vpc/latest/userguide/add-ipv4-cidr.html)

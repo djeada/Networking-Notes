@@ -24,7 +24,6 @@ Usage:
 
 import argparse
 import ipaddress
-import sys
 
 
 # ---------------------------------------------------------------------------
@@ -48,6 +47,8 @@ def dotted_binary(bits: str) -> str:
 
 def mask_from_prefix(prefix_len: int) -> str:
     """Return the dotted-decimal subnet mask for a given prefix length."""
+    if not 0 <= prefix_len <= 32:
+        raise ValueError("IPv4 prefix length must be between 0 and 32.")
     bits = "1" * prefix_len + "0" * (32 - prefix_len)
     return binary_to_ip(bits)
 
@@ -68,9 +69,15 @@ def calculate_subnet(ip_str: str, mask_str: str) -> dict:
     Both arguments must be dotted-decimal strings.  Returns a dict with
     every useful field.
     """
-    ip_bits = ip_to_binary(ip_str)
-    mask_bits = ip_to_binary(mask_str)
-    prefix_len = mask_bits.count("1")
+    ip = ipaddress.IPv4Address(ip_str)
+    mask = ipaddress.IPv4Address(mask_str)
+    network = ipaddress.IPv4Network(f"{ip}/{mask}", strict=False)
+    if str(network.netmask) != str(mask):
+        raise ValueError("Use a contiguous subnet mask, not a wildcard host mask.")
+
+    ip_bits = ip_to_binary(str(ip))
+    mask_bits = ip_to_binary(str(mask))
+    prefix_len = network.prefixlen
 
     # Network address: IP AND mask
     net_bits = "".join(
@@ -86,18 +93,18 @@ def calculate_subnet(ip_str: str, mask_str: str) -> dict:
     broadcast_addr = binary_to_ip(bcast_bits)
 
     total_hosts = 2 ** (32 - prefix_len)
-    # Usable hosts: total minus network and broadcast (at least 0)
-    usable_hosts = max(total_hosts - 2, 0)
+    # /31 point-to-point links use both addresses (RFC 3021); /32 is one host.
+    usable_hosts = total_hosts if prefix_len >= 31 else total_hosts - 2
 
     # First and last usable host
     net_int = int(net_bits, 2)
     bcast_int = int(bcast_bits, 2)
-    if usable_hosts > 0:
+    if prefix_len < 31:
         first_host = binary_to_ip(format(net_int + 1, "032b"))
         last_host = binary_to_ip(format(bcast_int - 1, "032b"))
     else:
-        first_host = "N/A"
-        last_host = "N/A"
+        first_host = network_addr
+        last_host = broadcast_addr
 
     return {
         "ip": ip_str,
@@ -105,12 +112,13 @@ def calculate_subnet(ip_str: str, mask_str: str) -> dict:
         "prefix_len": prefix_len,
         "wildcard": wildcard_from_mask(mask_str),
         "network": network_addr,
-        "broadcast": broadcast_addr,
+        "broadcast": broadcast_addr if prefix_len < 31 else "N/A",
         "first_host": first_host,
         "last_host": last_host,
         "total_addresses": total_hosts,
         "usable_hosts": usable_hosts,
-        # Binary representations for educational display
+        # For /31 and /32, the all-host-bits-one value is an address bound,
+        # not a directed broadcast address.
         "ip_bin": dotted_binary(ip_bits),
         "mask_bin": dotted_binary(mask_bits),
         "network_bin": dotted_binary(net_bits),
@@ -144,7 +152,8 @@ def print_subnet_info(info: dict) -> None:
     print(f"{'IP Address (bin)':<{w}}: {info['ip_bin']}")
     print(f"{'Subnet Mask (bin)':<{w}}: {info['mask_bin']}")
     print(f"{'Network (bin)':<{w}}: {info['network_bin']}")
-    print(f"{'Broadcast (bin)':<{w}}: {info['broadcast_bin']}")
+    bound_label = "Broadcast (bin)" if info["prefix_len"] < 31 else "Last Address (bin)"
+    print(f"{bound_label:<{w}}: {info['broadcast_bin']}")
     print("=" * 62)
     print()
     # Show the AND / OR logic
@@ -154,11 +163,17 @@ def print_subnet_info(info: dict) -> None:
     print(f"         AND   {info['mask_bin']}")
     print(f"             = {info['network_bin']}  →  {info['network']}")
     print()
-    print(f"    Broadcast = Network OR Wildcard")
+    last_address = "Broadcast" if info["prefix_len"] < 31 else "Last address"
+    print(f"    {last_address} = Network OR Wildcard")
     wc_bits = dotted_binary(ip_to_binary(info["wildcard"]))
     print(f"               {info['network_bin']}")
     print(f"          OR   {wc_bits}")
-    print(f"             = {info['broadcast_bin']}  →  {info['broadcast']}")
+    last_value = binary_to_ip(info["broadcast_bin"].replace(".", ""))
+    print(f"             = {info['broadcast_bin']}  →  {last_value}")
+    if info["prefix_len"] == 31:
+        print("    /31 point-to-point links use both addresses; no directed broadcast.")
+    elif info["prefix_len"] == 32:
+        print("    /32 identifies one host address; no directed broadcast.")
     print()
 
 
@@ -184,8 +199,7 @@ def parse_input(args: list[str]) -> tuple[str, str]:
         ipaddress.IPv4Address(args[0])  # validate
         return args[0], "255.255.255.255"
     if len(args) == 2:
-        ipaddress.IPv4Address(args[0])  # validate IP
-        ipaddress.IPv4Address(args[1])  # validate mask
+        calculate_subnet(args[0], args[1])  # validate address and contiguous mask
         return args[0], args[1]
     raise ValueError(
         "Provide an address in CIDR notation (e.g. 192.168.1.0/24) "
@@ -206,8 +220,11 @@ def main():
     args = parser.parse_args()
 
     if args.address:
-        ip, mask = parse_input(args.address)
-        info = calculate_subnet(ip, mask)
+        try:
+            ip, mask = parse_input(args.address)
+            info = calculate_subnet(ip, mask)
+        except ValueError as exc:
+            parser.error(str(exc))
         print_subnet_info(info)
     else:
         # Built-in demo with several interesting subnets

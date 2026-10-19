@@ -2,6 +2,19 @@
 
 This repository is a comprehensive collection of notes, guides, and resources on various networking topics. It is designed to serve as a valuable reference for students, professionals, and anyone interested in learning more about networking concepts and technologies.
 
+## Start Here
+
+1. Learn the [TCP/IP model](notes/networking_basics/tcp_ip.md), [IP addressing](notes/network/ip_address.md), and [subnetting](notes/network/subnetting.md).
+2. Follow a packet through [ARP](notes/data_link/arp.md), [IP](notes/application/ip_protocol.md), [TCP](notes/transport/tcp.md), [DNS](notes/application/dns.md), and [HTTP](notes/application/http.md).
+3. Try the [ping](practice/ping/README.md), [DNS lookup](practice/nslookup_dig/README.md), and [Wireshark](practice/wireshark/README.md) labs, then check your understanding with the quizzes below.
+
+The [Python scripts](scripts/README.md) require **Python 3.10 or later** and use the standard library. These examples run offline from the repository root:
+
+```bash
+python3 scripts/network/subnet_calculator.py 192.0.2.10/31
+python3 scripts/network/cidr_to_hosts.py 2001:db8::/64
+```
+
 ## Table of Contents
 
 ### Networking Basics
@@ -28,6 +41,7 @@ This repository is a comprehensive collection of notes, guides, and resources on
 
 ### Network Layer
 - [IP Addresses](notes/network/ip_address.md)
+- [IP Protocol](notes/application/ip_protocol.md)
 - [Subnetting](notes/network/subnetting.md)
 - [NAT](notes/network/nat.md)
 - [Datagrams](notes/network/datagrams.md)
@@ -49,7 +63,6 @@ This repository is a comprehensive collection of notes, guides, and resources on
 - [FTP](notes/application/ftp.md)
 - [TLS/SSL](notes/application/tls_ssl.md)
 - [SMTP and Email](notes/application/smtp_and_email.md)
-- [IP Protocol](notes/application/ip_protocol.md)
 - [Stateless vs Stateful](notes/application/stateless_vs_stateful.md)
 
 ### Internet
@@ -84,11 +97,18 @@ This repository is a comprehensive collection of notes, guides, and resources on
 - [Python Networking Scripts](scripts/README.md) — 60 educational Python scripts covering networking concepts
 
 ### Quizzes
+- [OSI and Networking Basics](quizzes/osi_and_networking_basics.md)
+- [Network Topologies and Physical Layer](quizzes/network_topologies_and_physical_layer.md)
 - [TCP/UDP](quizzes/tcp_udp.md)
 - [IP Addressing](quizzes/ip_addressing.md)
+- [Subnetting and NAT](quizzes/subnetting_and_nat.md)
 - [DNS and DHCP](quizzes/dns_dhcp.md)
+- [HTTP and Web Protocols](quizzes/http_and_web_protocols.md)
 - [Routing and Switching](quizzes/routing_and_switching.md)
 - [Firewall, IDS, and IPS](quizzes/firewall_ids_and_ips.md)
+- [VPN, Proxy, and Load Balancing](quizzes/vpn_proxy_and_load_balancing.md)
+
+Quiz answers are marked with checked boxes. Try answering each question before reading the options marked as correct.
 
 ## Questions
 
@@ -109,6 +129,13 @@ This repository is a comprehensive collection of notes, guides, and resources on
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
+Use primary sources, such as RFCs and official tool documentation, when correcting protocol behavior. Keep related notes, scripts, and quiz answers consistent. Run the offline checks from the repository root before submitting a change:
+
+```bash
+python3 -m unittest discover -s tests -v
+python3 -m compileall -q scripts tests
+```
+
 ## License
 
-[MIT](https://choosealicense.com/licenses/mit/)
+[MIT](LICENSE)
