@@ -1,3 +1,6 @@
+# IP Addressing Quiz
+
+Review the [IP addressing notes](../notes/network/ip_address.md). Class A, B, and C questions refer to the historical classful scheme; modern subnet boundaries use CIDR prefixes.
 
 #### Q. Within the same subnet, IP addresses must be:
 
@@ -62,7 +65,7 @@
 * [ ] NAT reduces the number of addresses available
 * [ ] VPCs consume half of all IPs
 
-#### Q. "An ISP is like a huge private network and exposes only some public IPs to the internet" best matches:
+#### Q. Which technique lets multiple ISP customers share a smaller pool of public IPv4 addresses?
 
 * [ ] CDN
 * [x] Carrier-Grade NAT (CGNAT)

@@ -5,7 +5,8 @@
 The Dynamic Host Configuration Protocol (DHCP) is an application-layer protocol that
 automatically assigns IP addresses and other network configuration parameters to devices
 on a network. Without DHCP, an administrator would need to manually configure every
-device — DHCP automates this process.
+device — DHCP automates this process. This note covers **DHCP for IPv4**;
+DHCPv6 is a separate protocol with different messages and ports.
 
 - DHCP uses **UDP** on **port 67** (server) and **port 68** (client).
 - It is defined in **RFC 2131**.
@@ -23,7 +24,7 @@ DHCP follows a four-step process commonly known as **DORA**:
     |                                        |
     |---3. DHCP Request (broadcast)--------->|
     |                                        |
-    |<--4. DHCP Acknowledgment (unicast)-----|
+    |<--4. DHCPACK (unicast/broadcast)--------|
     |                                        |
     | Client now has an IP address and       |
     | network configuration.                 |
@@ -42,7 +43,8 @@ DHCP follows a four-step process commonly known as **DORA**:
    indicating which server's offer it has accepted.
 
 4. **Acknowledgment** — The chosen server sends a `DHCPACK` confirming the lease. The
-   client can now use the assigned IP address for the duration of the lease.
+   reply may be unicast or broadcast, depending on the client's state and broadcast
+   flag. The client checks for address conflicts before using the assigned address.
 
 ## Information Provided by DHCP
 
@@ -69,13 +71,13 @@ DHCP can supply more than just an IP address:
   │  Lease       │──── Lease expires ──── back to No Address
   │  Acquired    │
   └──────┬───────┘
-         │ At 50% of lease time (T1)
+         │ Default: 50% of lease time (T1)
          ▼
   ┌──────────────┐
   │  Renewal     │──── Server responds ──── Lease extended
   │  (unicast)   │
   └──────┬───────┘
-         │ At 87.5% of lease time (T2)
+         │ Default: 87.5% of lease time (T2)
          ▼
   ┌──────────────┐
   │  Rebinding   │──── Any server responds ──── Lease extended
@@ -83,11 +85,14 @@ DHCP can supply more than just an IP address:
   └──────────────┘
 ```
 
-- **T1 (Renewal timer)**: At 50% of the lease duration, the client unicasts a renewal
+- **T1 (Renewal timer)**: By default, at 50% of the lease duration, the client unicasts a renewal
   request to the server that granted the lease.
-- **T2 (Rebinding timer)**: At 87.5% of the lease duration, if renewal failed, the
+- **T2 (Rebinding timer)**: By default, at 87.5% of the lease duration, if renewal failed, the
   client broadcasts a request to any available DHCP server.
-- If no server responds by the time the lease expires, the client loses its IP address.
+- The server can configure T1 and T2; the required order is `T1 < T2 < lease expiry`.
+- If the lease expires without renewal, the client must stop using the leased address
+  and restart address acquisition. Disconnecting from Wi-Fi does not by itself
+  release a lease.
 
 ## DHCP Relay
 
@@ -123,8 +128,9 @@ clients on one subnet and a DHCP server on another.
 - **Windows DHCP Server** — built into Windows Server.
 - **Kea** — modern, open-source DHCP server from ISC (successor to `dhcpd`).
 
-In Wi-Fi networks, the **access point** or **home router** typically acts as the DHCP
-server, assigning addresses to all connected wireless clients.
+An integrated **home router** commonly includes a DHCP server. A standalone Wi-Fi
+**access point** usually bridges clients onto the LAN, where a separate router or
+server supplies DHCP; being an access point does not require running DHCP.
 
 ## DHCP in a Home Wi-Fi Network
 
@@ -157,8 +163,9 @@ Tablet           192.168.1.22     assigned by DHCP
 Subnet mask      255.255.255.0    → prefix length /24
 ```
 
-All devices share the `192.168.1.0/24` subnet and can communicate directly with each
-other without passing through the router.
+These devices share the `192.168.1.0/24` subnet and normally communicate through
+Layer 2 switching or bridging, without IP routing through the default gateway.
+Wi-Fi client isolation or firewall rules can still prevent communication.
 
 ### Router Roles in a Home Network
 
@@ -169,7 +176,7 @@ A single home router commonly performs several functions simultaneously:
   server to each client.
 - **Default gateway** — forwards traffic from the private subnet to external networks.
 - **NAT gateway** — translates private addresses to the single public IP assigned by
-  the ISP (see `notes/network/nat.md` for details).
+  the ISP (see [NAT](../network/nat.md) for details).
 
 ### DORA on a Wi-Fi Client
 
@@ -194,8 +201,10 @@ process to obtain one from the router's DHCP server:
 
 ### Lease Table and Duplicate Address Prevention
 
-The DHCP server keeps a **lease table** that records which address has been assigned
-to which device (identified by MAC address):
+The DHCP server keeps a **lease table** that records address assignments, client
+identifiers, and expiry times. A client is identified by its DHCP client identifier
+when supplied, or otherwise by its hardware address. Home-router interfaces often
+display the MAC address:
 
 ```text
 IP Address       MAC Address        Lease Expires
@@ -218,11 +227,19 @@ DHCP client  →  192.168.1.50  (assigned by router)
 Static device →  192.168.1.50  (manually set — conflict!)
 ```
 
-Operating systems typically detect this situation using **ARP**: on first use of an
-address a host sends a gratuitous ARP (or ARP probe); if another device replies, both
-devices report an IP address conflict. See `notes/data_link/arp.md` for the full ARP
-and gratuitous-ARP mechanism.
+IPv4 Address Conflict Detection uses **ARP probes** before an address is used, then
+ARP announcements and ongoing conflict detection. A probe has sender IP `0.0.0.0`
+and the proposed address as its target. Conflicting ARP traffic can reveal another
+claimant; detection does not require both devices to display an error. A DHCP
+client that finds its offered address is already in use sends `DHCPDECLINE` and
+restarts configuration. See [ARP](../data_link/arp.md).
 
 To avoid such conflicts, configure the router's DHCP pool to exclude any addresses
 reserved for static assignment (e.g., reserve `192.168.1.2`–`192.168.1.19` for static
 devices and let DHCP assign from `192.168.1.20` upward).
+
+## References
+
+- [RFC 2131: DHCP](https://www.rfc-editor.org/rfc/rfc2131.html), especially Sections 4.1, 4.4.1, and 4.4.5.
+- [RFC 5227: IPv4 Address Conflict Detection](https://www.rfc-editor.org/rfc/rfc5227.html).
+- [DNS and DHCP quiz](../../quizzes/dns_dhcp.md).

@@ -1,3 +1,6 @@
+# DNS and DHCP Quiz
+
+DHCP questions refer to IPv4. Review the [DNS notes](../notes/application/dns.md) and [DHCP notes](../notes/application/dhcp.md).
 
 #### Q. What does the term "lease" mean in the context of DHCP?
 
@@ -6,7 +9,7 @@
 * [ ] The interval required for completing a data transfer
 * [ ] The validity period of a registered domain name
 
-#### Q. Which type of DNS record maps a domain name directly to an IP address?
+#### Q. Which type of DNS record maps a domain name directly to an IPv4 address?
 
 * [x] A record
 * [ ] CNAME record
@@ -48,9 +51,9 @@
 * [ ] Dynamic Hypertext Configuration Process
 * [ ] Data Handling Control Protocol
 
-#### Q. What occurs once a DHCP lease reaches its expiration?
+#### Q. What must a DHCP client do if its lease expires without a successful renewal?
 
-* [x] The IP address is released back into the available pool for reassignment
+* [x] Stop using the leased address and restart address acquisition
 * [ ] The device permanently loses network connectivity
 * [ ] The DNS server removes the corresponding entry
 * [ ] The IP address becomes permanently bound to the device
@@ -209,7 +212,7 @@
 * [ ] RFC 791
 * [ ] RFC 1027
 
-#### Q. Which of the following is a valid RFC 1918 private IPv4 address range?
+#### Q. Which option exactly matches one of the three complete RFC 1918 private IPv4 address blocks?
 
 * [x] 172.16.0.0 – 172.31.255.255
 * [ ] 172.0.0.0 – 172.15.255.255
@@ -223,7 +226,7 @@
 * [ ] The ISP's DHCP server
 * [ ] The Wi-Fi access point firmware
 
-#### Q. In a home network using the 192.168.1.0/24 subnet, how many usable host addresses are available for client devices?
+#### Q. In a home network using the 192.168.1.0/24 subnet, how many usable interface addresses are available in total, including the router's address?
 
 * [x] 254
 * [ ] 256
@@ -260,7 +263,7 @@
 
 #### Q. What mechanism do operating systems typically use to detect a duplicate IP address conflict on the local network?
 
-* [x] ARP — a host sends a gratuitous ARP or ARP probe and detects a conflict if another device replies
+* [x] ARP probes before use and ongoing checks for conflicting ARP traffic
 * [ ] DHCP — the DHCP server queries all clients before issuing each new lease
 * [ ] DNS — reverse DNS lookups identify conflicting records
 * [ ] ICMP — a ping to the address reveals whether it is already in use
@@ -271,3 +274,24 @@
 * [ ] Private addresses are automatically reassigned by the ISP to avoid duplication
 * [ ] IPv6 tunnelling converts duplicate private addresses into unique global addresses
 * [ ] RFC 1918 addresses are blocked by all internet routers and never appear in transit
+
+#### Q. Can a DHCPACK sent to a client acquiring its initial IPv4 lease be broadcast?
+
+* [x] Yes, depending on the client's broadcast flag and configuration state
+* [ ] No, DHCPACK is always unicast
+* [ ] No, DHCP uses TCP for acknowledgments
+* [ ] Yes, but only after the lease has expired
+
+#### Q. Are the DHCP renewal timers T1 and T2 always fixed at 50% and 87.5% of the lease duration?
+
+* [x] No, those are defaults; the server can configure them with T1 < T2 < lease expiry
+* [ ] Yes, the values cannot be changed
+* [ ] No, T2 must occur before T1
+* [ ] No, renewal starts only after lease expiry
+
+#### Q. A /24 home subnet has one router address and no other reservations or devices. How many addresses remain for clients?
+
+* [x] 253
+* [ ] 254
+* [ ] 255
+* [ ] 256
